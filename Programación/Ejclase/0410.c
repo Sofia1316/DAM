@@ -29,7 +29,7 @@ void calcular_area_figura(char figura){
 	if (figura == '1'){
 	printf("Introduce el radio del círculo:");
 	scanf("%f", &radio);
-	float area = 3.1416 * radio*radio;
+	float area = 3.1416 * radio*radio;  //Se puede poner después de la librería math.h para que lo entienda, area = M_PI * pow(radio,2);
 	printf("El área del círculo con radio %f es %f\n", radio,area);
 } else if (figura == '2'){ 
 	printf("Introduce el lado del cuadrado:");
@@ -150,11 +150,12 @@ int main(){
 	printf("Opción: ");
 	scanf("%d", &numero);
 
+//EJECUTABLES
 	switch (numero){
 		case 1:
 			char letra;
 			printf("Introduce una letra:");
-			scanf(" %c", &letra);
+			scanf(" %c", &letra); //Se pone un espacio entre las comillas y el %c debido a que el scanf anterior tiene guardado un salto de línea
 			es_vocal(letra);
 			break;
 		case 2:
