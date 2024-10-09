@@ -41,7 +41,7 @@ void calcular_area_figura(char figura){
 }
 
 //OPCIÓN 3:
-double calcular_promedio_tres_num(double num1, double num2, double num3){
+double calcular_promedio_tres_num(double num1, double num2, double num3){ //estas funciones auxiliares tienen que ir arriba de su función ya que si no el programa no lo lee
 	double suma = num1 + num2 + num3;
 	double promedio = suma / 3;
 	return promedio;
@@ -53,7 +53,9 @@ double calcular_promedio_cuatro_num(double num1, double num2, double num3,double
 	return promedio;
 }	
 
-void calcular_promedio(int valor){
+void calcular_promedio(int valor){ 
+		//los scanf se ponen dentro de esta función porque se necesitan los números como argumento de las funciones auxiliares (las de arriba), 
+		//y desde el main no es posible porque esta función no recibe argumentos
 	double num1, num2, num3, num4;
 	if (valor == 3){
 	printf("Introduce el número 1: ");
