@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primer ejercicio html</title>
-</head>
-<body>
-    
-</body>
-</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE liga de fútbol [
+    <!ELEMENT partidos (nombre, goles+)>
+    <!ELEMENT nombre (local, visitante)>
+        <!ATTLIST nombre local (#PCDATA)>
+        <!ATTLIST nombre visitante (#PCDATA)>
+    <!ELEMENT goles (local, visitante)>
+        <!ATTLIST goles local (#PCDATA)>
+        <!ATTLIST goles visitante (#PCDATA)> 
+]>
+
+<partidos>
+   <nombre>
+        <local>3</local>
+        <visitante>4</visitante>
+   </nombre> 
+   <goles>
+        <local>3</local>
+        <visitante>4</visitante>
+   </goles>
+</partidos>
