@@ -29,7 +29,7 @@ void calcular_area_figura(char figura){
 	if (figura == '1'){
 	printf("Introduce el radio del círculo:");
 	scanf("%f", &radio);
-	float area = 3.1416 * radio*radio;
+	float area = 3.1416 * radio*radio;  //Se puede poner después de la librería math.h para que lo entienda, area = M_PI * pow(radio,2);
 	printf("El área del círculo con radio %f es %f\n", radio,area);
 } else if (figura == '2'){ 
 	printf("Introduce el lado del cuadrado:");
@@ -41,7 +41,7 @@ void calcular_area_figura(char figura){
 }
 
 //OPCIÓN 3:
-double calcular_promedio_tres_num(double num1, double num2, double num3){
+double calcular_promedio_tres_num(double num1, double num2, double num3){ //estas funciones auxiliares tienen que ir arriba de su función ya que si no el programa no lo lee
 	double suma = num1 + num2 + num3;
 	double promedio = suma / 3;
 	return promedio;
@@ -53,7 +53,9 @@ double calcular_promedio_cuatro_num(double num1, double num2, double num3,double
 	return promedio;
 }	
 
-void calcular_promedio(int valor){
+void calcular_promedio(int valor){ 
+		//los scanf se ponen dentro de esta función porque se necesitan los números como argumento de las funciones auxiliares (las de arriba), 
+		//y desde el main no es posible porque esta función no recibe argumentos
 	double num1, num2, num3, num4;
 	if (valor == 3){
 	printf("Introduce el número 1: ");
@@ -150,11 +152,12 @@ int main(){
 	printf("Opción: ");
 	scanf("%d", &numero);
 
+//EJECUTABLES
 	switch (numero){
 		case 1:
 			char letra;
 			printf("Introduce una letra:");
-			scanf(" %c", &letra);
+			scanf(" %c", &letra); //Se pone un espacio entre las comillas y el %c debido a que el scanf anterior tiene guardado un salto de línea
 			es_vocal(letra);
 			break;
 		case 2:
