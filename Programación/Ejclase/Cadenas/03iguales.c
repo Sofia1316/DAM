@@ -2,23 +2,32 @@
 #include <stdlib.h>
 
 int main (){
-	char srt1[10];
-	char srt2[10];
+	char str1[10] = "iguales";
+	char str2[10] = "iguales";
 
-	//Para pedir la palabra 1 al usuario con un máximo de 10 caracteres
-	printf("Introduce una palabra:");
-	scanf(" %s", srt1);
-	//Para pedir la palabra 2 al usuario con un máximo de 10 caracteres
-	printf("Introduce una palabra:");
-	scanf(" %s", srt2);
+	//Operador ==
+	if (str1 == str2){
+		printf("Las palabras son iguales\n");	
+	} else {
+		printf("Las palabras son distintas\n");
+	} 
 	
-	//Condicionales
-	if (srt1 == srt2){
-		printf("Las palabras son %s y %s\n", srt1,srt2);	
-	} else if (srt1 < srt2){
-		printf("La palabra %s es mayor a %s\n", srt1,srt2);
-	} else printf("nada");
-	
+
+	//Operador <
+	if (str1 < str2){
+		printf("Las palabra 2 es mayor\n");	
+	} else {
+		printf("Las palabra 1 es mayor\n");
+	} 
+
+	//Comparar caracteres
+	if (str1[0] == str2[0]){
+		printf("Los primeros caracteres son iguales\n");
+		if (str1[1] == str2[1]){
+			printf("los segundos también son iguales\n");
+		}
+	} else printf ("Los primeros caracteres no son iguales\n");
+
 
 return EXIT_SUCCESS;
 }
