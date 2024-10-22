@@ -13,7 +13,7 @@ int main (){
 	printf("La palabra es %s", srt1);
 
 	//Para pedir la sustitución de /0
-	printf("¿Con qué carácter quieres sustituir?");
+	printf("¿Qué carácter quieres incluir?");
 	scanf(" %c", &caracter);
 
 	//Palabra cambiada
