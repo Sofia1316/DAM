@@ -1,48 +1,64 @@
 <!DOCTYPE html>
 <html lang="esp">
     <head>
-        <title>MI PRIMERA PAGINA WEB</title>
+        <title>MI PRIMERA PÁGINA WEB</title>
         <meta charset="utf8" name="theme-color" content="red">
     </head>
-    <body>
-        <h1>Maria Cristina Aroca Leon</h1>
-        <img src="Maria.jpg" width="90" height="90" alt="Maria">
-        <h2>Datos personales</h2>
-        <p> <b>Puesto actual:</b> Asistente Educativa</p>
-        <p> <b>Direccion:</b> Puerta nueva, 79 36130 Cerdedo</p>
-        <p> <b>E-mail:</b> Mariacristinaarocaleon@gmail.com</p>
-        <p> <b>Movil:</b> 648 371 972</p>
-        <p> <b>Linkedin:</b> Linkedin.com/in/MariacristinaArocaLeon</p>
-        <h2><b>Datos que quiero mostrar</b></h2>
-            <li>Motivacion</li>
-            <li>experiencia_laboral</li>
-            <li>Estudios</li>
-            <li>Aptitudes</li>
-            <li>Idiomas</li>
-        <h2><b><cite>Motivacion</cite></b></h2>
-            <p>Asistente educativa con más de 6 años dando acompañamiento a los usuarios en la realización de trámites administrativos. Cuento con conocimientos legales para dar asesoramiento y contactar con los departamentos de vivienda y seguridad social.</p>
-        <h2><b><cite>Experiencia Laboral</cite></b></h2>
-        <h2><b><cite>Formación Académica</cite></b></h2>
-        <b>
-            <ol> Master en Apoyo para la inclusión educativa y social
-                <li>UAH, Barcelona</li>
-                <li>Septiembre de 2014-Junio de 2016</li>
-            </ol>
-            <ol>
-                <li>UV, Valencia</li>
-                <li>Septiembre de 2010-Junio de 2014</li>
-            </ol>
-        </b>
-        <h2><b><cite>Aptitudes</cite></b></h2>
-            <li>Didáctica de la educación infantil</li>
-            <li>Autonomía personal y salud infantil</li>
-            <li>Juego infantil y su metodología</li>
-            <li>Desarrollo congnitivo y motor</li>
-            <li>Desarrollo socio-efectivo</li>
-            <li>Habilidades sociales</li>
-        <h2><b><cite>Idiomas</cite></b></h2>
-            <ol>
-                <li>Ingles B2</li>
-                <li>Francés B1</li>
-            </ol>
+    <body><!--hay desde h1 a h6-->
+        <h1>Bienvenido a mi pagina web</h1>
+        <h2>Hecha el 18/10/2024</h2>
+        <h3>Autor: Sofia Lopez</h3>
+        <p><q>Primera prueba de funciones</q> </p>
+        <p1><strong>Lorem</strong> <b><em>sit</em></b>  <mark>dolor sit amet</mark> <s>consectetur</s>  adipisicing <u>elit.</u> Nam exercitationem ab eligendi enim. Porro sapiente illo itaque? Dolore esse expedita delectus nemo consequuntur architecto odio! Aut reprehenderit numquam aspernatur laborum?</p1>
+        <cite>Prueba hecha</cite>
+        <p>2<sup>2</sup></p>
+        <p>x<sup>1</sup></p>
+        <p>Esta es la clase de <dfn>lenguaje de marcas </dfn><small>del viernes 18</small> </p>
+        <h2>Listas</h2><!--Se define en esta parte tipos de listas-->
+            <h3>Lista no numerada</h3><!--con puntos-->
+                <li>Apartado 1</li>
+                <li>Apartado 2</li>
+                <li>Apartado 3</li>
+            <h3>Lista numerada</h3><!--con numeros-->
+                <ol>
+                    <li>Apartado a</li>
+                    <li>Apartado b</li>
+                    <li>Apartado c</li>
+                </ol>
+            <h3>Listas multinivel</h3><!--la mezcla o no de ambas listas-->
+            <ol type="1" start="3" reversed>
+                    <li>apartado a</li>
+                    <li>apartado b
+                    <ol>
+                        <li>apartado1</li>
+                        <li>apartado2</li>
+                    </li>
+                </ol>
+    <!--ruta absoluta: son aquellas que la raiz es c, y hace la ruta, es decir, coge toda la ruta-->
+        <img src="gato.jpg" width="200" height="200" alt="gato">
+    <!--ruta relativa: pero si la imagen la tengo guardada por ejemplo en descargas, la coge desde ahi -->
+        <img src="https://i.pinimg.com/736x/10/ce/8e/10ce8e3e94e0d7d0e9dc6979e7b43fb2.jpg" width="200" height="200" alt="gato">
+    <!--PAGINAS WEB ENLACES-->
+        <nav>
+            <a href="https://www.nationalgeographic.es/animales/gato-domestico">gato-domestico</a>
+        </nav>
+    <!--ELEMENTOS DE AGREGACIÓN-->
+        <section>
+            <h2> Multimedia </h2>
+    <!--Una imagen u otra en función de sus px-->        
+            <picture>
+                <source media="(width < 200px)" srcset="https://i.pinimg.com/originals/42/cf/e7/42cfe7b0c4ad75c4ca173f77c28b3abc.jpg" width="100" height="100">
+                <img src="https://i.pinimg.com/originals/9c/c7/74/9cc77419dae611df803a4400cfd0a39d.jpg" width="300" height="300" alt="imagen">
+            </picture>
+    <!--ViDEO-->
+            <video src="c:\Users\Dam\video.mp4#t=30,120" width="200" height="200" autoplay muted loop controls playsinline></video>
+            <iframe width="300" height="300" src="c:\Users\Dam\video.mp4" muted></iframe>
+    <!--AUDIO-->    
+        <audio src="c:\Users\Dam\Halloween.mp3" controls autoplay loop preload="metadata"></audio>
+        
+        </section>
+        <footer>
+            <p>Pie de página</p>
+        </footer>
     </body>
+</html>
