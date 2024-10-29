@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int main(){
+	//Correción clase
 	int numero, cociente, resto = 0; 
 
 	printf("Introduce un número:");
@@ -15,6 +16,7 @@ int main(){
 	} while (cociente != 0);
 
 	printf("%d\n", resto);
+
 
 	/*int i;
 	int resto2, resto3, resto4, resto5;
