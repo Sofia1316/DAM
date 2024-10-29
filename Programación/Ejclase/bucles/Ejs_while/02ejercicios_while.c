@@ -2,7 +2,21 @@
 #include <stdlib.h>
 
 int main(){
-	int i;
+	int numero, cociente, resto = 0; 
+
+	printf("Introduce un número:");
+	scanf("%d", &numero);
+
+	do {
+		cociente = numero / 10;
+		resto = numero % 10; //resto += .....
+		acumulado = acumulado + resto;
+		numero = cociente;
+	} while (cociente != 0);
+
+	printf("%d\n", resto);
+
+	/*int i;
 	int resto2, resto3, resto4, resto5;
 	int sol1, sol2, sol3, sol4;
 	int resultado = 0;
@@ -32,7 +46,7 @@ int main(){
 		resultado = sol1 + sol2 + sol3 + sol4;
 		printf("%d\n", resultado);
 
-	}
+	}*/
 	
 	return EXIT_SUCCESS;
 }
