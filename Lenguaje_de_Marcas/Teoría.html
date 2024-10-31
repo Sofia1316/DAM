@@ -88,5 +88,65 @@
         <footer>
             <p>Pie de página</p>
         </footer>
+
+        <section>
+            <h2>Formularios</h2>
+            <form name="Formulario1" method="" action=""> <!--método de envío y destinatario-->
+                <p>Nombre: <input type="text" name="nombre" required></p>
+                <p>Teléfono persona: <input type="tel" name="teléfono"></p>
+                <p>Correo: <input type="email" name="correo"></p>
+                <p>Contraseña: <input type="password" name="Contraseña"></p>
+                <p>Página web: <input type="url" name="página" placeholder="Salesianossantodomingosavio.es"></p>
+                <input type="hidden" name="oculto" value="12">
+                <p>Edad: <input type="number" name="edad" min="0" max="50"></p> <!--restricción de edad entre 0 y 50-->
+                <p>Edad: <input type="range" name="edad" min="0" max="50"></p>
+                <p>Fecha: <input type="date" name="fecha" min="2024-01-01" max="2024-12-31"></p>
+                <p>Mes: <input type="month" name="Mes"></p>
+                <p>Semana: <input type="week" name="Semana"></p>
+                <p>Hora: <input type="time" name="hora"></p>
+                <p>Fecha y Hora: <input type="datetime-local" name="fechahora"></p>
+                
+
+                <p>Opciones: ¿Qué te gusta más?</p> <!--Casillas cuadradas; checkbox-->
+                <p><input type="checkbox" name="opcion1" value="piscina">Piscina</p>
+                <p><input type="checkbox" name="opcion2" value="campo" checked>Campo</p> <!--para tenerlo marcado como predeterminado-->
+                <p><input type="checkbox" name="opcion3" value="playa">Playa</p>
+
+                <p>Opciones: ¿Qué te gusta más?</p> <!--Casillas redondas; radio-->
+                <p><input type="radio" name="opcion1" value="piscina">Piscina</p>
+                <p><input type="radio" name="opcion2" value="campo" checked>Campo</p> <!--para tenerlo marcado como predeterminado-->
+                <p><input type="radio" name="opcion3" value="playa">Playa</p>
+
+                <p>Opciones (lista desplegable): ¿Qué te gusta más?</p><!--Lista desplegable-->
+                <p>
+                <select> <!--Lista de una única opción, si quiero seleccionar varias, multiple-->
+                    <optgroup label="categoría1">
+                    <option value="piscina">Piscina</option>
+                    <option value="campo" selected>Campo</option>
+                    <option value="playa">Playa</option>
+                    </optgroup>
+
+                    <optgroup label="categoría2">
+                    <option value="parque">parque</option>
+                    <option value="rio">río</option>
+                    </output>
+                </select>
+                </p>
+                
+                <p><input type="color" value="#FFFFFF"></p>
+
+                <p><textarea name="texto" cols="10" rows="10" placeholder="Escribe aquí"></textarea></p>
+                
+                <p><meter min="0" max="50" value="40" low="10" high="40"></meter></p>
+                
+                <p><progress  min="0" max="50" ></progress></p>
+                
+                <!--Botones-->
+                <button>Botón</button>
+                <input type="submit" value="Aceptar">
+                <input type="reset" value="Borrar">
+
+            </form>
+        </section>
     </body>
 </html>
