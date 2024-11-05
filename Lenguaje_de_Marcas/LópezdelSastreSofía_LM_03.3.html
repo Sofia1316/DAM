@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tablas</title>
 </head>
 <body>
     <!--Tabla 1-->
@@ -25,7 +25,7 @@
     </table>
 
     <!--Tabla 2-->
-    <p>Tabla 1</p>
+    <p>Tabla 2</p>
     <table border="1px">
         <tr>
             <td colspan="2">Elemento 1</td>
@@ -44,9 +44,274 @@
             <td>Elemento 1</td>
             <td>Elemento 1</td>
             <td>Elemento 1</td>
-            <td rowspan="2"> Elemento 1 </td>
-            <t
+            <td colspan="2"> Elemento 1 </td>
         </tr>
     </table>
+
+    <!--Tabla 3-->
+    <p>Tabla 3</p>
+    <table border="1px">
+        <tr>
+            <td>
+                <table border="1px" align="center">
+                    <tr>
+                    <td>Elemento 1</td>
+                    <td>Elemento 1</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Elemento 1</td>
+                    </tr>
+                </table>Elemento 1</td>
+            <td>Elemento 1</td>
+            <td>Elemento 1</td>
+            <td rowspan="2">Elemento 1</td>
+        </tr>
+        <tr>
+            <td>Elemento 1</td> 
+            <td>Elemento 1</td>
+            <td>
+                <table border="1px" align="center">
+                    <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                    </tr>
+                    <tr>
+                        <td> - </td>
+                        <td colspan="2"> - </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">Elemento 1</td>
+            <td>Elemento 1</td>
+            <td>Elemento 1</td>
+        </tr>
+    </table>
+
+    <!--Tabla 4-->
+    <p>Tabla 4</p>
+    <table border="1px">
+        <tr>
+            <td colspan="2">celda 1</td>
+            <td>celda 2</td>
+            <td colspan="2">celda 3</td>
+        </tr>
+        <tr>
+            <td rowspan="2" colspan="2">celda combinada</td> 
+            <td>celda 5</td>
+            <td rowspan="2" colspan="2">celda combinada</td>
+        </tr>
+        <tr>
+            <td>celda 7</td>
+        </tr>
+    </table>
+
+    <!--Tabla 5-->
+    <p>Tabla 5</p>
+    <table border="1px">
+        <tr>
+            <td>celda 1</td>
+            <td>celda 2</td>
+            <td>celda 3</td>
+            <td>celda 4</td>
+        </tr>
+        <tr>
+            <td rowspan="3">celda 5</td> 
+            <td>celda 6</td>
+            <td colspan="2">celda 7</td>
+            
+        </tr>
+        <tr>
+            <td>celda 8</td>
+            <td>celda 9</td>
+            <td rowspan="2">celda 10</td>
+        </tr>
+        <tr>
+            <td colspan="2">celda 11</td>
+        </tr>
+    </table>
+
+     <!--Tabla 6-->
+     <p>Tabla 6</p>
+     <table border="1px">
+         <tr>
+             <td colspan="2" rowspan="2">Tabla avanzada</td>
+             <td colspan="3">cabecera múltiples columnas</td>
+         </tr>
+         <tr>
+             <td colspan="2">Primera col cab</td> 
+             <td colspan="2">Segunda col cab</td>
+         </tr>
+         <tr>
+             <td colspan="2" align="center">Fila 1</td>
+             <td colspan="2">fila 1 columna 1</td>
+             <td colspan="2">fila 1 columna 2</td>
+         </tr>
+         <tr>
+            <td colspan="2" align="center">Fila 2</td>
+            <td colspan="2">fila 2 columna 1</td>
+            <td colspan="2">fila 2 columna 2</td>
+         </tr>
+         <tr>
+            <td colspan="6">Pie de tabla</td>
+         </tr>
+     </table>
+
+     <!--Tabla 7-->
+     <p>Tabla 7</p>
+     <table border="1px">
+        <tr>
+            <td>celda</td>
+            <td>celda</td>
+            <td>celda</td>
+            <td>celda</td>
+        </tr>
+        <tr>
+            <td>celda</td>
+            <td>celda</td>
+            <td>celda</td>
+            <td>celda</td>
+        </tr>
+        <tr>
+            <td>celda</td>
+            <td>celda</td>
+            <td>celda</td>
+            <td>celda</td>
+        </tr>
+        <tr>
+            <td rowspan="2">celda</td>
+            <td>
+                <table border="1px">
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                </table>
+            </td>
+            <td>celda</td>
+            <td>celda</td>
+        </tr>
+     </table>
+
+     <!--Tabla 8-->
+     <p>tabla 8</p>
+     <table border="1px">
+        <tr>
+            <td>Celda</td>
+            <td>
+            <table border="1px">
+                <tr>
+                    <td>celda</td>
+                    <td>celda</td>
+                    <td>celda</td>
+                </tr>
+                <tr>
+                    <td>celda</td>
+                    <td>celda</td>
+                    <td>celda</td>
+                </tr>
+            </table>
+            </td>
+            <td>celda</td>
+        </tr>
+        <tr>
+            <td>Celda</td>
+            <td>Celda</td>
+            <td>Celda</td>
+        </tr>
+        <tr>
+            <td>Celda</td>
+            <td>
+                <table border="1px">
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                </table>
+                </td>
+                <td>celda</td>
+        </tr>
+     </table>
+
+     <!--tabla 9-->
+     <p>tabla 9</p>
+     <table border="1px">
+        <tr>
+            <td>Celda</td>
+            <td>Celda</td>
+            <td>Celda</td>
+        </tr>
+        <tr>
+            <td>celda</td>
+            <td>
+                <table border="1px">
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                </table>
+                <td>celda</td>
+        </tr>
+        <tr>
+            <td>celda</td>
+            <td>
+                <table border="1px">
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>
+                    </tr>
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>  
+                    </tr>
+                    <tr>
+                        <td>celda</td>
+                        <td>celda</td>
+                        <td>celda</td>  
+                    </tr>
+                </table>
+                <td>celda</td>
+        </tr>
+     </table>
 </body>
 </html>
