@@ -9,30 +9,285 @@
     <!--formulario 1-->
     <p><h2>Formulario de registro</h2></p>
     <form name="Formulario1">
+        <fieldset>
+			<legend>Formulario 1</legend>
         <p>Nombre: <input type="text" name="nombre" required></p>
         <p>Apellido: <input type="text" name="Apellido" required></p>
         <p>Correo: <input type="email" name="correo"></p>
         <p>Contraseña: <input type="password" name="Contraseña"></p>
         <p>Confirmar contraseña: <input type="password" name="Contraseña"></p>
         <input type="submit" value="enviar">
+        </fieldset>
 
     <!--formulario 2-->
     <p><h2>Formulario de contacto</h2></p>
     <form name="Formulario2">
+        <fieldset>
+			<legend>Formulario 2</legend>
         <p>Nombre: <input type="text" name="nombre" required></p>
         <p>Correo: <input type="email" name="correo"></p>
         <p>Asunto: <input type="text" name="asunto"></p>
         <p><textarea name="mensaje" cols="10" rows="10" placeholder="Mensaje"></textarea></p> 
         <input type="submit" value="enviar">
+        </fieldset>
 
     <!--formulario 3-->
     <p><h2>Encuesta simple</h2></p>
     <form name="Formulario3">
+        <fieldset>
+			<legend>Formulario 3</legend>
         <p>¿Cual es tu color favorito?</p>
                 <p><input type="radio" name="opcion1" value="rojo">rojo</p>
                 <p><input type="radio" name="opcion2" value="verde">verde</p>
                 <p><input type="radio" name="opcion3" value="azul">azul</p>
                 <p><input type="radio" name="opcion4" value="amarillo">amarillo</p>
+        
+                <p><input type="checkbox" name="opcion1" value="Manzana">Manzana</p>
+                <p><input type="checkbox" name="opcion1" value="Plátano">Plátano</p>
+                <p><input type="checkbox" name="opcion1" value="Naranja">Naranja</p>
+                <p><input type="checkbox" name="opcion1" value="Uva">Uva</p>
         <input type="submit" value="enviar">
+        </fieldset>
+
+    <!--formulario 4-->
+    <p><h2>Formulario de reserva</h2></p>
+    <form name="Formulario4">
+        <fieldset>
+			<legend>Formulario 4</legend>
+        <p>Nombre: <input type="text" name="nombre" required></p>
+        <p>Número de personas: <input type="number" name="numero_personas"></p>
+        <p>Fecha de reserva: <input type="date" name="Fecha"></p>
+        <p>Hora de reserva: <input type="time" name="hora"></p>
+        <input type="submit" value="enviar">
+        </fieldset>
+
+    <!--formulario 5-->
+    <p><h2>Formulario de feedback</h2></p>
+    <form name="Formulario5">
+        <fieldset>
+			<legend>Formulario 5</legend>
+        <p>Nombre: <input type="text" name="nombre" required></p>
+        <p>Correo: <input type="email" name="correo"></p>
+        <p>Calificación (1-5 estrellas): <input type="number" name="estrellas"></p>
+        <p><textarea name="comentarios" cols="10" rows="10" placeholder="Comentarios"></textarea></p> 
+        <input type="submit" value="enviar">
+        </fieldset>
+
+    <!--formulario 6-->
+    <p><h2>Formulario de feedback</h2></p>
+    <form name="Formulario6"> 
+        <fieldset>
+        <legend>Formulario 6</legend>
+        <p>Nombre: <input type="text" name="nombre" required></p>
+        <p>Correo: <input type="email" name="correo"></p>
+        <p><input type="checkbox" name="opcion1" value="terminos" required>Aceptar Términos y Condiciones</p>
+        <input type="submit" value="suscripción">
+        </fieldset>
+
+    <!--formulario 7-->
+    <p><h2>Formulario requisitos</h2></p>
+    <form name="Formulario7">
+        <fieldset>
+			<legend>Formulario 7</legend>
+        <p>
+            <select> <!--Lista de una única opción, si quiero seleccionar varias, multiple-->
+                <optgroup label="velocidad">
+                <option value="100 Mbits">100 Mbits</option>
+                <option value="1000 Mbits">1000 Mbits</option>
+                </optgroup>
+            </select>
+        </p>
+        <p>Nombre: <input type="text" name="nombre" required></p>
+        <p>Dni: <input type="text" name="dni" required></p>
+        <p>Apellido: <input type="text" name="Apellido" required></p>
+        <p>Correo: <input type="email" name="correo"></p>
+        <p>Elija un color:<input type="color" value="#FFFFFF"></p>
+        <p><textarea name="comentarios" cols="49" rows="6" placeholder="Por favor, escriba aquí"></textarea></p>
+        <p><input type="checkbox" name="procesador" value="procesadoramd">AMD</p>
+        <p><input type="checkbox" name="procesador" value="procesadorintel_i5">Intel i5</p>
+        <p><input type="checkbox" name="procesador" value="procesadorintel_i7">Intel i7</p>
+        <p>Hora: <input type="time" name="hora" required></p>
+        <p><input type="radio" name="red" value="red2">2G</p>
+        <p><input type="radio" name="red" value="red3g">3G</p>
+        <p><input type="radio" name="red" value="red4g">4G</p>
+        <p>Ficheros: <input type="file" name="ficheros" required></p>
+        <p><input type="checkbox" name="asignatura" value="asignaturahistoria">historia</p>
+        <p><input type="checkbox" name="asignatura" value="asignaturageografía">geografía</p>
+        <p><input type="checkbox" name="asignatura" value="asignaturalengua">lengua</p>
+        <p><input type="checkbox" name="asignatura" value="asignaturamatemáticas">matemáticas</p>
+        <p>Hora: <input type="time" name="hora" required></p>
+        <p>Ficheros: <input type="file" name="ficheros" required></p>
+        <p><textarea name="comentarios" cols="49" rows="8" placeholder="Inserte el texto aquí"></textarea></p> 
+        <input type="submit" value="enviar">
+        </fieldset>
+
+    <!--formulario 8-->
+    <p><h2>Formulario instituto</h2></p>
+    <form name="Formulario8">
+        <fieldset>
+			<legend>Formulario 8</legend>
+        <p>Instituto: <input type="text" name="instituto" required></p>
+        <p>Estudios elegidos: <input type="text" name="Estudios elegidos"></p>
+        <p>Nombre: <input type="text" name="nombre" required></p>
+        <p>Apellido: <input type="text" name="Apellido" required></p>
+        <p>Correo: <input type="email" name="correo"></p>
+        <p>Elija un color:<input type="color" value="#FFFFFF"></p>
+        <p><textarea name="comentarios" cols="47" rows="5" placeholder="Utilice este recuadro por favor"></textarea></p> 
+        <p><input type="radio" name="red" value="red2">2G</p>
+        <p><input type="radio" name="red" value="red3g">3G</p>
+        <p><input type="radio" name="red" value="red4g">4G</p>
+        <p>fecha: <input type="date" name="fecha" required></p>
+        <p>Ficheros: <input type="file" name="ficheros" required></p>
+        <p>
+            <select> <!--Lista de una única opción, si quiero seleccionar varias, multiple-->
+                <optgroup label="conector">
+                <option value="usb">usb</option>
+                <option value="paralelo">p2</option>
+                </optgroup>
+            </select>
+        </p>
+        <p><input type="radio" name="sistema" value="sistemawindows">windows</p>
+        <p><input type="radio" name="sistema" value="sistemamac">mac</p>
+        <p><input type="radio" name="sistema" value="sistemalinux">linux</p>
+        <p>fecha: <input type="date" name="fecha" required></p>
+        <input type="submit" value="enviar">
+        </fieldset>
+
+     <!--formulario 9-->
+     <p><h2>Formulario 9</h2></p>
+     <form name="Formulario9">
+        <fieldset>
+			<legend>Formulario 9</legend>
+        <p><input type="radio" name="idioma" value="idiomainglés">inglés</p>
+        <p><input type="radio" name="idioma" value="idiomaalemán">alemán</p>
+        <p><input type="radio" name="idioma" value="idiomafrancés">francés</p>
+        <p><textarea name="comentarios" cols="53" rows="8" placeholder="Inserte el texto aquí"></textarea></p> 
+        <p>fecha: <input type="date" name="fecha" required></p>
+        <p>Hora: <input type="time" name="hora" required></p>
+        <p>
+            <select> <!--Lista de una única opción, si quiero seleccionar varias, multiple-->
+                <optgroup label="conexión">
+                <option value="wifi">wifi</option>
+                <option value="cable">cable</option>
+                <option value="fibra">fibra</option>
+                </optgroup>
+            </select>
+        </p>
+        <p>Elija un color:<input type="color" value="#FFFFFF"></p>
+        <p>Ficheros: <input type="file" name="ficheros" required></p>
+        <p><input type="checkbox" name="conexion" value="conexionwifi">wifi</p>
+        <p><input type="checkbox" name="conexion" value="conexioncable">cable</p>
+        <p><input type="checkbox" name="conexion" value="conexionfibra">fibra</p>
+        <p>Estudios elegidos: <input type="text" name="Estudios elegidos"></p>
+        <p>Nombre: <input type="text" name="nombre" required></p>
+        <p>Apellido: <input type="text" name="Apellido" required></p>
+        <p>Correo: <input type="email" name="correo"></p>
+        <p><textarea name="comentarios" cols="57" rows="6" placeholder="Use este recuadro"></textarea></p> 
+        <p>
+            <select> <!--Lista de una única opción, si quiero seleccionar varias, multiple-->
+                <optgroup label="lenguaje">
+                <option value="java">java</option>
+                <option value="python">python</option>
+                <option value="html">html</option>
+                <option value="css">css</option>
+                </optgroup>
+            </select>
+        </p>
+        <p>Ficheros: <input type="file" name="ficheros" required></p>
+        <p><input type="checkbox" name="asignatura" value="asignaturahistoria">historia</p>
+        <p><input type="checkbox" name="asignatura" value="asignaturageografía">geografía</p>
+        <p><input type="checkbox" name="asignatura" value="asignaturalengua">lengua</p>
+        <p><input type="checkbox" name="asignatura" value="asignaturamatemáticas">matemáticas</p>
+        <p>fecha: <input type="date" name="fecha" required></p>
+        <p>Hora: <input type="time" name="hora" required></p>
+        <p><input type="checkbox" name="ciclo" value="ciclosmin">smir</p>
+        <p><input type="checkbox" name="ciclo" value="ciclosasir">asir</p>
+        <p><input type="checkbox" name="ciclo" value="ciclosdam">dam</p>
+        <p><input type="checkbox" name="ciclo" value="ciclosdaw">daw</p>
+        </fieldset>
+        <input type="submit" value="enviar">
+
+        <!--formulario 10-->
+     <p><h2>Formulario 10</h2></p>
+     <form name="Formulario10">
+        <fieldset>
+			<legend>Formulario de opciones</legend>
+				<p>Elija un fichero:<input type="file" name="fichero"></p>
+				<p><input type="radio" name="formato" value="formatojpg">JPG</p>
+				<p><input type="radio" name="formato" value="formatopng">PNG</p>
+				<label for="nombre">Nombre</label>
+				<input type="text" name="nombre">
+				<label for="apellidos">Apellidos</label>
+				<input type="text" name="apellidos">
+				<label for="direccion">Direccion</label>
+				<input type="text" name="direccion">
+			</fieldset>
+			<fieldset>
+			<legend>Indique</legend>
+				<p><input type="checkbox" name="hardware" value="hardwaretarjeta_aceleradora">Tarjeta aceleradora</p>
+				<p><input type="checkbox" name="hardware" value="hardwaremonitor_led">Monitor LED</p>
+				<p><input type="checkbox" name="hardware" value="hardwaressd">SSD</p>
+				<label for="fecha">Elija una fecha:</label>
+				<input type="date" name="fecha"> <br>
+				<label for="color">Elija un color:</label>
+				<input type="color" name="color" value="#000000">
+				<label for="fichero">Elija un fichero:</label>
+				<input type="file" name="fichero"> <br>
+				<textarea rows="5" cols="60" placeholder="Inserte aquí el texto" name="texto"></textarea>
+			</fieldset>
+			<input type="submit" name="envio" value="Enviar">
+		</form>
+		<form action="fichero.html" method="get">
+			<fieldset>
+			<legend>Rellenar</legend>
+				<input type="checkbox" name="conector" value="conectorusb">
+				<label for="conector">USB</label>
+				<input type="checkbox" name="conector" value="conectorparalelo">
+				<label for="conector">Paralelo</label>
+				<input type="checkbox" name="conector" value="conectorps2">
+				<label for="conector">PS2</label> <br>
+				<textarea rows="8" cols="55" placeholder="Por favor, escriba aquí"></textarea>
+				<p><input type="radio" name="ciclo" value="cicloasir">ASIR</p>
+				<p><input type="radio" name="ciclo" value="ciclodam">DAM</p>
+				<p><input type="radio" name="ciclo" value="ciclodaw">DAW</p>
+				<label for="fecha">Elija una fecha:</label>
+				<input type="date" name="fecha"> <br>
+				<select multiple name="asignatura">
+					<option value="geografia">Geografía</option>
+					<option value="lengua">Lengua</option>
+					<option value="matematicas">Matemáticas</option>
+					<option value="historia">Historia</option>
+				</select>
+			</fieldset>
+			<fieldset>
+			<legend>Formulario de opciones</legend>
+				<label for="fecha">Elija una fecha:</label>
+				<input type="date" name="fecha"> <br>
+				<label for="fichero">Elija un fichero:</label>
+				<input type="file" name="fichero"> <br>
+				<label for="color">Elija un color:</label>
+				<input type="color" name="color" value="#000000"> <br>
+				<input type="checkbox" name="asignatura" value="asignaturalengua">
+				<label for="asignatura">Lengua</label>
+				<input type="checkbox" name="asignatura" value="asignaturamatematicas">
+				<label for="asignatura">Matemáticas</label>
+				<input type="checkbox" name="asignatura" value="asignaturahistoria">
+				<label for="asignatura">Historia</label>
+				<input type="checkbox" name="asignatura" value="asignaturageografia">
+				<label for="asignatura">Geografía</label> <br>
+				<select multiple name="medio_transporte">
+					<option value="automovil">Automóvil</option>
+					<option value="moto">Moto</option>
+					<option value="autobus">Autobús</option>
+				</select> <br>
+				<textarea rows="7" cols="60" placeholder="Utilice este recuadro por favor" name="texto"></textarea>
+				<p><input type="radio" name="edition" value="editornotepad">Notepad</p>
+				<p><input type="radio" name="edition" value="editoremacs">Emacs</p>
+				<p><input type="radio" name="edition" value="editorotro">Otro</p>
+				<label for="hora">Elija una hora:</label>
+				<input type="time" name="hora"> <br>
+			</fieldset>
+			<input type="submit" name="envio" value="Enviar">
+		</form>
 </body>
 </html>
