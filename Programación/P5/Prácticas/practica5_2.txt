@@ -1,0 +1,14 @@
+ENUNCIADO PRÁCTICA 5.2
+
+Escribe un programa en C para calcular el rendimiento académico de un grupo de estudiantes. 
+El programa deberá funcionar de la siguiente manera:
+
+1. **Ingreso de Notas**: Pide al usuario que ingrese la cantidad de estudiantes (un número entero positivo) y luego, usando un bucle `for`, permite que el usuario ingrese la nota final de cada estudiante, almacenándolas en un array de tipo `double`.
+
+2. **Cálculo del Promedio**: Calcula la nota promedio del grupo. Imprime el resultado con dos decimales.
+
+3. **Número de Aprobados y Suspensos**: Define que la nota mínima para aprobar es 5.0 (`#define`). Recorre el array con un bucle `for` para contar cuántos estudiantes han aprobado y cuántos han suspendido, mostrando el total de cada uno.
+
+4. **Nota Máxima y Nota Mínima**: Identifica la nota más alta y la más baja en el array y muestra ambos valores junto con su posición en el listado (es decir, el índice del array correspondiente al estudiante).
+
+5. **Listado de Notas por Encima del Promedio**: Muestra una lista con las notas que están por encima de la nota promedio del grupo.

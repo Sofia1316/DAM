@@ -1,0 +1,13 @@
+ENUNCIADO DE LA PRÁCTICA 5.3
+
+Desarrolla un programa en C que permita gestionar el inventario de una tienda de productos, cada uno con un nombre y una cantidad en stock. El programa debe realizar las siguientes operaciones:
+
+1. **Ingreso de Productos y Cantidades**: Solicita al usuario que ingrese el número total de productos que desea gestionar (máximo 10). A continuación, pide el nombre de cada producto (máximo 20 caracteres) y su cantidad en stock, almacenándolos en dos arrays (un array de `char[]` para los nombres y un array de `int` para las cantidades). Si prefieres, puedes utilizar `struct`.
+
+2. **Mostrar Inventario Completo**: Muestra en pantalla el nombre de cada producto junto a su cantidad en stock.
+
+3. **Reabastecimiento de Productos**: Pregunta al usuario si desea reabastecer algún producto. Si responde afirmativamente, permite que ingrese el nombre del producto y la cantidad a añadir, y actualiza el inventario. Realiza esta acción en un bucle hasta que el usuario decida no reabastecer más productos.
+
+4. **Cálculo de Productos en Baja Existencia**: Define que un producto está en baja existencia si tiene menos de 5 unidades en stock. Utilizando un bucle `for`, muestra todos los productos en baja existencia.
+
+5. **Buscar un Producto por Nombre**: Permite que el usuario ingrese el nombre de un producto y, usando un bucle `for`, busca el producto en el array. Si lo encuentra, muestra su cantidad en stock; si no, indica que no existe.

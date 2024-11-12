@@ -1,0 +1,17 @@
+ENUNCIADO DE LA PRÁCTICA 5.1:
+
+Práctica 1: Análisis de Temperaturas en una Semana
+
+Desarrolla un programa en C que permita almacenar y analizar las temperaturas de una semana completa. 
+El programa deberá realizar las siguientes funciones:
+
+
+1. **Ingreso de Datos**: Solicita al usuario que ingrese la temperatura promedio de cada día de la semana (lunes a domingo) y almacénala en un array de tipo `float`.
+
+2. **Cálculo de la Temperatura Promedio Semanal**: Calcula la temperatura promedio de la semana utilizando un bucle `for` y muestra el resultado en pantalla.
+
+3. **Detección de la Temperatura Máxima y Mínima**: Encuentra y muestra en pantalla la temperatura más alta y la más baja de la semana, indicando a qué día corresponde cada una.
+
+4. **Contador de Días con Temperaturas Superiores a la Media**: Recorre el array de temperaturas para contar cuántos días tienen una temperatura superior al promedio semanal y muestra el resultado.
+
+5. **Listado de Días con Temperaturas por Debajo del Promedio**: Utilizando un bucle `for`, muestra los días que tuvieron una temperatura inferior al promedio semanal, indicando la temperatura de cada uno.
