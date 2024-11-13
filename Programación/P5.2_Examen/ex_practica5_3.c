@@ -30,7 +30,7 @@ int main(){
 	scanf("%d", &total_productos);
 	if(total_productos > 10){
 		printf("Solo admite hasta 10 tipos de productos\n");
-	} else {
+	} else
 	//¿El nombre del producto?
 	for (int i = 0; i < total_productos; i++){
 		printf("Introduce el nombre del producto: ");
@@ -53,7 +53,7 @@ int main(){
 		if (strcmp(respuesta,"si") == 0){ 	//si la respuesta es igual a "si", serán == 0, indicando que las cadenas son iguales
 			printf("Ingrese el nombre del producto: ");
 			scanf(" %s", pregunta);
-			for(int i = 1;i < total_productos; i++){
+			for(int i = 0;i < total_productos; i++){
 				if(strcmp(pregunta, productos[i].nombre) == 0){	//condicional para sumar la cantidad añadida anterior
 										//de un producto específico a la nueva
 				printf("Cantidad a añadir: ");
@@ -72,8 +72,7 @@ int main(){
 			printf("Ingrese el nombre del producto: ");
 			scanf(" %s", pregunta2);
 			for(int i = 1;i < total_productos; i++){
-				if(strcmp(pregunta2, productos[i].nombre) == 0){	//condicional para sumar la cantidad añadida anterior
-										//de un producto específico a la nueva
+				if(strcmp(pregunta2, productos[i].nombre) == 0){
 				printf("Cantidad a quitar: ");
 				scanf(" %d", &cantidad_quitada);
 				productos[i].cantidad -= cantidad_quitada;
@@ -83,7 +82,8 @@ int main(){
 					}
 				}
 			}
-		} 	
+		} else { break; }	
+	}
 
 	//Apartado 4; Cálculo de productos en baja existencia
 	printf("Productos en baja existencia:\n");
