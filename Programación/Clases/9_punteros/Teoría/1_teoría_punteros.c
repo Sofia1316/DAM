@@ -3,10 +3,10 @@
 
 int main(){
 	int arr[5] = {10, 20, 30, 40, 50}; // Esto es equivalente a int *arr = {...
-	int *p = arr; //no hay que poner un & porque ya es un entero
+	int *p = arr; //no hay que poner un & porque 
 	int suma;
 
-	// Aunque haya hecho p + 1, +2 ..., las direcciones se van sumando de 4 en 4
+	// Aunque haya hecho p + 1, +2 ..., las direcciones se van sumando de 4 en 4 (porque un entero ocupa 4)
 	for (int i = 0; i < 5; i++) {
 	printf("Elemento %d: %d (en la dirección %p)\n", i, *(p + i),p+i);
 	}
@@ -26,8 +26,11 @@ int main(){
 	}
 
 	// Apartado de los números negativos	
-	long arr[5] = {10, 20, 30, 40, 50};
-	// ¿p en donde tengo que inicializarlo?
+	int arr[5] = {10, 20, 30, 40, 50};
+	
+	// 1.1 CLASE EJERCICIO
+	
+	// ¿p en donde tengo que inicializarlo? --> al final para que recule hasta el principio del código, en este caso, el final es 5
 	int *p = ;
 	//int *p = arr+5; --> la más correcta es esta, porque se mueve por encima supuestamente, ya que no coge ninguna dirección como tal, por lo que no accedes a ninguna dirección que no es tuya
 	//int *p = &arr[5]; --> cuando accedes a esto, accedes a la sexta posición (dirección) y la coges, pero si entras en esa dirección puede ser que el código se rompa (puede estar reservada para otra cosa)
@@ -35,6 +38,12 @@ int main(){
 	for (int i = 5; i > 0; i--) {
 		printf("Elemento %d: %d\n", i, *(p - i)); //te compila bajando del cero
 	}
+
+	// 1.2 EJERCICIO EXTRA
+	int *p = &arr[4];
+
+	for (int i = 4; i >= 0; i--) {
+		printf("Elemento %d: %d\n", i, *(p - i)); //te compila bajando del cero
 
 	return 0;
 }
