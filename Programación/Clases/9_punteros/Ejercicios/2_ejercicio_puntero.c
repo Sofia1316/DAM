@@ -1,24 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// EJERCICIO DE PASO DE UN ARGUMENTO A UNA FUNCIÓN POR REFERENCIA
-
-void intercambiar(int numero1, *numero2, cambio){ 
-	printf("Valor recibido: %d\n", numero1);
-       	printf("Valor recibido: %d\n", *numero2);
-	cambio = numero;	
-	printf("Valor intercambiado en la función: %d\n", );
-}
+/*
+Escribe un programa que calcule la suma de todos los elementos de un array utilizando punteros.
+*/
 
 int main(){
-	int numero1 = 20;
-	int numero2 = 10;
-	int cambio;
-	intercambiar(&n3);
-	// Intercambiar (n1 por n2)
-	printf("%d", numero1); // 5
-	printf("%d", numero2); // 10
+	int arr[5] = {10, 20, 30, 40, 50}; // Esto es equivalente a int *arr = {...
+	int *p = arr; //no hay que poner un & porque 
+	int suma;
 	
+	for (int i = 0; i < 5; i++) {
+	suma += *(p+i); //se pone un p + i porque lo que quiero sumar es el 20, no el 10
+	printf("La suma de todos los elementos del array es: %d", suma);
+	}
+
 
 return EXIT_SUCCESS;
 }
