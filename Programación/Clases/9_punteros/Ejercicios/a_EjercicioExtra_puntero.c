@@ -20,7 +20,8 @@ void increment_by_value(int n){
 }
 
 void increment_by_reference(int *n){
-	
+	*n = *n + 1;
+	printf("Valor incrementado apuntado: %d\n", *n);
 }
 
 int main(){
@@ -28,8 +29,9 @@ int main(){
 	int n = 10;
 	int *p = &n;
 	// Mostrar su valor
-	increment_by_value
 	printf("Valor inicial de n: %d\n", *p);
+	increment_by_value(n);
+	increment_by_reference(&n);
 
 return EXIT_SUCCESS;
 }
