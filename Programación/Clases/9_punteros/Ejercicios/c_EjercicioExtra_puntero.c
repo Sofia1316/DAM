@@ -31,10 +31,21 @@ En tu función `main`, demuestra el uso de `comparar` comparando diferentes pare
 
 */
 int comparar(const void *a, const void *b, char tipo);
-switch(tipo){
-	case
+	switch(tipo){
+		// Comparación int (enteros)
+		case 'a':
+			
+		// Comparación float (flotantes)
+		case 'b':
 
+		// Comparación double ()
+		case 'c':
 
+		// Comparación char (caracteres)
+		case 'd':
+
+		default:
+			printf("Caso no válido\n");
 }
 
 int main(){
