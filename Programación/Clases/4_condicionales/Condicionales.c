@@ -6,18 +6,18 @@
  * *
  * */
 
-int main()}
+int main(){
 	int condicion = 1;
 
 	scanf("%d", &condicion);
 	switch (condicion){
-		case 0;
+		case 0:
 			printf("Vale 0\n");
-		case 1;
+		case 1:
 			printf("Vale 1\n");
-		case 2;
+		case 2:
 			printf("Vale 2\n");
-		case 3; 
+		case 3: 
 			printf("Vale 3\n");
 			break
 		default:
