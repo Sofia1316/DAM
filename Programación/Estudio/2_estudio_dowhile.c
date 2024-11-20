@@ -27,7 +27,7 @@ int main(){
 		} else if (numero_usuario < 0 || numero_usuario > 100){
 			printf("Número inválido");
 		}
-	} while(i <= 100);	
+	} while(1);	
 
 
 return EXIT_SUCCESS;
