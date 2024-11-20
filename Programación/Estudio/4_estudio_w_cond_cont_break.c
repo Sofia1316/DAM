@@ -2,23 +2,23 @@
 #include <stdlib.h>
 
 /*
-Ejercicio 5: Menú Interactivo con break y continue
-Diseña un menú interactivo que permita al usuario seleccionar opciones como:
-
-1. Ver la fecha actual.
-
-2. Calcular la suma de los primeros 100 números naturales.
-
-3. Salir.
-
-Utiliza un bucle while y condicionales. 
-Si el usuario ingresa una opción no válida, utiliza continue para pedir una nueva entrada. 
-Usa break para salir del bucle al seleccionar la opción 3.
+Ejercicio 5: FizzBuzz Modificado
+Crea un programa que imprima los números del 1 al 100. 
+Si un número es divisible por 3, imprime “Fizz”. 
+Si es divisible por 5, imprime “Buzz”. Si es divisible por ambos, imprime “FizzBuzz”. 
+Usa un bucle for y condicionales anidados.
 */
 
 int main(){
-	
-
+	for(int i = 1; i <= 100; i++){
+		if(i % 3 == 0){
+			printf("Fizz\n");
+		} else if (i % 5 == 0){
+			printf("Buzz\n");
+		} else if (i % 3 == 0|| i % 5 == 0){
+			printf("FizzBuzz\n");
+		} else { printf("%d\n", i); }
+	}
 
 return EXIT_SUCCESS;
 }
