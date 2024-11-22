@@ -1,0 +1,67 @@
+/*
+    - float: sirve para pegar los contenedores entre sí y acortarlos, ya que el contenedor ocupa toda la pág
+        - puede ser:
+            - float: left
+    - display: inline-block: sirve como el float, es decir, para acortar 
+    - span: para colorear un texto específico, por lo que hay que hay que meter el texto entre estas etiquetas
+    - position: 
+        -relative: para que se mueva el texto y junto con esta etiqueta podemos añadir:
+        - absolute: rompe también el flujo y el elemento ya no depende del body, si no más bien donde le indico con (y pueden llegar a solaparse):    
+            - top: ....px
+            - left: ...%
+    - z-index (en el caso de que no ponga ni float ni left): para poder indicar a las cajitas en donde se tienen que colocar
+    - flex: 
+*/
+
+
+*{
+    background-color: bisque;
+}
+
+h1{
+    color:blue;
+}
+
+.título{
+    color: yellow;
+}
+
+#título3{
+    color: red;
+}
+
+#padre{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#contenedor1{                
+    background-color: violet;
+    width: 100;
+    height: 100;
+}
+
+#subcontenedor1{
+    position: relative;
+    top: 80px;
+    left: 70%;
+}
+
+#subcontenedor2{
+    position: absolute;
+    top: 80px;
+    left: 70%;
+}
+
+#contenedor2{
+    background-color: green;
+    width: 100;
+    height: 100;
+}
+
+#contenedor3{
+    background-color: rgb(130, 152, 238);
+    width: 100;
+    height: 100;
+}
