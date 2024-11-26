@@ -53,6 +53,15 @@ void inicializar(Estudiante * estudiante_a_rellenar, char * nombre, int edad, fl
 	strcpy(estudiante_a_rellenar.nombre, nombre);
 }
 
+// Función de cumple, la cual tiene que recibir un puntero a estudiante porque va a modificar la variable en sí, no el valor de la variable
+// y la variable que recibo es la de cumpleanero y en void ya que no necesito que me devuelva nada
+// accede al campo edad e incrementarlo
+void cumpleanios(Estudiante * cumpleanero){
+	cumpleanero->edad++; //pongo la flecha porque estoy refiriendome a un puntero
+}
+
+// Crea una función que cree un string (cadena de texto) con la información del estudiante. Puedes empezar creando una función que imprima por
+// pantalla la info de un estudiante
 
 int main(){
 	Estudiante listado[MAX_ESTUDIANTES]; // Aquí se reserva la memoria para los estudiantes
@@ -88,6 +97,10 @@ int main(){
 		
 		inicializar(&listado[i], nombre, edad, nota);
 	}
+	// también se puede así, : printf("Edad antigua de %s: %d\n", listado[0].nombre, listado->edad);
+	printf("Edad antigua de %s: %d\n", listado[0].nombre, listado[0].edad);
+	cumpleanios( &listado[0] /*Dirección de memoria*/);
+	printf("Edad nueva: %d\n", listado[0].edad);
 
 return EXIT_SUCCESS;
 }
