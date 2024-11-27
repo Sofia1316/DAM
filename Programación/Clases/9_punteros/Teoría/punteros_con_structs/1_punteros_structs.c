@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // CÓMO FUNCIONAN LOS STRUCTS CON ARRAY
 
 // Definimos las constantes
 #define MAX_NOMBRE 20
 #define MAX_ESTUDIANTES 20
+#define MAX_BUFFER 200
 
 // struct de estudiante
 typedef struct {
@@ -62,10 +64,49 @@ void cumpleanios(Estudiante * cumpleanero){
 
 // Crea una función que cree un string (cadena de texto) con la información del estudiante. Puedes empezar creando una función que imprima por
 // pantalla la info de un estudiante
+// 27/11 VAMOS A CREAR UNA FUNCIÓN PARA IMPRIMIR UN ESTUDIANTE HACIÉNDOLO DE DOS FORMAS
+
+// OPCIÓN 1
+// Recibe un estudiante y muestra por pantalla todos sus datos (podríamos hacerlo por valor pero es más fácil y rápido hacerlo por referencia = const)
+// Esto hará que no cambie el contenido de Estudiante
+void imprimirEstudiante(const Estudiante * estudiante_a_imprimir){
+	printf("Nombre: %s\n", estudiante_a_imprimir->nombre);
+	printf("Edad: %d\n", estudiante_a_imprimir->edad);
+	printf("Nota: %f\n", estudiante_a_imprimir->nota);
+}
+
+// OPCIÓN 2.1 (FUNCIÓN DE IMPRIMIR SIN LOS PRINTFS)
+//Una función que reciba un estudiante y lo convierta en una cadena de texto (FUNCIÓN WARNING)
+void EstudianteToString(const Estudiante * datos){
+	char retval[MAX_BUFFER];
+
+	/*OPCIÓN CON PRINTF*/ printf("El estudiante %s de %d anios ha sacado un %f", datos->nombre, datos->edad, datos->nota);
+	/*OPCIÓN DE SNPRINTF; dónde, cuánto y el qué*/
+	snprintf(retval, MAX_BUFFER, "El estudiante %s de %d años ha sacado un %f", datos->nombre, datos->edad, datos->nota)
+
+return retval; 	//pero cuando acaba esta desaparece, ya que es una variable local y te saldrá un warning de aviso, 
+				//y como quiero que siga existiendo, tendré que hacerla en main, que aquí se utiliza y aquí se rellena
+}
+
+// OPCIÓN 2.2 (FUNCIÓN DE IMPRIMIR SIN LOS PRINTFS)
+//Una función que reciba un estudiante y lo convierta en una cadena de texto
+void EstudianteToString(const Estudiante * datos, char * retval){ //la variable "char*retval" se pone para que esto no desaparezca y apareza en el main
+	char retval[MAX_BUFFER];
+	snprintf(retval, MAX_BUFFER*sizeof(char), "El estudiante %s de %d años ha sacado un %f", datos->nombre, datos->edad, datos->nota)
+// multiplicas el 200 por lo que ocupa un char, es decir, 1
+return retval; 
+}
+
+// Función para cambiar el nombre del estudiante 
+void cambiar_nombre_estudiante(Estudiante * NuevoNombre, char * NombreCambiado){
+	strcpy(NuevoNombre->nombre, NombreCambiado);
+	// Esto solo copia las direcciones de memoria, pero no rellena la memoria con el estudiante del nombre nuevo
+}
+
 
 int main(){
 	Estudiante listado[MAX_ESTUDIANTES]; // Aquí se reserva la memoria para los estudiantes
-					     // Los 560 bytes se reservan aquí
+					     				// Los 560 bytes se reservan aquí
 	int num_estudiantes;
 
 	// Creación de variables
@@ -101,6 +142,23 @@ int main(){
 	printf("Edad antigua de %s: %d\n", listado[0].nombre, listado[0].edad);
 	cumpleanios( &listado[0] /*Dirección de memoria*/);
 	printf("Edad nueva: %d\n", listado[0].edad);
+
+	// Imprimir algunos estudiantes
+	imprimirEstudiante(&listado[1]);
+
+	// Imprimir estudiante a rellenar (que es lo mismo porque reserva el espacio y se rellena con los datos del estudiante)
+	char StringARellenar[MAX_BUFFER];
+	EstudianteToString(&listado[0],StringARellenar);
+	printf("%s\n", StringARellenar); // este imprime el printf de la función de arriba, es decir, EstudianteToString
+
+	// Cambiar nombre del alumno; Imprime el nombre antiguo y el nombre nuevo introducido
+	printf("Anterior nombre del alumno: %s\n", listado[0].nombre);
+	char NuevoNombre[MAX_NOMBRE];
+	printf("Introduce el nuevo nombre: ");
+	scanf("%s", NuevoNombre);
+	cambiar_nombre_estudiante(&listado[0],NuevoNombre);
+	imprimirEstudiante(&listado[0]);
+
 
 return EXIT_SUCCESS;
 }
