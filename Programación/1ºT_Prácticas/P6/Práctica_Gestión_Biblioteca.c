@@ -6,7 +6,7 @@
 #define MAX_AUTOR 50
 #define MAX_BUFFER 300
 
-// Enum para los géneros literarios
+// Enum para los géneros literarios, en donde definimos cada uno pero solo se imprimirá el nº, es decir, ficcion es 1
 typedef enum {
 	FICCION,
 	NO_FICCION,
@@ -28,26 +28,34 @@ typedef struct {
 // APARTADO 1; Función para imprimir todos los libros
 void imprimir_libros(const Libros * Libros){
     for (int i = 0; i < 40; i++) {
-		printf("ID: %d\n", Libros[i].id);
-		printf("Título: %s\n", Libros[i].título);
-		printf("Autor: %s\n", Libros[i].autor);
-		printf("Precio: %f\n", Libros[i].precio);
-        printf("Categoría: %d\n", Libros[i].categoria);
-		printf("Cantidad disponible: %d\n", Libros[i].cantidad_disponible);
+		printf("%d, %s, %s, %0.2f, %d, %d\n", Libros[i].id, Libros[i].título, Libros[i].autor, Libros[i].precio, Libros[i].categoria, Libros[i].cantidad_disponible);
 	}
 }
 
 //APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
-void coincidencia(const Libros * Libros, char * retval){
-    for(int i = 0; ) {
-    char retval[MAX_BUFFER];
+void coincidencia(const Libros * Libros, int numero_libros){
     int ID;
     printf("Introduce el id del libro que desees ver: ");
     scanf("%d", &ID);
-    printf("%s, %s, %0.2f, %d, %d", Libros->título, Libros->autor, Libros->precio, Libros->categoria, Libros->cantidad_disponible);
 
+    int localizar = 0;
+    for(int i = 0; i < numero_libros; i++) {
+        if(Libros[i].id == ID){
+            printf("%s, %s, %0.2f, %d, %d\n", 
+            Libros[i].título, Libros[i].autor, Libros[i].precio, Libros[i].categoria, Libros[i].cantidad_disponible);
+            localizar = 1;
+            break;
+        } 
+    } 
+    
+    if(!localizar){
+        printf("Libro no encontrado\n");   
     }
 }
+
+//APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
+
+
 
 int main(){
 	// ARRAY ESTÁTICO DE LOS LIBROS DE LA BIBLIOTECA (EN TOTAL SON 40)
@@ -98,9 +106,9 @@ int main(){
 	imprimir_libros(datos);
 
 	// APARTADO 2; MOSTRAR LIBRO QUE COINCIDA CON EL ID (o mensaje de un error)
-    
-    coincidencia(datos);
-    printf("%s\n", );
+    coincidencia(datos, 40);
+
+    //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
 
 
 	return EXIT_SUCCESS;
