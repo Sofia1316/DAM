@@ -4,7 +4,7 @@
 
 #define MAX_TÍTULO 80
 #define MAX_AUTOR 50
-#define TOTAL 300
+#define MAX_BUFFER 300
 
 // Enum para los géneros literarios
 typedef enum {
@@ -13,7 +13,7 @@ typedef enum {
 	POESIA,
 	TEATRO,
 	ENSAYO,
-} Categoría;
+} Categoria;
 
 // struct de los datos principales de la biblioteca
 typedef struct {
@@ -21,28 +21,38 @@ typedef struct {
 	char título[MAX_TÍTULO];
 	char autor[MAX_AUTOR];
 	float precio;
-	Categoría Género;
+	Categoria categoria;
 	int cantidad_disponible;
 } Libros;
 
 // APARTADO 1; Función para imprimir todos los libros
-void imprimir_libros(const Libros * Libros, int libros_totales){
-	for (int i = 0; i < libros_totales; i++) {
-		// Usamos el operador -> para acceder a los miembros de la estructura a través del puntero
+void imprimir_libros(const Libros * Libros){
+    for (int i = 0; i < 40; i++) {
 		printf("ID: %d\n", Libros[i].id);
 		printf("Título: %s\n", Libros[i].título);
 		printf("Autor: %s\n", Libros[i].autor);
-		printf("Precio: %.2f\n", Libros[i].precio);
+		printf("Precio: %f\n", Libros[i].precio);
+        printf("Categoría: %d\n", Libros[i].categoria);
 		printf("Cantidad disponible: %d\n", Libros[i].cantidad_disponible);
 	}
 }
 
-//APARTADO 2; 
+//APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
+void coincidencia(const Libros * Libros, char * retval){
+    for(int i = 0; ) {
+    char retval[MAX_BUFFER];
+    int ID;
+    printf("Introduce el id del libro que desees ver: ");
+    scanf("%d", &ID);
+    printf("%s, %s, %0.2f, %d, %d", Libros->título, Libros->autor, Libros->precio, Libros->categoria, Libros->cantidad_disponible);
+
+    }
+}
 
 int main(){
 	// ARRAY ESTÁTICO DE LOS LIBROS DE LA BIBLIOTECA (EN TOTAL SON 40)
 	Libros datos[40] = {
-	{1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICCION, 10},
+	    {1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICCION, 10},
         {2, "1984", "George Orwell", 12.49, FICCION, 5},
         {3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICCION, 8},
         {4, "Moby Dick", "Herman Melville", 18.99, FICCION, 12},
@@ -85,9 +95,13 @@ int main(){
 	}; 
 
 	// APARTADO 1; MOSTRAR TODOS LOS LIBROS
-	imprimir_libros(&datos[0]);
+	imprimir_libros(datos);
 
 	// APARTADO 2; MOSTRAR LIBRO QUE COINCIDA CON EL ID (o mensaje de un error)
+    
+    coincidencia(datos);
+    printf("%s\n", );
+
 
 	return EXIT_SUCCESS;
 }

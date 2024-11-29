@@ -82,7 +82,7 @@ void EstudianteToString(const Estudiante * datos){
 
 	/*OPCIÓN CON PRINTF*/ printf("El estudiante %s de %d anios ha sacado un %f", datos->nombre, datos->edad, datos->nota);
 	/*OPCIÓN DE SNPRINTF; dónde, cuánto y el qué*/
-	snprintf(retval, MAX_BUFFER, "El estudiante %s de %d años ha sacado un %f", datos->nombre, datos->edad, datos->nota)
+	snprintf(retval, MAX_BUFFER, "El estudiante %s de %d años ha sacado un %f", datos->nombre, datos->edad, datos->nota);
 
 return retval; 	//pero cuando acaba esta desaparece, ya que es una variable local y te saldrá un warning de aviso, 
 				//y como quiero que siga existiendo, tendré que hacerla en main, que aquí se utiliza y aquí se rellena
