@@ -21,28 +21,30 @@ typedef struct {
 	char título[MAX_TÍTULO];
 	char autor[MAX_AUTOR];
 	float precio;
-	Categoria categoria;
+	Categoria categoria; // llamamos al enum para que se quede dentro del struct
 	int cantidad_disponible;
 } Libros;
 
 // APARTADO 1; Función para imprimir todos los libros
-void imprimir_libros(const Libros * Libros){
+void imprimir_libros(const Libros * Catálogo){  // En todos las funciones de tipo void, ponemos en primer lugar el struct (Libros) y en segundo lugar
+                                                // crearemos una variable para hacer referencia al puntero dentro de la propia función (Catálogo)
     for (int i = 0; i < 40; i++) {
-		printf("%d, %s, %s, %0.2f, %d, %d\n", Libros[i].id, Libros[i].título, Libros[i].autor, Libros[i].precio, Libros[i].categoria, Libros[i].cantidad_disponible);
+		printf("%d, %s, %s, %0.2f, %d, %d\n", Catálogo[i].id, Catálogo[i].título, Catálogo[i].autor, Catálogo[i].precio, Catálogo[i].categoria, Catálogo[i].cantidad_disponible);
 	}
 }
 
 //APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
-void coincidencia(const Libros * Libros, int numero_libros){
+void coincidencia(const Libros * Libro_id, int numero_libros){  // En esta función añadimos la variable int para que esta sepa cuántos libros hay en el array al que apunta el puntero "Libros"
+                                                                // Esto se debe a que como tal el array no guarda su tamaño y Libros * Libro_id solo apunta al primer elemento del array
     int ID;
     printf("Introduce el id del libro que desees ver: ");
     scanf("%d", &ID);
 
     int localizar = 0;
     for(int i = 0; i < numero_libros; i++) {
-        if(Libros[i].id == ID){
+        if(Libro_id[i].id == ID){
             printf("%s, %s, %0.2f, %d, %d\n", 
-            Libros[i].título, Libros[i].autor, Libros[i].precio, Libros[i].categoria, Libros[i].cantidad_disponible);
+            Libro_id[i].título, Libro_id[i].autor, Libro_id[i].precio, Libro_id[i].categoria, Libro_id[i].cantidad_disponible);
             localizar = 1;
             break;
         } 
@@ -54,21 +56,37 @@ void coincidencia(const Libros * Libros, int numero_libros){
 }
 
 //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
-void aumento(Libros * Stock){
+void aumento(Libros * Stock, int numero_libros){ // Como en esta función queremos que se modifique el array de Libros, no ponemos el const
     int cantidad_añadir;
     int selección;
 
-    printf("¿De qué libro deseas aumentar el stock?: ");
+    printf("¿De qué libro deseas aumentar el stock? Introduce el ID: ");
     scanf(" %d", &selección);
+    
     if(selección <= 40 && selección >= 0){
-        printf("¿Qué cantidad deseas añadir al stock?: ");
-        scanf(" %d", &cantidad_añadir);
-        Stock->cantidad_disponible = Stock->cantidad_disponible + cantidad_añadir;
-        printf("El stock nuevo es de %d\n", Stock->cantidad_disponible);
-        // Se pone con flecha para referirnos al puntero al que estamos apuntando en los () de la función, y entonces
-        // ponemos un = para poder modificarla y, en este caso, sumarle la cantidad que hemos metido en el scanf
+        for(int i = 0; i < numero_libros; i++){
+            if(selección == Stock[i].id){
+                printf("¿Qué cantidad deseas añadir al stock?: ");
+                scanf(" %d", &cantidad_añadir);
+                Stock[i].cantidad_disponible = Stock[i].cantidad_disponible + cantidad_añadir;
+                printf("El stock nuevo del libro con id %d es de %d\n", selección, Stock[i].cantidad_disponible);
+            } 
+
+            if(!selección){
+                printf("El ID introducido no existe en tu biblioteca");
+            }
+        }
     }
 }
+
+//APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
+void imprimir_categoría(){
+    int argumento_introducido;
+
+    printf("¿De qué categoría quieres ver los libros?: ");
+    scanf(" %d", &argumento_introducido);
+}
+
 
 
 int main(){
@@ -123,7 +141,9 @@ int main(){
     coincidencia(datos, 40);
 
     //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
-    aumento(datos);
+    aumento(datos, 40);
+
+    //APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
 
 	return EXIT_SUCCESS;
 
