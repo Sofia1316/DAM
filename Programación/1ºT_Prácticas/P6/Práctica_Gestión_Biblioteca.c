@@ -54,7 +54,21 @@ void coincidencia(const Libros * Libros, int numero_libros){
 }
 
 //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
+void aumento(Libros * Stock){
+    int cantidad_añadir;
+    int selección;
 
+    printf("¿De qué libro deseas aumentar el stock?: ");
+    scanf(" %d", &selección);
+    if(selección <= 40 && selección >= 0){
+        printf("¿Qué cantidad deseas añadir al stock?: ");
+        scanf(" %d", &cantidad_añadir);
+        Stock->cantidad_disponible = Stock->cantidad_disponible + cantidad_añadir;
+        printf("El stock nuevo es de %d\n", Stock->cantidad_disponible);
+        // Se pone con flecha para referirnos al puntero al que estamos apuntando en los () de la función, y entonces
+        // ponemos un = para poder modificarla y, en este caso, sumarle la cantidad que hemos metido en el scanf
+    }
+}
 
 
 int main(){
@@ -109,7 +123,24 @@ int main(){
     coincidencia(datos, 40);
 
     //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
-
+    aumento(datos);
 
 	return EXIT_SUCCESS;
+
+/* APUNTES DE LA PRÁCTICA 6
+
+FUNCIÓN PARA TODOS LOS LIBROS
+void printfAllBooks(Libro * Catálogo){ // apuntamos a el primer valor del array
+    for(int i = 0; i < MAX_BUFFER; i++){
+        imprimirlibro(solo_un_libro);
+    }
+}
+
+FUNCIÓN PARA UN LIBRO
+void printfBooks(Libro * Catálogo){ // apuntamos a el primer valor del array
+    printf("Id: %d", Catálogo->id);
+}
+
+*/
+
 }
