@@ -4,7 +4,6 @@
 
 #define MAX_TÍTULO 80
 #define MAX_AUTOR 50
-#define MAX_BUFFER 300
 
 // Enum para los géneros literarios, en donde definimos cada uno pero solo se imprimirá el nº, es decir, ficcion es 1
 typedef enum {
@@ -25,17 +24,49 @@ typedef struct {
 	int cantidad_disponible;
 } Libros;
 
+// FUNCIÓN PARA IMPRIMIR UN ÚNICO LIBRO Y NO REPETIRLO EN VARIAS FUNCIONES
+void imprimir_UnLibro(const Libros * UnLibro){ // ponemos un const en el caso de que no queramos que los valores de nuestro puntero cambien
+    printf("%d, ", UnLibro->id); // con la -> apuntamos a la dirección de memoria del puntero, que en este caso, es UnLibro
+    printf("%s, ", UnLibro->título); 
+    printf("%s, ", UnLibro->autor);
+    printf("%0.2f, ", UnLibro->precio);
+    switch(UnLibro->categoria){ // La función de este switch transforma el nº de la categoría a la palabra en sí
+       case 0:
+            printf("FICCION, ");
+            break;
+        case 1:
+            printf("NO_FICCION, ");
+            break;
+        case 2:
+            printf("POESIA, ");
+            break;
+        case 3:
+            printf("TEATRO, ");
+            break;
+        case 4:
+            printf("ENSAYO, ");
+            break;
+        }
+    printf("%d\n", UnLibro->cantidad_disponible);
+    
+    }  
+
+
 // APARTADO 1; Función para imprimir todos los libros
 void imprimir_libros(const Libros * Catálogo){  // En todos las funciones de tipo void, ponemos en primer lugar el struct (Libros) y en segundo lugar
                                                 // crearemos una variable para hacer referencia al puntero dentro de la propia función (Catálogo)
     for (int i = 0; i < 40; i++) {
-		printf("%d, %s, %s, %0.2f, %d, %d\n", Catálogo[i].id, Catálogo[i].título, Catálogo[i].autor, Catálogo[i].precio, Catálogo[i].categoria, Catálogo[i].cantidad_disponible);
+	   imprimir_UnLibro(&Catálogo[i]); 
+       // Pongo el &Catálogo para indicar una dirección de memoria
+       // Pongo un [i] para evitar que solo se me imprima el primer valor del array en cada vuelta del bucle
 	}
 }
 
 //APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
-void coincidencia(const Libros * Libro_id, int numero_libros){  // En esta función añadimos la variable int para que esta sepa cuántos libros hay en el array al que apunta el puntero "Libros"
-                                                                // Esto se debe a que como tal el array no guarda su tamaño y Libros * Libro_id solo apunta al primer elemento del array
+void coincidencia(const Libros * Libro_id, int numero_libros){  
+// En esta función añadimos la variable "int numero_libros" para que esta sepa cuántos libros hay en el array al que apunta el puntero "Libros"
+// Esto se debe a que como tal el array no guarda su tamaño y (Libros * Libro_id) solo apunta al primer elemento del array
+    
     int ID;
     printf("Introduce el id del libro que desees ver: ");
     scanf("%d", &ID);
@@ -43,16 +74,15 @@ void coincidencia(const Libros * Libro_id, int numero_libros){  // En esta funci
     int localizar = 0;
     for(int i = 0; i < numero_libros; i++) {
         if(Libro_id[i].id == ID){
-            printf("%s, %s, %0.2f, %d, %d\n", 
-            Libro_id[i].título, Libro_id[i].autor, Libro_id[i].precio, Libro_id[i].categoria, Libro_id[i].cantidad_disponible);
-            localizar = 1;
+            imprimir_UnLibro(&Libro_id[i]); // Esto hace que se imprima mi primer void y así evito la repetición de código, 
+                                            // y dentro de los () pongo la nueva variable creada en la función
+            localizar = 1; // esto hace que se me indique que tiene un valor "guardado" porque ha entrado dentro del bucle, por lo que localizar ya no es 0, es 1 
             break;
         } 
-    } 
-    
-    if(!localizar){
-        printf("Libro no encontrado\n");   
     }
+    if(localizar == 0){
+        printf("Libro no encontrado\n");
+    } 
 }
 
 //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
@@ -68,26 +98,41 @@ void aumento(Libros * Stock, int numero_libros){ // Como en esta función querem
             if(selección == Stock[i].id){
                 printf("¿Qué cantidad deseas añadir al stock?: ");
                 scanf(" %d", &cantidad_añadir);
-                Stock[i].cantidad_disponible = Stock[i].cantidad_disponible + cantidad_añadir;
+                Stock[i].cantidad_disponible = Stock[i].cantidad_disponible + cantidad_añadir; //para poder sumar lo introducido con el stock del puntero
                 printf("El stock nuevo del libro con id %d es de %d\n", selección, Stock[i].cantidad_disponible);
+                break; 
             } 
-
-            if(!selección){
-                printf("El ID introducido no existe en tu biblioteca");
-            }
         }
+    } else {
+        printf("El ID introducido no existe\n");
     }
 }
 
 //APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
-void imprimir_categoría(){
-    int argumento_introducido;
+void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros){
+    int argumento_introducido_categoría;
+
+    // MOSTRAR MENÚ PARA VER QUÉ Nº CORRESPONDE A CADA CATEGORÍA
+    printf("OPCIONES:\n");
+    printf("\tFICCION = 0\n");
+    printf("\tNO_FICCION = 1\n");
+    printf("\tPOESIA = 2\n");
+    printf("\tTEATRO = 3\n");
+    printf("\tENSAYO = 4\n");
 
     printf("¿De qué categoría quieres ver los libros?: ");
-    scanf(" %d", &argumento_introducido);
+    scanf(" %d", &argumento_introducido_categoría);
+
+    if(argumento_introducido_categoría < 5 && argumento_introducido_categoría >= 0){
+        for(int i = 0; i < numero_libros; i++){
+            if(argumento_introducido_categoría == mostrar_categoría[i].categoria){ // Para comprobar si lo introducido con la categoría es lo mismo
+                imprimir_UnLibro(&mostrar_categoría[i]);
+            } 
+        }
+    } else {
+        printf("Esta categoría no existe\n");
+    }
 }
-
-
 
 int main(){
 	// ARRAY ESTÁTICO DE LOS LIBROS DE LA BIBLIOTECA (EN TOTAL SON 40)
@@ -134,33 +179,41 @@ int main(){
         {40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ENSAYO, 10}
 	}; 
 
-	// APARTADO 1; MOSTRAR TODOS LOS LIBROS
-	imprimir_libros(datos);
+    // MENÚ PARA SELECCIONAR
+    int opción;
+    printf("¿Qué opción deseas seleccionar?\n");
+    printf(" 1. Mostrar todos los libros.\n");
+    printf(" 2. Mostrar el libro que coincida con el ID.\n");
+    printf(" 3. Aumentar el stock de un libro introduciendo su ID.\n");
+    printf(" 4. Mostrar todos los libros de la categoría que introduzcas.\n"); 
+    printf(" 5. Mostrar los libros del autor dado.\n");
+    
+    scanf("%d", &opción);
 
-	// APARTADO 2; MOSTRAR LIBRO QUE COINCIDA CON EL ID (o mensaje de un error)
-    coincidencia(datos, 40);
+    // Switch de "opción" para que imprima lo que elijas en el scanf
+    switch(opción){
+        case 1:
+            // APARTADO 1; Mostrar todos los libros.
+            imprimir_libros(datos);
+            break;
+        case 2:
+            // APARTADO 2; Mostrar el libro que coincida con el ID (o mensaje de un error)
+            coincidencia(datos, 40); // pongo el 40 porque como en el void de arriba (con el int numero_libros) le digo el tamaño del array
+            break;
+        case 3:
+            //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
+            aumento(datos, 40);
+            break;
+        case 4:
+            //APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
+            imprimir_categoría(datos, 40);
+            break;
+        case 5:
+            //SALIR DEL PROGRAMA
+            return EXIT_SUCCESS;
+        default:
+            printf("Opción no válida");
+        }
 
-    //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
-    aumento(datos, 40);
-
-    //APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
-
-	return EXIT_SUCCESS;
-
-/* APUNTES DE LA PRÁCTICA 6
-
-FUNCIÓN PARA TODOS LOS LIBROS
-void printfAllBooks(Libro * Catálogo){ // apuntamos a el primer valor del array
-    for(int i = 0; i < MAX_BUFFER; i++){
-        imprimirlibro(solo_un_libro);
-    }
-}
-
-FUNCIÓN PARA UN LIBRO
-void printfBooks(Libro * Catálogo){ // apuntamos a el primer valor del array
-    printf("Id: %d", Catálogo->id);
-}
-
-*/
-
+    return EXIT_SUCCESS;
 }

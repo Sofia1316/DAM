@@ -159,6 +159,21 @@ int main(){
 	cambiar_nombre_estudiante(&listado[0],NuevoNombre);
 	imprimirEstudiante(&listado[0]);
 
+/* APUNTES DE LA PRÁCTICA 6
+
+FUNCIÓN PARA TODOS LOS LIBROS
+void printfAllBooks(Libro * Catálogo){ 
+    for(int i = 0; i < MAX_BUFFER; i++){
+        imprimirlibro(solo_un_libro);
+    }
+}
+
+FUNCIÓN PARA UN LIBRO
+void printfBooks(Libro * Catálogo){ 
+    printf("Id: %d", Catálogo->id);
+}
+
+*/
 
 return EXIT_SUCCESS;
 }
