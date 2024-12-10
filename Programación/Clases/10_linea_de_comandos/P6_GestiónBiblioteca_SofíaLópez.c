@@ -186,7 +186,7 @@ int main(int argc, char ** argv){
 
     // BUCLE FOR PARA LOS VALORES DEL MAIN
     printf("Lista de argumentos:\n");
-    for(int = 0; i< argc; i++){
+    for(int i = 0; i < argc; i++){
         printf("Argumento %d: %s\n", i, argv[i]);
         // argc; número de argumento
         // argv[0] es el nombre del programa
@@ -197,7 +197,7 @@ int main(int argc, char ** argv){
         // hace el código como siempre
     }
     if(argc < 1){
-        if(argv[i] == "mostrar"){
+        if(argv[1] == "mostrar"){
             // llamar a mostrar todo
         }
     }

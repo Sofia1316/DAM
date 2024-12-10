@@ -1,11 +1,5 @@
-h1{
+h1, h2, h3{
     color: white;
-}
-h2{
-    color:white;
-}
-h3{
-    color:white;
 }
 p{
     font-family: Century Gothic;
@@ -15,6 +9,7 @@ p{
  /*CAJA ROJA*/
 .caja_roja{                
     background-color: red;
+    display: flex;
     position: absolute;
     top: 0;
     left: 0;
@@ -83,9 +78,9 @@ p{
 .caja_turquesa{
     background-color: turquoise;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 900;
+    left: 990;
     width: 600px;
     height: 250px;
-    z-index: 1;
+  
 }
