@@ -1,0 +1,91 @@
+h1{
+    color: white;
+}
+h2{
+    color:white;
+}
+h3{
+    color:white;
+}
+p{
+    font-family: Century Gothic;
+    font-size: 11pt;
+    color: black;
+}
+ /*CAJA ROJA*/
+.caja_roja{                
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 250px;
+    z-index: 1;
+}
+.caja_amarilla{
+    background-color: rgb(255, 187, 0);
+    position: absolute;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 100px;
+    z-index: 2;
+}
+.caja_violeta{
+    background-color: blueviolet;
+    position: absolute;
+    top: 80px;
+    left: 90px;
+    width: 500px;
+    height: 100px;
+    z-index: 3;
+}
+.caja_rosa{
+    background-color: rgb(245, 76, 175);
+    position: absolute;
+    top: 250px;
+    left: 0px;
+    width: 600px;
+    height: 130px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 35px 35px 35px;
+    gap: 10px;
+}
+.línea1{
+    background-color: white;
+    grid-column: 1 / 2; 
+    grid-row: 1 / 2;
+}
+.línea2{
+    background-color: white;
+    grid-column: 1 / 2; 
+    grid-row: 2 / 3;
+}
+.línea3{
+    background-color: white;
+    grid-column: 1 / 2; 
+    grid-row: 3 / 4;
+}
+.línea4{
+    background-color: white;
+    grid-column: 2 / 3; 
+    grid-row: 1 / 2;
+}
+.línea5{
+    background-color: white;
+    grid-column: 2 / 3; 
+    grid-row: 2 / 3;
+}
+.caja_turquesa{
+    background-color: turquoise;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 250px;
+    z-index: 1;
+}
