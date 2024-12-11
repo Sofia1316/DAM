@@ -134,9 +134,6 @@ void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros){
     }
 }
 
-
-
-
 // argc; número de argumentos recibidos
 // argv; array de cadenas de caracteres
 int main(int argc, char ** argv){
