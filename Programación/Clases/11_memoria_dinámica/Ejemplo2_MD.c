@@ -8,7 +8,7 @@ int main() {
     // por lo que esta reserva la memoria pero no la toca
     // int arr[5]; esto es la reserva estática
 
-    int * arr = (int *) malloc(5*sizeof(int));
+    int * arr = (int *) malloc(5*sizeof(int)); // quiero un espacio de 5 por 4 bits = 20 bits de espacio
 
     if (arr == NULL) {
         printf("Error: no se pudo asignar memoria.\n");
@@ -22,7 +22,8 @@ int main() {
     }
 
     /*LO MISMO CON CALLOC*/
-    int arr2 = (int *) calloc(5,sizeof(int)); // este reserva la memoria y la inicializa a 0
+    int * arr2 = (int *) calloc(5,sizeof(int)); // este indica que quiere 5 espacios de memoria con 4 bits cada uno 
+    // este reserva la memoria y la inicializa a 0
     if (arr2 == NULL){
         printf("Error: no se pudo asignar memoria.\n");
         return 1;
