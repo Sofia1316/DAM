@@ -1,0 +1,117 @@
+APUNTES SOBRE HTML:
+
+1. <p> : escribe párrafos y los saltos de línea son <br>
+2. <h1> a <h6>: Encabezados de mayor a menor importancia.
+3. <strong> y <b>: Texto en negrita.
+4. <u>: Texto en cursiva/subrayado.
+5. <mark>: Texto resaltado.
+6. <sup>: Superíndice.
+
+7. Listas:
+    a. No numeradas (<ul> con <li>).
+    b. Numeradas (<ol> con <li>).
+    c. Multinivel: Combinación de ambas
+    d. Si se requiere un elemento en específico en vez de un punto, ejemplos: 
+       <li style="list-style-type: upper-latin;"> (letra mayúscula)
+       <li style="list-style-type: square;"> (cuadrado)
+       <li style="list-style-type: lower-roman;"> (número romano)
+
+8. Imágenes:
+    <!--ruta absoluta: son aquellas que la raiz es c, y hace la ruta, es decir, coge toda la ruta-->
+        <img src="gato.jpg" width="200" height="200" alt="gato">
+    <!--ruta relativa: pero si la imagen la tengo guardada por ejemplo en descargas, la coge desde ahi -->
+        <img src="https://i.pinimg.com/736x/10/ce/8e/10ce8e3e94e0d7d0e9dc6979e7b43fb2.jpg" width="200" height="200" alt="gato">
+
+9. Vídeos: <video> con atributos como autoplay, loop, y controls.
+    Ejemplo: <video src="video.mp4" autoplay muted controls></video>
+
+10. Audio: <audio> para reproducir sonidos.
+    Ejemplo: <audio src="audio.mp3" autoplay controls></audio>
+
+11. Tablas: <table>: Crea una tabla con <tr>, <td>, <th>
+    POR DENTRO/ESTRUCTURA:
+        a. <tr> (table row): Fila.
+        b. <td> (table data): Columna.
+        c. <th> (table header): Encabezado en negrita.
+    POR FUERA:
+        a. border: Establece el borde de la tabla.
+        b. cellpadding: Añade espacio interno dentro de las celdas.
+        c. cellspacing: Define el espacio entre las celdas.
+        d. align (center es el que más se usa): Centra la tabla en la página.
+
+12. Formularios: <form>
+    <section>
+        <h2>Formularios</h2>
+        <form name="Formulario1" method="" action=""> <!--método de envío y destinatario-->
+            <p>Nombre: <input type="text" name="nombre" required></p>
+            <p>Teléfono persona: <input type="tel" name="teléfono"></p>
+            <p>Correo: <input type="email" name="correo"></p>
+            <p>Contraseña: <input type="password" name="Contraseña"></p>
+            <p>Página web: <input type="url" name="página" placeholder="Salesianossantodomingosavio.es"></p>
+            <p>Edad: <input type="number" name="edad" min="0" max="50"></p> <!--restricción de edad entre 0 y 50-->
+            <p>Fecha: <input type="date" name="fecha" min="2024-01-01" max="2024-12-31"></p>
+            <p>Mes: <input type="month" name="Mes"></p>
+            <p>Semana: <input type="week" name="Semana"></p>
+            <p>Hora: <input type="time" name="hora"></p>
+            <p>Fecha y Hora: <input type="datetime-local" name="fechahora"></p>
+            
+            <p>Opciones: ¿Qué te gusta más?</p> <!--Casillas cuadradas; checkbox-->
+                <p><input type="checkbox" name="opcion1" value="piscina">Piscina</p>
+                <p><input type="checkbox" name="opcion2" value="campo" checked>Campo</p> <!--para tenerlo marcado como predeterminado-->
+                <p><input type="checkbox" name="opcion3" value="playa">Playa</p>
+
+            <p>Opciones: ¿Qué te gusta más?</p> <!--Casillas redondas; radio-->
+                <p><input type="radio" name="opcion1" value="piscina">Piscina</p>
+                <p><input type="radio" name="opcion2" value="campo" checked>Campo</p> <!--para tenerlo marcado como predeterminado-->
+                <p><input type="radio" name="opcion3" value="playa">Playa</p>
+
+            <p>Opciones (lista desplegable): ¿Qué te gusta más?</p><!--Lista desplegable-->
+            <p>
+            <select> <!--Lista de una única opción, si quiero seleccionar varias, multiple-->
+                <optgroup label="categoría1">
+                <option value="piscina">Piscina</option>
+                <option value="campo" selected>Campo</option>
+                <option value="playa">Playa</option>
+                </optgroup>
+
+                <optgroup label="categoría2">
+                <option value="parque">parque</option>
+                <option value="rio">río</option>
+                </output>
+            </select>
+            </p>
+13. Botones:
+    a. <input type="submit" value="Aceptar">
+    b. <input type="reset" value="Borrar">
+
+14. Pie de página: <footer> <p>Pie de página</p> </footer>
+
+APUNTES SOBRE CSS:
+
+1. *{} : Aplica el estilo a todos los elementos.Ejemplo:
+    * {
+    margin: 0px; /* Elimina márgenes en todos los elementos */
+    }
+
+2. Para seleccionar un <div class"nombre"> (varios elementos pueden tener el mismo estilo):
+    .nombre{}
+3. Para seleccionar un <div id"nombre"> (un elemento puede tener el estilo):
+    #nombre{}
+4. Modificar encabezados o la letra:
+    h1 / p{
+        font-family: Arial, Helvetica, sans-serif; /* Tipografía*/
+        font-size: 28pt; /* Tamaño de fuente */
+        color: blue; /* Color de texto */ 
+    }
+5. DENTRO DE LAS LLAVES:
+    a. background_color: red --> color de fondo
+    b. margin-left/right: nºpx --> centrar los elementos
+    c. 
+
+6. Tablas:
+    a.  border-collapse: collapse; /* Une bordes de celdas adyacentes */
+
+7. padding, es la distancia entre el borde de la caja para que no toque los bordes
+8. display, para indicar como quieres dibujar el elemento, como el grid o el flex
+9. marging es para fuera
+10, padding para los bordes de dentro

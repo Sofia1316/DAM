@@ -1,0 +1,22 @@
+body{
+    margin: 0px;
+}
+.parte_arriba{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.magenta{
+    background-color: magenta;
+    padding: 5%;
+}
+.amarillo{
+    background-color: yellow;
+    padding: 5%;
+}
+.rosa{
+    background-color: pink;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5%;
+}
+
+
