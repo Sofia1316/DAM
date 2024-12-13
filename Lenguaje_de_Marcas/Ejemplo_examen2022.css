@@ -14,6 +14,16 @@ p{
 h2{
     color:white;
 }
+.table{
+    border: 1px solid green;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+.td, tr, th{
+    border: 1px solid green;
+}
+
  /*CAJA AMARILLA*/
 #caja_amarilla{                
     background-color: yellow;

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ejemplo examen del 2023</title>
+    <link rel="stylesheet" href="Ejemplo_2023.css">
+</head>
+<body>
+    <!--PARTE DE LA IZQUIERDA-->
+    <div class="parte_izquierda">
+        <div class="caja_izq_verde">
+            <h2> Ejemplo de elementos de HTML 1 </h2>
+        </div>
+        <div class="caja_amarilla_izq">
+            <div class="caja_izq_amarilla1">
+                <h2>Normas del examen</h2>
+                <p>Para realizar el examen debes de consultar la hoja explicativa y tienes 2h para hacerlo</p>
+            </div>
+            <div class="caja_izq_amarilla1">
+                <ul>
+                    <li>Primero realiza el posicionamiento de las cajas junto con el estilo</li>
+                    <li>Después ocúpate de los elementos HTML</li>
+                    <li>No hagas uso de internet</li>
+                    <li>Usa un cronómetro para medir el tiempo que uses</li>
+                </ul>
+            </div>
+        </div>
+        <div class="caja_izq_azul">
+            <h2>Formulario básico</h2>
+            <p>Nombre del alumno: <input class="Nombre" type="text" id="1"></p>
+            <p>Fecha examen: <input class="Fecha" type="date" id="1"></p>
+            <p>Sexo: 
+                <input type="radio" name="opcion1" value="hombre">Hombre
+                <input type="radio" name="opcion2" value="mujer">Mujer
+            </p>
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Borrar">
+        </div>
+    </div>
+    <!--PARTE DE LA DERECHA-->
+    <div class="caja_derecha_verde">
+        <h2> Ejemplo de elementos de HTML 2 </h2>
+    </div>
+    <div class="caja_derecha_amarilla1">
+        <h2> Lista sin numerar </h2>
+        <ul>
+            <ul>
+            <li>Lista con círculo</li>
+            </ul>
+            <li>Lista con cuadrado</li>
+            <li>Lista con punto</li>
+        </ul>
+      
+    </div>
+    <div class="caja_derecha_amarilla2">
+        <h2> Lista numerada </h2>
+        <ol>
+            <li>Lista de letras mayúsculas</li>
+            <li>Lista con números romanos</li>
+            <li>Lista con los números por defecto</li>
+        </ol>
+    </div>
+    <div class="caja_derecha_amarilla3"></div>
+        <h2>Tabla sencilla</h2>
+        <table border="1px">
+            <tr>
+                <th>Celda 1</th>
+                <th>Celda 2</th>
+            </tr>
+            <tr>
+                <th>Celda 3</th>
+                <th>Celda 4</th>
+            </tr>
+        </table>
+    <div class="caja_derecha_amarilla4"></div>
+    <h2>Celdas combinadas</h2>
+        <table border="1px">
+            <tr>
+                <th colspan="2">Celda 1</th>
+            </tr>
+            <tr>
+                <th rowspan="2">Celda 2</th>
+                <th>Celda 3</th>
+            </tr>
+            <tr>
+                <th>Celda 4</th>
+            </tr>
+        </table>
+</body>
+</html>
