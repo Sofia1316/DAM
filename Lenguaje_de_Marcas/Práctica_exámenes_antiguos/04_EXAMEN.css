@@ -18,5 +18,16 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     padding: 5%;
 }
-
+.parte_medio{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.azul{
+    background-color: blue;
+    
+}
+.verde{
+    background-color: green;
+    padding: 5px;
+}
 
