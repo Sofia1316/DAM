@@ -1,0 +1,49 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+h1{
+    text-align: center;
+}
+p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: justify;
+}
+.parte_arriba{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 33%;
+    width: 100%;
+}
+.amarilla{
+    background-color: yellow;
+}
+.naranja{
+    background-color: orange;
+}
+.morado{
+    background-color: blueviolet;
+}
+.azul{
+    background-color: aqua;
+    border: 2px solid white;
+    float: left;
+}
+.rosa{
+    background-color: pink;
+    flex-grow: 1;
+}
+table{
+    background-color: mediumvioletred;
+    width: 50%;
+    height: auto;
+    border: 2px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+.verde{
+    background-color: green;
+    float: right;
+    height: 50%;
+    width: 50%;
+}

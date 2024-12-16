@@ -22,7 +22,7 @@ body{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.morado{
+.morada{
     background-color: blueviolet;
     padding: 2%;
     font-family: sans-serif;
