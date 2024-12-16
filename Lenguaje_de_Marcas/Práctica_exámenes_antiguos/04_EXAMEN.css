@@ -22,12 +22,22 @@ body{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.azul{
-    background-color: blue;
-    
+.morado{
+    background-color: blueviolet;
+    padding: 2%;
+    font-family: sans-serif;
+    justify-content: center;
 }
 .verde{
     background-color: green;
-    padding: 5px;
+    padding: 2%;
+}
+.parte_abajo{
+    width: 100%;
+}
+.negra{
+    justify-content: center;
+    background-color: black;
+    color: white;
 }
 
