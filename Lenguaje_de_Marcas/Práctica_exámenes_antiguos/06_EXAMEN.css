@@ -1,0 +1,63 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.verde {
+    text-align: center;
+    background-color: greenyellow; 
+    padding: 10px;
+    display: flex;
+}
+.oscuro{
+    background-color:teal; 
+    width: 45%;
+    margin: 5px;
+    padding: 5px;
+    flex: auto;
+}
+
+/* Caja 2 */
+.medio{
+    background-color: #f5f82c; 
+    height: 150px;
+}
+
+.naranja{
+    background-color: #d8543e; /* Rojo anaranjado */
+    margin: 5px;
+    width: 30%;
+    display: inline-block;
+    height: 40px;
+}
+.rosa2{
+    display: grid;
+}
+
+.rosa2{
+    background-color: #f95ea5; 
+    width: 50%;
+}
+.azul{
+    background-color: #3de5f7; 
+    width: 50%;
+    color: black;
+}
+
+.morada2{
+    background-color: #481db8; /* Morado */
+    color: white;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    line-height: 150px;
+}
