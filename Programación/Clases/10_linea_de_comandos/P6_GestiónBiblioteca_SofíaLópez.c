@@ -4,6 +4,7 @@
 
 #define MAX_TÍTULO 80
 #define MAX_AUTOR 50
+#define CANT_LIBROS 200
 
 // Enum para los géneros literarios, en donde definimos cada uno pero solo se imprimirá el nº, es decir, ficcion es 1
 typedef enum {
@@ -23,6 +24,11 @@ typedef struct {
 	Categoria categoria; // llamamos al enum para que se quede dentro del struct
 	int cantidad_disponible;
 } Libros;
+
+void InicializarLibro(Libros * datos, int id, char * título, char * autor, float precio, Categoria categoria, int cantidad_disponible){
+    datos -> id = id;
+
+}
 
 // FUNCIÓN PARA IMPRIMIR UN ÚNICO LIBRO Y NO REPETIRLO EN VARIAS FUNCIONES
 void imprimir_UnLibro(const Libros * UnLibro){ // ponemos un const en el caso de que no queramos que los valores de nuestro puntero cambien
@@ -48,8 +54,7 @@ void imprimir_UnLibro(const Libros * UnLibro){ // ponemos un const en el caso de
             break;
         }
     printf("%d\n", UnLibro->cantidad_disponible);
-    
-    }  
+}  
 
 
 // APARTADO 1; Función para imprimir todos los libros
@@ -63,13 +68,9 @@ void imprimir_libros(const Libros * Catálogo){  // En todos las funciones de ti
 }
 
 //APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
-void coincidencia(const Libros * Libro_id, int numero_libros){  
+void coincidencia(const Libros * Libro_id, int numero_libros, int ID){  
 // En esta función añadimos la variable "int numero_libros" para que esta sepa cuántos libros hay en el array al que apunta el puntero "Libros"
 // Esto se debe a que como tal el array no guarda su tamaño y (Libros * Libro_id) solo apunta al primer elemento del array
-    
-    int ID;
-    printf("Introduce el id del libro que desees ver: ");
-    scanf("%d", &ID);
 
     int localizar = 0;
     for(int i = 0; i < numero_libros; i++) {
@@ -86,18 +87,11 @@ void coincidencia(const Libros * Libro_id, int numero_libros){
 }
 
 //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
-void aumento(Libros * Stock, int numero_libros){ // Como en esta función queremos que se modifique el array de Libros, no ponemos el const
-    int cantidad_añadir;
-    int selección;
-
-    printf("¿De qué libro deseas aumentar el stock? Introduce el ID: ");
-    scanf(" %d", &selección);
+void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añadir){ // Como en esta función queremos que se modifique el array de Libros, no ponemos el const
     
     if(selección <= 40 && selección >= 0){
         for(int i = 0; i < numero_libros; i++){
             if(selección == Stock[i].id){
-                printf("¿Qué cantidad deseas añadir al stock?: ");
-                scanf(" %d", &cantidad_añadir);
                 Stock[i].cantidad_disponible = Stock[i].cantidad_disponible + cantidad_añadir; //para poder sumar lo introducido con el stock del puntero
                 printf("El stock nuevo del libro con id %d es de %d\n", selección, Stock[i].cantidad_disponible);
                 break; 
@@ -109,19 +103,7 @@ void aumento(Libros * Stock, int numero_libros){ // Como en esta función querem
 }
 
 //APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
-void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros){
-    int argumento_introducido_categoría;
-
-    // MOSTRAR MENÚ PARA VER QUÉ Nº CORRESPONDE A CADA CATEGORÍA
-    printf("OPCIONES:\n");
-    printf("\tFICCION = 0\n");
-    printf("\tNO_FICCION = 1\n");
-    printf("\tPOESIA = 2\n");
-    printf("\tTEATRO = 3\n");
-    printf("\tENSAYO = 4\n");
-
-    printf("¿De qué categoría quieres ver los libros?: ");
-    scanf(" %d", &argumento_introducido_categoría);
+void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, int argumento_introducido_categoría){
 
     if(argumento_introducido_categoría < 5 && argumento_introducido_categoría >= 0){
         for(int i = 0; i < numero_libros; i++){
@@ -137,51 +119,92 @@ void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros){
 // argc; número de argumentos recibidos
 // argv; array de cadenas de caracteres
 int main(int argc, char ** argv){
-	// ARRAY ESTÁTICO DE LOS LIBROS DE LA BIBLIOTECA (EN TOTAL SON 40)
-	Libros datos[40] = {
-	    {1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICCION, 10},
-        {2, "1984", "George Orwell", 12.49, FICCION, 5},
-        {3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICCION, 8},
-        {4, "Moby Dick", "Herman Melville", 18.99, FICCION, 12},
-        {5, "War and Peace", "Leo Tolstoy", 20.00, FICCION, 7},
-        {6, "Pride and Prejudice", "Jane Austen", 14.99, FICCION, 9},
-        {7, "The Catcher in the Rye", "J.D. Salinger", 10.00, FICCION, 6},
-        {8, "The Odyssey", "Homer", 17.49, FICCION, 4},
-        {9, "Ulysses", "James Joyce", 25.00, FICCION, 2},
-        {10, "The Divine Comedy", "Dante Alighieri", 22.00, POESIA, 3},
-        {11, "Leaves of Grass", "Walt Whitman", 13.00, POESIA, 11},
-        {12, "The Iliad", "Homer", 18.50, FICCION, 7},
-        {13, "A Brief History of Time", "Stephen Hawking", 15.00, NO_FICCION, 15},
-        {14, "The Art of War", "Sun Tzu", 9.99, NO_FICCION, 20},
-        {15, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 16.49, NO_FICCION, 13},
-        {16, "The Selfish Gene", "Richard Dawkins", 14.00, NO_FICCION, 6},
-        {17, "The Road to Serfdom", "F.A. Hayek", 10.50, NO_FICCION, 5},
-        {18, "The Wealth of Nations", "Adam Smith", 30.00, NO_FICCION, 8},
-        {19, "On the Origin of Species", "Charles Darwin", 24.99, NO_FICCION, 4},
-        {20, "The Prince", "Niccolò Machiavelli", 8.99, NO_FICCION, 14},
-        {21, "Hamlet", "William Shakespeare", 11.50, TEATRO, 6},
-        {22, "Macbeth", "William Shakespeare", 9.50, TEATRO, 8},
-        {23, "Othello", "William Shakespeare", 10.99, TEATRO, 7},
-        {24, "A Doll's House", "Henrik Ibsen", 12.50, TEATRO, 5},
-        {25, "Waiting for Godot", "Samuel Beckett", 13.99, TEATRO, 4},
-        {26, "Death of a Salesman", "Arthur Miller", 14.99, TEATRO, 10},
-        {27, "The Glass Menagerie", "Tennessee Williams", 11.00, TEATRO, 9},
-        {28, "Long Day's Journey into Night", "Eugene O'Neill", 19.50, TEATRO, 3},
-        {29, "The Importance of Being Earnest", "Oscar Wilde", 8.50, TEATRO, 15},
-        {30, "The Waste Land", "T.S. Eliot", 6.99, POESIA, 10},
-        {31, "Paradise Lost", "John Milton", 12.00, POESIA, 7},
-        {32, "Beowulf", "Anonymous", 15.00, POESIA, 5},
-        {33, "Essays", "Michel de Montaigne", 20.00, ENSAYO, 4},
-        {34, "Self-Reliance and Other Essays", "Ralph Waldo Emerson", 9.00, ENSAYO, 9},
-        {35, "Civil Disobedience and Other Essays", "Henry David Thoreau", 7.50, ENSAYO, 11},
-        {36, "Meditations", "Marcus Aurelius", 11.99, ENSAYO, 8},
-        {37, "The Federalist Papers", "Alexander Hamilton, James Madison, John Jay", 18.00, ENSAYO, 5},
-        {38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ENSAYO, 12},
-        {39, "The Republic", "Plato", 16.00, ENSAYO, 6},
-        {40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ENSAYO, 10}
-	}; 
+    
+    // ARRAY DE MEMORIA DINÁMICA DE LOS LIBROS DE LA BIBLIOTECA
+    // inicializarLibro(direc.memor.donde guardar el libro (en este caso, &datos[i]), id, título, autor...);
 
-    // BUCLE FOR PARA LOS VALORES DEL MAIN
+    Libros datos = (Libro *) malloc (sizeof(Libro) * CANT_LIBROS);
+    InicializarLibro(&datos[0], 1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICTION, 10)
+    InicializarLibro(2, "1984", "George Orwell", 12.49, FICTION, 5)
+    InicializarLibro(3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICTION, 8)
+    InicializarLibro(4, "Moby Dick", "Herman Melville", 18.99, FICTION, 12)
+    InicializarLibro(5, "War and Peace", "Leo Tolstoy", 20.00, FICTION, 7)
+    InicializarLibro(6, "Pride and Prejudice", "Jane Austen", 14.99, FICTION, 9)
+    InicializarLibro(7, "The Catcher in the Rye", "J.D. Salinger", 10.00, FICTION, 6)
+    InicializarLibro(8, "The Odyssey", "Homer", 17.49, FICTION, 4)
+    InicializarLibro(9, "Ulysses", "James Joyce", 25.00, FICTION, 2)
+    InicializarLibro(10, "The Divine Comedy", "Dante Alighieri", 22.00, POETRY, 3)
+    InicializarLibro(11, "Leaves of Grass", "Walt Whitman", 13.00, POETRY, 11)
+    InicializarLibro(12, "The Iliad", "Homer", 18.50, FICTION, 7),
+    InicializarLibro(13, "A Brief History of Time", "Stephen Hawking", 15.00, NON_FICTION, 15)
+    InicializarLibro(14, "The Art of War", "Sun Tzu", 9.99, NON_FICTION, 20)
+    InicializarLibro(15, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 16.49, NON_FICTION, 13)
+    InicializarLibro(16, "The Selfish Gene", "Richard Dawkins", 14.00, NON_FICTION, 6)
+    InicializarLibro(17, "The Road to Serfdom", "F.A. Hayek", 10.50, NON_FICTION, 5)
+    InicializarLibro(18, "The Wealth of Nations", "Adam Smith", 30.00, NON_FICTION, 8)
+    InicializarLibro(19, "On the Origin of Species", "Charles Darwin", 24.99, NON_FICTION, 4)
+    InicializarLibro(20, "The Prince", "Niccolò Machiavelli", 8.99, NON_FICTION, 14)
+    InicializarLibro(21, "Hamlet", "William Shakespeare", 11.50, THEATER, 6)
+    InicializarLibro(22, "Macbeth", "William Shakespeare", 9.50, THEATER, 8)
+    InicializarLibro(23, "Othello", "William Shakespeare", 10.99, THEATER, 7)
+    InicializarLibro(24, "A Doll's House", "Henrik Ibsen", 12.50, THEATER, 5)
+    InicializarLibro(25, "Waiting for Godot", "Samuel Beckett", 13.99, THEATER, 4)
+    InicializarLibro(26, "Death of a Salesman", "Arthur Miller", 14.99, THEATER, 10)
+    InicializarLibro(27, "The Glass Menagerie", "Tennessee Williams", 11.00, THEATER, 9)
+    InicializarLibro(28, "Long Day's Journey into Night", "Eugene O'Neill", 19.50, THEATER, 3)
+    InicializarLibro(29, "The Importance of Being Earnest", "Oscar Wilde", 8.50, THEATER, 15)
+    InicializarLibro(30, "The Waste Land", "T.S. Eliot", 6.99, POETRY, 10)
+    InicializarLibro(31, "Paradise Lost", "John Milton", 12.00, POETRY, 7)
+    InicializarLibro(32, "Beowulf", "Anonymous", 15.00, POETRY, 5)
+    InicializarLibro(33, "Essays", "Michel de Montaigne", 20.00, ESSAY, 4)
+    InicializarLibro(34, "Self-Reliance and Other Essays", "Ralph Waldo Emerson", 9.00, ESSAY, 9)
+    InicializarLibro(35, "Civil Disobedience and Other Essays", "Henry David Thoreau", 7.50, ESSAY, 11)
+    InicializarLibro(36, "Meditations", "Marcus Aurelius", 11.99, ESSAY, 8)
+    InicializarLibro(37, "The Federalist Papers", "Alexander Hamilton, James Madison, John Jay", 18.00, ESSAY, 5)
+    InicializarLibro(38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ESSAY, 12)
+    InicializarLibro(39, "The Republic", "Plato", 16.00, ESSAY, 6)
+    InicializarLibro(40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ESSAY, 10)
+
+    if(argc == 1){
+        // aquí te imprime el ejecutable
+
+    } else if(argc == 2){
+        // en este condicional llamaremos a las funciones que necesiten solo dos argumentos en la línea de comandos, en este caso, el ejecutable y la llamada a la función
+        if(strcmp(argv[1], "mostrar") == 0){ // este para mostrar los libros
+            printf("Llamo a mi función mostrar todos los libros\n");
+            imprimir_libros(datos);
+        } 
+
+    } else if (argc == 3){
+        // en este condicional, llamamos a las funciones que necesiten más de dos argumentos en la línea de comandos
+        if (strcmp(argv[1], "mostrarID") == 0){ // para mostrar los libros en función del id
+            printf("Llamo a mi función mostrar\n");
+            int ID = atoi(argv[2]); // aquí meto un atoi porque el ID es un entero, pero el argv es un char*, entonces o transformamos de cadena de caracteres a un entero
+            coincidencia(datos, 40, ID);
+
+        } else if (strcmp(argv[1], "categoría") == 0){ // imprimir en función de la categoría
+            printf("Llamo a mi función de imprimir los libros de la misma categoría\n");
+            int argumento_introducido_categoría = atoi(argv[2]);
+            imprimir_categoría(datos, 40, argumento_introducido_categoría);
+
+        } else if (strcmp(argv[1], "mostrarA") == 0){ // para imprimir los libros en función del autor
+            printf("Llamo a mi función para buscar los libros de un autor determinado\n");
+        }
+    } else if (argc == 4){
+        if (strcmp(argv[1], "aumentar") == 0){ // para aumentar la cantidad disponible
+            printf("Aumentar el stock, en función del ID, poniendo la cantidad que quiero\n");
+            int selección = atoi(argv[2]);
+            int cantidad_añadir = atoi(argv[3]);
+            aumento(datos, 40, selección, cantidad_añadir);
+
+        } else if (strcmp(argv[1], "añadirN") == 0){ // este para añadir nuevos libros
+            printf("Llamo a mi función añadir\n");
+        }
+    }
+
+
+   // BUCLE FOR PARA LOS VALORES DEL MAIN
+    printf("\n");
     printf("Lista de argumentos:\n");
     for(int i = 0; i < argc; i++){
         printf("Argumento %d: %s\n", i, argv[i]);
@@ -190,50 +213,6 @@ int main(int argc, char ** argv){
         // argv[1] "mostrar"
         // argv[2] es 15, debido a que al compilar pones ./(nombre_ejecutable) (mostrar) (15)
     }
-    if(argc == 1){
-        // hace el código como siempre
-    }
-    if(argc < 1){
-        if(argv[1] == "mostrar"){
-            // llamar a mostrar todo
-        }
-    }
-
-    // MENÚ PARA SELECCIONAR
-    int opción;
-    printf("¿Qué opción deseas seleccionar?\n");
-    printf(" 1. Mostrar todos los libros.\n");
-    printf(" 2. Mostrar el libro que coincida con el ID.\n");
-    printf(" 3. Aumentar el stock de un libro introduciendo su ID.\n");
-    printf(" 4. Mostrar todos los libros de la categoría que introduzcas.\n"); 
-    printf(" 5. Mostrar los libros del autor dado.\n");
-    
-    scanf("%d", &opción);
-
-    // Switch de "opción" para que imprima lo que elijas en el scanf
-    switch(opción){
-        case 1:
-            // APARTADO 1; Mostrar todos los libros.
-            imprimir_libros(datos);
-            break;
-        case 2:
-            // APARTADO 2; Mostrar el libro que coincida con el ID (o mensaje de un error)
-            coincidencia(datos, 40); // pongo el 40 porque como en el void de arriba (con el int numero_libros) le digo el tamaño del array
-            break;
-        case 3:
-            //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
-            aumento(datos, 40);
-            break;
-        case 4:
-            //APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
-            imprimir_categoría(datos, 40);
-            break;
-        case 5:
-            //SALIR DEL PROGRAMA
-            return EXIT_SUCCESS;
-        default:
-            printf("Opción no válida");
-        }
 
     return EXIT_SUCCESS;
 }
