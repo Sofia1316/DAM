@@ -27,7 +27,11 @@ typedef struct {
 
 void InicializarLibro(Libros * datos, int id, char * título, char * autor, float precio, Categoria categoria, int cantidad_disponible){
     datos -> id = id;
-
+    char * strncpy(datos->título, título);
+    char * strncpy(datos->autor, autor);
+    datos -> precio = precio;
+    datos -> categoria = categoria;
+    datos -> cantidad_disponible = cantidad_disponible;
 }
 
 // FUNCIÓN PARA IMPRIMIR UN ÚNICO LIBRO Y NO REPETIRLO EN VARIAS FUNCIONES
@@ -120,59 +124,77 @@ void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, i
 // argv; array de cadenas de caracteres
 int main(int argc, char ** argv){
     
-    // ARRAY DE MEMORIA DINÁMICA DE LOS LIBROS DE LA BIBLIOTECA
     // inicializarLibro(direc.memor.donde guardar el libro (en este caso, &datos[i]), id, título, autor...);
+    // ARRAY DE MEMORIA DINÁMICA DE LOS LIBROS DE LA BIBLIOTECA
+    Libros * datos_dinámicos = (Libros *) malloc (sizeof(Libros) * CANT_LIBROS);
 
-    Libros datos = (Libro *) malloc (sizeof(Libro) * CANT_LIBROS);
-    InicializarLibro(&datos[0], 1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICTION, 10)
-    InicializarLibro(2, "1984", "George Orwell", 12.49, FICTION, 5)
-    InicializarLibro(3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICTION, 8)
-    InicializarLibro(4, "Moby Dick", "Herman Melville", 18.99, FICTION, 12)
-    InicializarLibro(5, "War and Peace", "Leo Tolstoy", 20.00, FICTION, 7)
-    InicializarLibro(6, "Pride and Prejudice", "Jane Austen", 14.99, FICTION, 9)
-    InicializarLibro(7, "The Catcher in the Rye", "J.D. Salinger", 10.00, FICTION, 6)
-    InicializarLibro(8, "The Odyssey", "Homer", 17.49, FICTION, 4)
-    InicializarLibro(9, "Ulysses", "James Joyce", 25.00, FICTION, 2)
-    InicializarLibro(10, "The Divine Comedy", "Dante Alighieri", 22.00, POETRY, 3)
-    InicializarLibro(11, "Leaves of Grass", "Walt Whitman", 13.00, POETRY, 11)
-    InicializarLibro(12, "The Iliad", "Homer", 18.50, FICTION, 7),
-    InicializarLibro(13, "A Brief History of Time", "Stephen Hawking", 15.00, NON_FICTION, 15)
-    InicializarLibro(14, "The Art of War", "Sun Tzu", 9.99, NON_FICTION, 20)
-    InicializarLibro(15, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 16.49, NON_FICTION, 13)
-    InicializarLibro(16, "The Selfish Gene", "Richard Dawkins", 14.00, NON_FICTION, 6)
-    InicializarLibro(17, "The Road to Serfdom", "F.A. Hayek", 10.50, NON_FICTION, 5)
-    InicializarLibro(18, "The Wealth of Nations", "Adam Smith", 30.00, NON_FICTION, 8)
-    InicializarLibro(19, "On the Origin of Species", "Charles Darwin", 24.99, NON_FICTION, 4)
-    InicializarLibro(20, "The Prince", "Niccolò Machiavelli", 8.99, NON_FICTION, 14)
-    InicializarLibro(21, "Hamlet", "William Shakespeare", 11.50, THEATER, 6)
-    InicializarLibro(22, "Macbeth", "William Shakespeare", 9.50, THEATER, 8)
-    InicializarLibro(23, "Othello", "William Shakespeare", 10.99, THEATER, 7)
-    InicializarLibro(24, "A Doll's House", "Henrik Ibsen", 12.50, THEATER, 5)
-    InicializarLibro(25, "Waiting for Godot", "Samuel Beckett", 13.99, THEATER, 4)
-    InicializarLibro(26, "Death of a Salesman", "Arthur Miller", 14.99, THEATER, 10)
-    InicializarLibro(27, "The Glass Menagerie", "Tennessee Williams", 11.00, THEATER, 9)
-    InicializarLibro(28, "Long Day's Journey into Night", "Eugene O'Neill", 19.50, THEATER, 3)
-    InicializarLibro(29, "The Importance of Being Earnest", "Oscar Wilde", 8.50, THEATER, 15)
-    InicializarLibro(30, "The Waste Land", "T.S. Eliot", 6.99, POETRY, 10)
-    InicializarLibro(31, "Paradise Lost", "John Milton", 12.00, POETRY, 7)
-    InicializarLibro(32, "Beowulf", "Anonymous", 15.00, POETRY, 5)
-    InicializarLibro(33, "Essays", "Michel de Montaigne", 20.00, ESSAY, 4)
-    InicializarLibro(34, "Self-Reliance and Other Essays", "Ralph Waldo Emerson", 9.00, ESSAY, 9)
-    InicializarLibro(35, "Civil Disobedience and Other Essays", "Henry David Thoreau", 7.50, ESSAY, 11)
-    InicializarLibro(36, "Meditations", "Marcus Aurelius", 11.99, ESSAY, 8)
-    InicializarLibro(37, "The Federalist Papers", "Alexander Hamilton, James Madison, John Jay", 18.00, ESSAY, 5)
-    InicializarLibro(38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ESSAY, 12)
-    InicializarLibro(39, "The Republic", "Plato", 16.00, ESSAY, 6)
-    InicializarLibro(40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ESSAY, 10)
+    // POR SI ACASO
+    if(datos_dinámicos == NULL){
+        printf("Error, no hay memoria\n");
+        return EXIT_FAILURE;
+    }
+
+    InicializarLibro(&datos_dinámicos[0], 1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICCION, 10);
+    InicializarLibro(&datos_dinámicos[1], 2, "1984", "George Orwell", 12.49, FICCION, 5);
+    InicializarLibro(&datos_dinámicos[2], 3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICCION, 8);
+    InicializarLibro(&datos_dinámicos[3], 4, "Moby Dick", "Herman Melville", 18.99, FICCION, 12);
+    InicializarLibro(&datos_dinámicos[4], 5, "War and Peace", "Leo Tolstoy", 20.00, FICCION, 7);
+    InicializarLibro(&datos_dinámicos[5], 6, "Pride and Prejudice", "Jane Austen", 14.99, FICCION, 9);
+    InicializarLibro(&datos_dinámicos[6], 7, "The Catcher in the Rye", "J.D. Salinger", 10.00, FICCION, 6);
+    InicializarLibro(&datos_dinámicos[7], 8, "The Odyssey", "Homer", 17.49, FICCION, 4);
+    InicializarLibro(&datos_dinámicos[8], 9, "Ulysses", "James Joyce", 25.00, FICCION, 2);
+    InicializarLibro(&datos_dinámicos[9], 10, "The Divine Comedy", "Dante Alighieri", 22.00, POESIA, 3);
+    InicializarLibro(&datos_dinámicos[10], 11, "Leaves of Grass", "Walt Whitman", 13.00, POESIA, 11);
+    InicializarLibro(&datos_dinámicos[11], 12, "The Iliad", "Homer", 18.50, FICCION, 7);
+    InicializarLibro(&datos_dinámicos[12], 13, "A Brief History of Time", "Stephen Hawking", 15.00, NO_FICCION, 15);
+    InicializarLibro(&datos_dinámicos[13], 14, "The Art of War", "Sun Tzu", 9.99, NO_FICCION, 20);
+    InicializarLibro(&datos_dinámicos[14], 15, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 16.49, NO_FICCION, 13);
+    InicializarLibro(&datos_dinámicos[15], 16, "The Selfish Gene", "Richard Dawkins", 14.00, NO_FICCION, 6);
+    InicializarLibro(&datos_dinámicos[16], 17, "The Road to Serfdom", "F.A. Hayek", 10.50, NO_FICCION, 5);
+    InicializarLibro(&datos_dinámicos[17], 18, "The Wealth of Nations", "Adam Smith", 30.00, NO_FICCION, 8);
+    InicializarLibro(&datos_dinámicos[18], 19, "On the Origin of Species", "Charles Darwin", 24.99, NO_FICCION, 4);
+    InicializarLibro(&datos_dinámicos[19], 20, "The Prince", "Niccolò Machiavelli", 8.99, NO_FICCION, 14);
+    InicializarLibro(&datos_dinámicos[20], 21, "Hamlet", "William Shakespeare", 11.50, TEATRO, 6);
+    InicializarLibro(&datos_dinámicos[21], 22, "Macbeth", "William Shakespeare", 9.50, TEATRO, 8);
+    InicializarLibro(&datos_dinámicos[22], 23, "Othello", "William Shakespeare", 10.99, TEATRO, 7);
+    InicializarLibro(&datos_dinámicos[23], 24, "A Doll's House", "Henrik Ibsen", 12.50, TEATRO, 5);
+    InicializarLibro(&datos_dinámicos[24], 25, "Waiting for Godot", "Samuel Beckett", 13.99, TEATRO, 4);
+    InicializarLibro(&datos_dinámicos[25], 26, "Death of a Salesman", "Arthur Miller", 14.99, TEATRO, 10);
+    InicializarLibro(&datos_dinámicos[26], 27, "The Glass Menagerie", "Tennessee Williams", 11.00, TEATRO, 9);
+    InicializarLibro(&datos_dinámicos[27], 28, "Long Day's Journey into Night", "Eugene O'Neill", 19.50, TEATRO, 3);
+    InicializarLibro(&datos_dinámicos[28], 29, "The Importance of Being Earnest", "Oscar Wilde", 8.50, TEATRO, 15);
+    InicializarLibro(&datos_dinámicos[29], 30, "The Waste Land", "T.S. Eliot", 6.99, POESIA, 10);
+    InicializarLibro(&datos_dinámicos[30], 31, "Paradise Lost", "John Milton", 12.00, POESIA, 7);
+    InicializarLibro(&datos_dinámicos[31], 32, "Beowulf", "Anonymous", 15.00, POESIA, 5);
+    InicializarLibro(&datos_dinámicos[32], 33, "Essays", "Michel de Montaigne", 20.00, ENSAYO, 4);
+    InicializarLibro(&datos_dinámicos[33], 34, "Self-Reliance and Other Essays", "Ralph Waldo Emerson", 9.00, ENSAYO, 9);
+    InicializarLibro(&datos_dinámicos[34], 35, "Civil Disobedience and Other Essays", "Henry David Thoreau", 7.50, ENSAYO, 11);
+    InicializarLibro(&datos_dinámicos[35], 36, "Meditations", "Marcus Aurelius", 11.99, ENSAYO, 8);
+    InicializarLibro(&datos_dinámicos[36], 37, "The Federalist Papers", "Alexander Hamilton, James Madison, John Jay", 18.00, ENSAYO, 5);
+    InicializarLibro(&datos_dinámicos[37], 38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ENSAYO, 12);
+    InicializarLibro(&datos_dinámicos[38], 39, "The Republic", "Plato", 16.00, ENSAYO, 6);
+    InicializarLibro(&datos_dinámicos[39], 40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ENSAYO, 10);
+
+
+
+/*
+1. Ejecutable
+Palabra en referencia a la función que quieras llamar, como "mostrar" para ver todo el catálogo de libros
+2. Que necesite un argumento; mostrar 
+3. Que necesite dos argumentos; mostrarID, categoría y autor
+4. Que necesite 3 argumentos; aumentar y añadirN
+
+Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se imprime el libro con el ID 4)
+*/
 
     if(argc == 1){
         // aquí te imprime el ejecutable
 
     } else if(argc == 2){
         // en este condicional llamaremos a las funciones que necesiten solo dos argumentos en la línea de comandos, en este caso, el ejecutable y la llamada a la función
-        if(strcmp(argv[1], "mostrar") == 0){ // este para mostrar los libros
+        if(strcmp(argv[1], "mostrar") == 0){ // strcmp compara las cadenas de caracteres 
             printf("Llamo a mi función mostrar todos los libros\n");
-            imprimir_libros(datos);
+            imprimir_libros(datos, CANT_LIBROS); // llamamos a la función
         } 
 
     } else if (argc == 3){
@@ -214,5 +236,6 @@ int main(int argc, char ** argv){
         // argv[2] es 15, debido a que al compilar pones ./(nombre_ejecutable) (mostrar) (15)
     }
 
+    free(datos_dinámicos);
     return EXIT_SUCCESS;
 }
