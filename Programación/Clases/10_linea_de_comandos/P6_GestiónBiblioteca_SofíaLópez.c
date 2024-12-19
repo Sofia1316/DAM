@@ -4,7 +4,10 @@
 
 #define MAX_TÍTULO 80
 #define MAX_AUTOR 50
-#define CANT_LIBROS 200
+
+// Variable para poder guardar el número de libros del array dinámico, 
+// que como estos en un principio son 40 libros, lo inicializamos a 40
+int total_libros = 40;
 
 // Enum para los géneros literarios, en donde definimos cada uno pero solo se imprimirá el nº, es decir, ficcion es 1
 typedef enum {
@@ -25,10 +28,11 @@ typedef struct {
 	int cantidad_disponible;
 } Libros;
 
-void InicializarLibro(Libros * datos, int id, char * título, char * autor, float precio, Categoria categoria, int cantidad_disponible){
-    datos -> id = id;
-    char * strncpy(datos->título, título);
-    char * strncpy(datos->autor, autor);
+// Función para poder convertir la memoria estática de 40 libros a una dinámica
+void InicializarLibro(Libros * datos, int id, const char * título, const char * autor, float precio, Categoria categoria, int cantidad_disponible){
+    datos -> id = id; // lo pongo con flechitas para apuntar al elemento de dentro del puntero que he creado en la función, en este caso datos
+    strcpy(datos->título, título); // hago uso de strcpy para copiar los elementos de título en el puntero datos, ya que con las cadenas de caracteres no se puede hacer uso de =
+    strcpy(datos->autor, autor);
     datos -> precio = precio;
     datos -> categoria = categoria;
     datos -> cantidad_disponible = cantidad_disponible;
@@ -60,25 +64,31 @@ void imprimir_UnLibro(const Libros * UnLibro){ // ponemos un const en el caso de
     printf("%d\n", UnLibro->cantidad_disponible);
 }  
 
+/*-------------------------------------------------- APARTADOS DEL ENUNCIADO --------------------------------------------------------*/
+
+/*
+Libros: es del struct
+Libros * X: La X es aquella variable que creamos para poder manejar o usar el puntero inicial, en este caso, Libros
+Int numero_libro: Aquí indico el número total de libros que tengo en mi array
+Y argumento_introducido, cantidad_añadir...esos valores son aquellos que guardan los argumentos que meto en la línea de comandos para que me imprima lo que pido
+*/
 
 // APARTADO 1; Función para imprimir todos los libros
-void imprimir_libros(const Libros * Catálogo){  // En todos las funciones de tipo void, ponemos en primer lugar el struct (Libros) y en segundo lugar
-                                                // crearemos una variable para hacer referencia al puntero dentro de la propia función (Catálogo)
+void imprimir_libros(const Libros * Catálogo){
+                                               
     for (int i = 0; i < 40; i++) {
 	   imprimir_UnLibro(&Catálogo[i]); 
        // Pongo el &Catálogo para indicar una dirección de memoria
-       // Pongo un [i] para evitar que solo se me imprima el primer valor del array en cada vuelta del bucle
+       // Pongo el [i] porque Catálogo solo apunta al primer elemento del array 
 	}
 }
 
 //APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
 void coincidencia(const Libros * Libro_id, int numero_libros, int ID){  
-// En esta función añadimos la variable "int numero_libros" para que esta sepa cuántos libros hay en el array al que apunta el puntero "Libros"
-// Esto se debe a que como tal el array no guarda su tamaño y (Libros * Libro_id) solo apunta al primer elemento del array
 
     int localizar = 0;
     for(int i = 0; i < numero_libros; i++) {
-        if(Libro_id[i].id == ID){
+        if(Libro_id->id == ID){
             imprimir_UnLibro(&Libro_id[i]); // Esto hace que se imprima mi primer void y así evito la repetición de código, 
                                             // y dentro de los () pongo la nueva variable creada en la función
             localizar = 1; // esto hace que se me indique que tiene un valor "guardado" porque ha entrado dentro del bucle, por lo que localizar ya no es 0, es 1 
@@ -91,7 +101,8 @@ void coincidencia(const Libros * Libro_id, int numero_libros, int ID){
 }
 
 //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
-void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añadir){ // Como en esta función queremos que se modifique el array de Libros, no ponemos el const
+void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añadir){ 
+// Como en esta función queremos que se modifique el array de Libros, no ponemos el const
     
     if(selección <= 40 && selección >= 0){
         for(int i = 0; i < numero_libros; i++){
@@ -112,7 +123,7 @@ void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, i
     if(argumento_introducido_categoría < 5 && argumento_introducido_categoría >= 0){
         for(int i = 0; i < numero_libros; i++){
             if(argumento_introducido_categoría == mostrar_categoría[i].categoria){ // Para comprobar si lo introducido con la categoría es lo mismo
-                imprimir_UnLibro(&mostrar_categoría[i]);
+                imprimir_UnLibro(&mostrar_categoría[i]); // Llamo a mi función para que se me impriman los libros enteros
             } 
         }
     } else {
@@ -120,20 +131,43 @@ void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, i
     }
 }
 
-// argc; número de argumentos recibidos
-// argv; array de cadenas de caracteres
-int main(int argc, char ** argv){
-    
-    // inicializarLibro(direc.memor.donde guardar el libro (en este caso, &datos[i]), id, título, autor...);
-    // ARRAY DE MEMORIA DINÁMICA DE LOS LIBROS DE LA BIBLIOTECA
-    Libros * datos_dinámicos = (Libros *) malloc (sizeof(Libros) * CANT_LIBROS);
+//APARTADO 5; Mostrar todos los libros del autor dado como argumento.
+void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * autor, char * argumento_introducido_autor){
 
-    // POR SI ACASO
-    if(datos_dinámicos == NULL){
-        printf("Error, no hay memoria\n");
-        return EXIT_FAILURE;
+    for(int i = 0; i < numero_libros; i++){
+        if(strcmp(mostrar_autor->autor, autor) == 0){ // Comparamos la cadena de caracteres introducida con las del puntero
+            imprimir_UnLibro(&mostrar_autor[i]); // Llamo a mi función para que se me impriman los libros enteros
+        } 
+    }
+} 
+
+//APARTADO 6; Añadir un nuevo libro a mi array dinámico
+void añadirLibro(Libros * Nuevo, int número_libros, int id, const char * título, const char * autor, float precio, Categoria categoria, int cantidad_disponible){
+    
+    // Control de errores por si no hay memoria disponible
+    if(número_libros >= total_libros){
+        printf("No se puede añadir ningún libro\n");
     }
 
+    
+}
+
+/*-------------------------------------------------- FUNCIÓN MAIN --------------------------------------------------------*/
+
+// argc; es el número de argumentos recibidos
+// argv; es el array de cadenas de caracteres, por eso lleva un doble puntero
+int main(int argc, char ** argv){
+    
+    // INICIALIZAMOS UN ARRAY DE MEMORIA DINÁMICA PARA LOS LIBROS DE LA BIBLIOTECA
+    Libros * datos_dinámicos = (Libros *) malloc (sizeof(Libros) * 40); // lo multiplico por 40 ya que son los libros iniciales
+
+    // POR SI ACASO NO HAY MEMORIA DISPONIBLE
+    if(datos_dinámicos == NULL){
+        printf("Error, no hay memoria\n");
+        return EXIT_FAILURE; // el programa se terminará pero no de manera exitosa, si no con un "error"
+    }
+
+    // Guardo el número de libros en mi memoria dinámica (los 40)
     InicializarLibro(&datos_dinámicos[0], 1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICCION, 10);
     InicializarLibro(&datos_dinámicos[1], 2, "1984", "George Orwell", 12.49, FICCION, 5);
     InicializarLibro(&datos_dinámicos[2], 3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICCION, 8);
@@ -178,8 +212,8 @@ int main(int argc, char ** argv){
 /*
 1. Ejecutable
 Palabra en referencia a la función que quieras llamar, como "mostrar" para ver todo el catálogo de libros
-2. Que necesite un argumento; mostrar 
-3. Que necesite dos argumentos; mostrarID, categoría y autor
+2. Que necesite 1 argumento; mostrar 
+3. Que necesite 2 argumentos; mostrarID, categoría y autor
 4. Que necesite 3 argumentos; aumentar y añadirN
 
 Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se imprime el libro con el ID 4)
@@ -192,7 +226,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
         // en este condicional llamaremos a las funciones que necesiten solo dos argumentos en la línea de comandos, en este caso, el ejecutable y la llamada a la función
         if(strcmp(argv[1], "mostrar") == 0){ // strcmp compara las cadenas de caracteres 
             printf("Llamo a mi función mostrar todos los libros\n");
-            imprimir_libros(datos, CANT_LIBROS); // llamamos a la función
+            imprimir_libros(datos_dinámicos); // llamamos a la función
         } 
 
     } else if (argc == 3){
@@ -200,25 +234,28 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
         if (strcmp(argv[1], "mostrarID") == 0){ // para mostrar los libros en función del id
             printf("Llamo a mi función mostrar\n");
             int ID = atoi(argv[2]); // aquí meto un atoi porque el ID es un entero, pero el argv es un char*, entonces o transformamos de cadena de caracteres a un entero
-            coincidencia(datos, 40, ID);
+            coincidencia(datos_dinámicos, total_libros, ID);
 
         } else if (strcmp(argv[1], "categoría") == 0){ // imprimir en función de la categoría
             printf("Llamo a mi función de imprimir los libros de la misma categoría\n");
             int argumento_introducido_categoría = atoi(argv[2]);
-            imprimir_categoría(datos, 40, argumento_introducido_categoría);
+            imprimir_categoría(datos_dinámicos, total_libros, argumento_introducido_categoría);
 
         } else if (strcmp(argv[1], "mostrarA") == 0){ // para imprimir los libros en función del autor
             printf("Llamo a mi función para buscar los libros de un autor determinado\n");
+            imprimir_autor(datos_dinámicos, total_libros, argv[2]);
         }
+
     } else if (argc == 4){
         if (strcmp(argv[1], "aumentar") == 0){ // para aumentar la cantidad disponible
             printf("Aumentar el stock, en función del ID, poniendo la cantidad que quiero\n");
             int selección = atoi(argv[2]);
             int cantidad_añadir = atoi(argv[3]);
-            aumento(datos, 40, selección, cantidad_añadir);
+            aumento(datos_dinámicos, total_libros, selección, cantidad_añadir);
 
         } else if (strcmp(argv[1], "añadirN") == 0){ // este para añadir nuevos libros
             printf("Llamo a mi función añadir\n");
+           // añadirLibro();
         }
     }
 
