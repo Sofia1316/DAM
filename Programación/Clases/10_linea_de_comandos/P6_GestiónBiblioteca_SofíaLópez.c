@@ -175,8 +175,6 @@ int main(int argc, char ** argv){
     InicializarLibro(&datos_dinámicos[38], 39, "The Republic", "Plato", 16.00, ENSAYO, 6);
     InicializarLibro(&datos_dinámicos[39], 40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ENSAYO, 10);
 
-
-
 /*
 1. Ejecutable
 Palabra en referencia a la función que quieras llamar, como "mostrar" para ver todo el catálogo de libros
@@ -223,7 +221,6 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
             printf("Llamo a mi función añadir\n");
         }
     }
-
 
    // BUCLE FOR PARA LOS VALORES DEL MAIN
     printf("\n");
