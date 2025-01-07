@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EXAMEN 3 (equivalente al 1 antiguo)</title>
+    <link rel="stylesheet" href="03_EXAMEN.css">
+</head>
+<body>
+    <div class="amarilla">
+        <h1><b>CABECERA</b></h1>
+        <p>Los títulos son arial,tamaño 28 pt y negrita, de color azul</p>
+        <p>
+            Esta cabecera es de color amarillo y las cajas de abajo están colocadas con flex (le afecta a las naranjas) y la rosa es su padre
+            y hay un hueco entre ellas (gap) de 10pt con un padding de 10 pt y los párrafos son century y de tamaño 11pt
+        </p>
+    </div>
+    
+    <div class="rosa">
+        <div class="naranja">
+            <p>Las listas y párrafos son arial y de tamaño 12</p>
+            <p>Elementos a tener en cuenta</p>
+            <ul>
+                <li>Cerrar bien los divs</li>
+                <li>Tener cuidado con la posición</li>
+            </ul>
+        </div>
+        <div class="naranja">
+            <p>estos textos son el ejemplo de que no se pueden poner la etiqueta br a no ser que la necesites para algo</p>
+        </div>
+        <div class="naranja">
+            <p>estos textos son el ejemplo de que no se pueden poner la etiqueta br a no ser que la necesites para algo</p>
+        </div>
+    </div>
+
+    <div class="verde">
+        <div class="morada">
+            <h2>GUIA PARA ESTA PARTE</h2>
+            <p>h2 es de color blanco y el resto predeterminado</p>
+            <p>Caja verde padre y 3 moradas que van a alinearse con grid, con un padding de 10 pt y justificado el texto</p>
+        </div>
+        <div class="morada">
+            <p>Tu nombre:<input type="text"></p>
+            <p>Correo electrónico:<input type="email"></p>
+            <p>¿Cómo te salió?
+                <input type="radio">Bien
+                <input type="radio">Regular
+                <input type="radio">Mal
+            </p>
+            <p>Las opciones despegables son JavaScript,Java,C,PHP y C++</p>
+            <p>Lenguaje</p>
+            <select>
+                <option value="1">JavaScript</option>
+                <option value="2">Java</option>
+                <option value="3">C</option>
+                <option value="4">C++</option>
+                <option value="5">PHP</option>
+            </select>
+            <p><input type="submit" value="Enviar"></p>
+        </div>
+        <div class="morada2">
+            <p align="center">Ejemplo de fusión de celdas</p>
+            <table align="center" border="2px">
+                <tr>
+                    <td>Fusión de celdas</td>
+                    <th>Columna 1</th>
+                    <th>Columna 2</th>
+                    <th>Columna 3</th>
+                    <th>Columna 4</th>
+                    <th>Columna 5</th>
+                </tr>
+                <tr>
+                    <th>Fila 1</th>
+                    <td rowspan="2">A</td>
+                    <td colspan="2">B</td>
+                    <td colspan="2">C</td>
+                </tr>
+                <tr>
+                    <th>Fila 2</th>
+                    <td rowspan="2">D</td>
+                    <td colspan="2">E</td>
+                    <td rowspan="2">F</td>
+                </tr>
+                <tr>
+                    <th>Fila 3</th>
+                    <td rowspan="2">G</td>
+                    <td rowspan="2" colspan="2">H</td>
+                </tr>
+                <tr>
+                    <th>Fila 4</th>
+                    <td>I</td>
+                    <td>J</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

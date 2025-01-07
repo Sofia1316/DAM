@@ -1,0 +1,53 @@
+body{
+    margin: 0%;
+    border: 0%;
+    padding: 0%;
+}
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+    font-size: 28pt;
+}
+h2{
+    color: white;
+}
+.amarilla{
+    background-color: yellow;
+    width: 100%;
+    margin: 0%;
+}
+.rosa{
+    background-color: pink;
+    gap: 10pt;
+    display: flex;
+    flex-direction: row;
+}
+.naranja{
+    background-color: orange;
+    padding: 10pt;
+    font-family: century;
+    font-size: 11pt;
+}
+.verde{
+    background-color: green;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+.morada{
+    background-color: purple;
+    padding: 10px;
+}
+.morada2{
+    background-color: purple;
+    grid-column: 1/-1;
+}
+table{
+    border: 2px solid green;
+    border-collapse: collapse;
+    width: 70%;
+    height: 70%;
+    text-align: center;
+}
