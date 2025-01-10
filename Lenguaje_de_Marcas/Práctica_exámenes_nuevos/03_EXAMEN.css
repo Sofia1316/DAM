@@ -42,7 +42,7 @@ h2{
 }
 .morada2{
     background-color: purple;
-    grid-column: 1/-1;
+    grid-column: span 2;
 }
 table{
     border: 2px solid green;

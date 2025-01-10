@@ -1,0 +1,93 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: green;
+}
+body{
+    margin: 0px;
+}
+.rosa{
+    background-color: pink;
+    height: 20%;
+    width: 30%;
+    position: absolute;
+    z-index: 3;
+    left: 25%;
+}
+.amarillo{
+    background-color: yellow;
+    height: 40%;
+    width: 30%;
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    right: 2%;
+}
+.azul{
+    background-color: cyan;
+    height: 50vh;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.naranja{
+    background-color: orange;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    width: 50%;
+}
+table{
+    border: 2px solid green;
+    border-collapse: collapse;
+}
+td, tr, th{
+    padding: 5px;
+    border: 2px solid green;
+    border-collapse: collapse;
+    text-align: right;
+}
+.roja{
+    background-color: red;
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    top: 50%;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+.individual{
+    background-color: lightcyan;
+    width: 30%;
+    height: 10%;
+}
+.grid{
+    position: absolute;
+    top: 80%;
+    background-color: yellowgreen;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    height: 30%;
+    width: 50%;
+}
+.a{
+    background-color: white;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.b{
+    background-color: white;
+    grid-column: 1/2;
+    grid-row: 2/2;
+}
+.morada{
+    background-color: violet;
+    grid-column: 2/2;
+    grid-row: span 2;
+}
