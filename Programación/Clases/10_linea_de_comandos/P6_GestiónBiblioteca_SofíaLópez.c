@@ -143,6 +143,10 @@ void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argu
     }
 
 } 
+/*
+strncmp (compara las cadenas de caracteres que tu le indicas) es parecido a strcmp (compara las cadenas de caracteres tal cual, a pelo)
+strncmp(str1, str2, nº de caracteres que quieres que lea)==0
+*/
 
 /*------------------------------------- FUNCIÓN MAIN -----------------------------------*/
 
@@ -271,11 +275,17 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
                 break;
             case 5:
                 // APARTADO 5; imprimir los libros en función del autor dado
-                char * argumento_introducido_autor;
+                char argumento_introducido_autor[MAX_AUTOR]; // reservo memoria para poder guardar el autor
+                int extensión_autor; // para guardar la extensión del autor que quiero buscar
+
                 printf("Introduce el autor que quieras buscar: ");
-                scanf(" %s", argumento_introducido_autor);
+                scanf(" "); // para que me lea el espacio que meto entre el nombre y el apellido
+                fgets(argumento_introducido_autor, MAX_AUTOR, stdin);
+                argumento_introducido_autor[strlen(argumento_introducido_autor)-1] = '\0'; 
+                // meto mi autor a secas, entonces a través de los corchetes, se encarga de "contar" las cadenas de caracteres y le resta 1 (que es el \n, el cual se pone cuando le das al intro), y en vez de eso, lo sustituye por el \0 (ya que este dejará de leer cuando vea el \0)
 
                 imprimir_autor(datos_dinámicos, total_libros, argumento_introducido_autor);
+                break;
             case 6:
                 //SALIR DEL PROGRAMA
                 return EXIT_SUCCESS;
