@@ -1,0 +1,95 @@
+*{
+    font-family: Arial, sans-serif;
+}
+body{
+    margin: 0px;
+}
+h1{
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    color: white;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+/*CAJA 1*/
+.caja1{
+    background-color: pink;
+    padding: 10px;
+    width: 70%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    z-index: 1;
+}
+.moradas{
+    background-color: purple;
+    width: 30%;
+    height: 90px;
+    padding: 10px;
+}
+
+/*CAJA 2*/
+.caja2{
+    background-color: cyan;
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+}
+.formulario{
+    background-color: orange;
+    grid-column: span 3;
+    padding: 10px;
+}
+.amarillo1{
+    background-color: yellow;
+    grid-column: span 2;
+}
+.amarillo2{
+    background-color: yellow;
+    grid-column: span 2;
+}
+.anaranja{
+    background-color: orange;
+    grid-row: span 2;
+    grid-column: 3;
+}
+
+/*CAJA 3*/
+.caja3{
+    background-color: green;
+    width: 70%;
+    height: 30%;
+    position: absolute;
+    top: 40%;
+    right: 30%;
+    z-index: 2;
+}
+
+/*CAJA 4*/
+.caja4{
+    background-color: turquoise;
+    width: 55%;
+    height: 40%;
+    padding: 10px;
+    position: absolute;
+    top: 90%;
+    left: 40%;
+    z-index: 3;
+    align-content: center;
+}
