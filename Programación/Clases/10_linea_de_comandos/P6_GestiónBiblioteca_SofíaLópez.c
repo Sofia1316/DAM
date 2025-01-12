@@ -61,6 +61,17 @@ void imprimir_UnLibro(const Libros * UnLibro){ // ponemos un const en el caso de
     printf("%d.\n", UnLibro->cantidad_disponible);
 }  
 
+void Error(){ // Función por si metes un argumento no válido en la línea de comandos
+    printf("ERROR, este argumento no existe\n");
+    printf("MENÚ DE POSIBILIDADES EN CASO DE ERROR\n");
+    printf("\tEjecutable = para ejecutar normal\n");
+    printf("\tmostrar = para imprimir todos los libros\n");
+    printf("\tmostrarID [id] = para imprimir los libros en función del ID\n");
+    printf("\tcategoría [número de categoría] = para imprimir los libros en función de la categoría\n");
+    printf("\tmostrarA [nombre del autor] = para imprimir los libros en función del autor\n");
+    printf("\taumentar [id] [cantidad] = para aumentar el stock de un libro\n");
+    printf("\tañadirN [título] [autor] [precio] [categoria] [cantidad] = para añadir un nuevo libro\n");
+}
 /*-------------------------------- APARTADOS DEL ENUNCIADO ------------------------------------*/
 
 /*
@@ -130,10 +141,9 @@ void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, i
 
 //APARTADO 5; Mostrar todos los libros del autor dado como argumento.
 void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argumento_introducido_autor){
-
     int encontrado = 0;
     for(int i = 0; i < numero_libros; i++){
-        if(strcmp(mostrar_autor[i].autor, argumento_introducido_autor) == 0){ // Comparamos la cadena de caracteres introducida con las del puntero
+        if(str(mostrar_autor[i].autor, argumento_introducido_autor) == 0){ // Comparamos la cadena de caracteres introducida con las del puntero
             imprimir_UnLibro(&mostrar_autor[i]); // Llamo a mi función para que se me impriman los libros enteros
             encontrado = 1;
         } 
@@ -146,12 +156,11 @@ void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argu
 /*
 strncmp (compara las cadenas de caracteres que tu le indicas) es parecido a strcmp (compara las cadenas de caracteres tal cual, a pelo)
 strncmp(str1, str2, nº de caracteres que quieres que lea)==0
-*/
 
-/*------------------------------------- FUNCIÓN MAIN -----------------------------------*/
+------------------------------------- FUNCIÓN MAIN -----------------------------------
 
 // argc; es el número de argumentos recibidos a través de la línea de comandos, es decir, lo que escribes fuera
-// argv; es el array de cadenas de caracteres, por eso lleva un doble puntero (ya que lo lee como cadena, por eso hace falta el atoi, para convertir la cadena en entero)
+// argv; es el array de cadenas de caracteres, por eso lleva un doble puntero (ya que lo lee como cadena, por eso hace falta el atoi, para convertir la cadena en entero)*/
 int main(int argc, char ** argv){
     
     // Variable para poder guardar el número de libros del array dinámico, que como estos en un principio son 40 libros, lo inicializamos a 40
@@ -299,15 +308,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
             printf("Llamo a mi función mostrar todos los libros\n");
             imprimir_libros(datos_dinámicos, total_libros); // llamamos a la función
         } else { 
-            printf("ERROR, este argumento no existe\n");
-            printf("MENÚ DE POSIBILIDADES EN CASO DE ERROR\n");
-            printf("\tEjecutable = para ejecutar normal\n");
-            printf("\tmostrar = para imprimir todos los libros\n");
-            printf("\tmostrarID [id] = para imprimir los libros en función del ID\n");
-            printf("\tcategoría [número de categoría] = para imprimir los libros en función de la categoría\n");
-            printf("\tmostrarA [nombre del autor] = para imprimir los libros en función del autor\n");
-            printf("\taumentar [id] [cantidad] = para aumentar el stock de un libro\n");
-            printf("\tañadirN [título] [autor] [precio] [categoria] [cantidad] = para añadir un nuevo libro\n");
+            Error("Argumento no válido");
         }
 
     } else if (argc == 3){
@@ -327,15 +328,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
             char * autor = argv[2];
             imprimir_autor(datos_dinámicos, total_libros, autor);
         } else { 
-            printf("ERROR, este argumento no existe\n");
-            printf("MENÚ DE POSIBILIDADES EN CASO DE ERROR\n");
-            printf("\tEjecutable = para ejecutar normal\n");
-            printf("\tmostrar = para imprimir todos los libros\n");
-            printf("\tmostrarID [id] = para imprimir los libros en función del ID\n");
-            printf("\tcategoría [número de categoría] = para imprimir los libros en función de la categoría\n");
-            printf("\tmostrarA [nombre del autor] = para imprimir los libros en función del autor\n");
-            printf("\taumentar [id] [cantidad] = para aumentar el stock de un libro\n");
-            printf("\tañadirN [título] [autor] [precio] [categoria] [cantidad] = para añadir un nuevo libro\n");
+            Error("Argumento no válido");
         }
 
     } else if (argc == 4){
@@ -345,15 +338,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
             int cantidad_añadir = atoi(argv[3]);
             aumento(datos_dinámicos, total_libros, selección, cantidad_añadir);
         } else { 
-            printf("ERROR, este argumento no existe\n");
-            printf("MENÚ DE POSIBILIDADES EN CASO DE ERROR\n");
-            printf("\tEjecutable = para ejecutar normal\n");
-            printf("\tmostrar = para imprimir todos los libros\n");
-            printf("\tmostrarID [id] = para imprimir los libros en función del ID\n");
-            printf("\tcategoría [número de categoría] = para imprimir los libros en función de la categoría\n");
-            printf("\tmostrarA [nombre del autor] = para imprimir los libros en función del autor\n");
-            printf("\taumentar [id] [cantidad] = para aumentar el stock de un libro\n");
-            printf("\tañadirN [título] [autor] [precio] [categoria] [cantidad] = para añadir un nuevo libro\n");
+            Error("Argumento no válido");
         }
 
     } else if (argc == 7){
@@ -382,15 +367,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
 
             imprimir_libros(datos_dinámicos, total_libros); // llamo a mi función imprimir_libros porque, como al final del programa libero el nuevo libro añadido, directamente lo imprimo y así me figuro que lo he añadido correctamente 
         } else { 
-            printf("ERROR, este argumento no existe\n");
-            printf("MENÚ DE POSIBILIDADES EN CASO DE ERROR\n");
-            printf("\tEjecutable = para ejecutar normal\n");
-            printf("\tmostrar = para imprimir todos los libros\n");
-            printf("\tmostrarID [id] = para imprimir los libros en función del ID\n");
-            printf("\tcategoría [número de categoría] = para imprimir los libros en función de la categoría\n");
-            printf("\tmostrarA [nombre del autor] = para imprimir los libros en función del autor\n");
-            printf("\taumentar [id] [cantidad] = para aumentar el stock de un libro\n");
-            printf("\tañadirN [título] [autor] [precio] [categoria] [cantidad] = para añadir un nuevo libro\n");
+            Error("Argumento no válido");
         }
     }
 
