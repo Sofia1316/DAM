@@ -142,24 +142,30 @@ void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, i
 //APARTADO 5; Mostrar todos los libros del autor dado como argumento.
 void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argumento_introducido_autor){
     int encontrado = 0;
-    for(int i = 0; i < numero_libros; i++){
-        if(str(mostrar_autor[i].autor, argumento_introducido_autor) == 0){ // Comparamos la cadena de caracteres introducida con las del puntero
+    for(int i = 0; i < numero_libros; i++){ // Miramos todos los libros de la biblioteca, en donde cada i, será cada libro
+        for(int j = 0; j < MAX_AUTOR; j++){ // Miramos caracter por caracter el nombre del autor del libro
+            if(strncmp(mostrar_autor[i].autor + j, argumento_introducido_autor, strlen(argumento_introducido_autor)) == 0){ 
+            // Comparamos la cadena de caracteres con lo introducido, entonces como j va "sumando" caracter por caracter, se irán "almacenando" el número de caracteres, si por ejemplo le escribo el segundo autor de un libro escrito por 3 se sumarán los cracteres hasta la primera letra del 2º autor. Este "recuento" de letras (que está almacenado en la j) se deberá sumar a mostrar_autor[i].autor (que su valor inicial es 0, por lo apunta al primer caracter de la cadena) 
             imprimir_UnLibro(&mostrar_autor[i]); // Llamo a mi función para que se me impriman los libros enteros
             encontrado = 1;
-        } 
+            } 
+        }    
     }
     if (encontrado == 0) {
-        printf("No hay libros de este autor\n");
-    }
-
+        printf("No hay libros de este autor\n"); }
 } 
+
+// APARTADO 6; Añadir un nuevo libro a la biblioteca (aunque este se borre al liberar memoria al final del programa)
+void añadir_libro(const Libros * nuevo_libro, int numero_libros){
+    
+}
 /*
 strncmp (compara las cadenas de caracteres que tu le indicas) es parecido a strcmp (compara las cadenas de caracteres tal cual, a pelo)
-strncmp(str1, str2, nº de caracteres que quieres que lea)==0
+strncmp(str1, str2, nº de caracteres que quieres que lea)==0 --> usamos strlen que cuenta los caracteres de la cadena
 
 ------------------------------------- FUNCIÓN MAIN -----------------------------------
 
-// argc; es el número de argumentos recibidos a través de la línea de comandos, es decir, lo que escribes fuera
+// argc; es el número de argumentos recibidos a través de la línea de comandos, es decir, lo que escribes en la terminal
 // argv; es el array de cadenas de caracteres, por eso lleva un doble puntero (ya que lo lee como cadena, por eso hace falta el atoi, para convertir la cadena en entero)*/
 int main(int argc, char ** argv){
     
@@ -238,6 +244,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
         printf(" 3. Aumentar el stock de un libro introduciendo su ID.\n");
         printf(" 4. Mostrar todos los libros de la categoría que introduzcas.\n"); 
         printf(" 5. Mostrar los libros del autor dado.\n");
+        printf(" Salir del programa.\n");
         
         scanf("%d", &opción);
 
@@ -262,6 +269,8 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
 
                 printf("¿De qué libro deseas aumentar el stock? Introduce el ID: ");
                 scanf(" %d", &selección);
+                printf("¿Cuánto quieres añadir?\n");
+                scanf(" %d", &cantidad_añadir);
 
                 aumento(datos_dinámicos, total_libros, selección, cantidad_añadir);
                 break;
@@ -356,7 +365,6 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
             // POR SI ACASO NO HAY MEMORIA DISPONIBLE
             if(nuevo_espacio == NULL){
                 printf("Error, no hay memoria\n");
-                return EXIT_FAILURE; // el programa se terminará pero no de manera exitosa, si no con un "error"
             }
 
             datos_dinámicos = nuevo_espacio;
