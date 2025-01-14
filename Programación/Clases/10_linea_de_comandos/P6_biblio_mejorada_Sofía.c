@@ -57,6 +57,8 @@ void imprimir_UnLibro(const Libros * UnLibro){ // ponemos un const en el caso de
         case 4:
             printf("ENSAYO, ");
             break;
+        default:
+            printf("Esta categoría no existe, ");
         }
     printf("%d.\n", UnLibro->cantidad_disponible);
 }  
@@ -64,13 +66,19 @@ void imprimir_UnLibro(const Libros * UnLibro){ // ponemos un const en el caso de
 void Error(){ // Función por si metes un argumento no válido en la línea de comandos
     printf("ERROR, este argumento no existe\n");
     printf("MENÚ DE POSIBILIDADES EN CASO DE ERROR\n");
-    printf("\tEjecutable = para ejecutar normal\n");
+    printf("\tejecutable que le pongas = para ejecutar normal\n");
+    printf("\tañadir = para añadir un nuevo libro\n");
     printf("\tmostrar = para imprimir todos los libros\n");
     printf("\tmostrarID [id] = para imprimir los libros en función del ID\n");
-    printf("\tcategoría [número de categoría] = para imprimir los libros en función de la categoría\n");
-    printf("\tmostrarA [nombre del autor] = para imprimir los libros en función del autor\n");
-    printf("\taumentar [id] [cantidad] = para aumentar el stock de un libro\n");
-    printf("\tañadirN [título] [autor] [precio] [categoria] [cantidad] = para añadir un nuevo libro\n");
+    printf("\tcategoria [número de categoría] = para imprimir los libros en función de la categoría\n");
+    printf("\tautor [nombre del autor] = para imprimir los libros en función del autor\n");
+    printf("\tstock [id] [cantidad] = para aumentar el stock de un libro\n");
+    printf("OPCIONES DE CATEGORÍAS:\n");
+                printf("\tFICCION = 0\n");
+                printf("\tNO_FICCION = 1\n");
+                printf("\tPOESIA = 2\n");
+                printf("\tTEATRO = 3\n");
+                printf("\tENSAYO = 4\n");
 }
 /*-------------------------------- APARTADOS DEL ENUNCIADO ------------------------------------*/
 
@@ -82,9 +90,8 @@ Y argumento_introducido, cantidad_añadir...esos valores son aquellos que guarda
 */
 
 // APARTADO 1; Función para imprimir todos los libros
-void imprimir_libros(const Libros * Catálogo, int numero_libros){
-                                               
-    for (int i = 0; i < numero_libros; i++) {
+void imprimir_libros(const Libros * Catálogo, int numero_libros){                                          
+    for (int i = 0; i < numero_libros; i++) { // controlo que imprima solo los 40 libros (o los que añada)
 	   imprimir_UnLibro(&Catálogo[i]); 
        // Pongo el &Catálogo para indicar una dirección de memoria
        // Pongo el [i] porque Catálogo solo apunta al primer elemento del array 
@@ -92,17 +99,17 @@ void imprimir_libros(const Libros * Catálogo, int numero_libros){
 }
 
 //APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
-void coincidencia(const Libros * Libro_id, int numero_libros, int ID){  
-
+void coincidencia(const Libros * Libro_id, int numero_libros, int ID){
     int localizar = 0;
+
     for(int i = 0; i < numero_libros; i++) {
-        if(Libro_id[i].id == ID){ // en este caso no hago uso de -> porque no quiero que esté todo el rato apuntando al primer valor de mi array
+        if(Libro_id[i].id == ID){ // Compararé el id de mi puntero Librero con ese número que he metido
             imprimir_UnLibro(&Libro_id[i]); // Esto hace que se imprima mi primer void y así evito la repetición de código, y dentro de los () pongo la nueva variable creada en la función
             localizar = 1; // esto hace que se me indique que tiene un valor "guardado" porque ha entrado dentro del bucle, por lo que localizar ya no es 0, es 1 
             break;
         } 
     }
-    if(localizar == 0){
+    if(localizar == 0){ // localizar será un 0 si no ha conseguido entrar en el bucle, por lo que indicará que el libro no existe
         printf("Libro no encontrado\n");
     } 
 }
@@ -110,8 +117,7 @@ void coincidencia(const Libros * Libro_id, int numero_libros, int ID){
 //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
 void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añadir){ 
 // Como en esta función queremos que se modifique el array de Libros, no ponemos el const
-    
-    if(selección <= 40 && selección >= 0){ // compruebo que el id que le he metido esté entre el 0 y el 40
+    if(selección <= 40 && selección >= 0){ // compruebo que el id que le he metido esté entre el 0 y el 40 incluidos
         for(int i = 0; i < numero_libros; i++){ // compruebo mis 40 libros
             if(selección == Stock[i].id){ // compruebo de mis 40 libros cual es el que coincide con el id introducido
                 Stock[i].cantidad_disponible = Stock[i].cantidad_disponible + cantidad_añadir; //para poder sumar lo introducido con el stock del puntero
@@ -126,7 +132,6 @@ void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añ
 
 //APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
 void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, int argumento_introducido_categoría){
-
     if(argumento_introducido_categoría < 5 && argumento_introducido_categoría >= 0){
         for(int i = 0; i < numero_libros; i++){
             if(argumento_introducido_categoría == mostrar_categoría[i].categoria){ // Para comprobar si el número introducido coincide con alguna de mis 5 categorías
@@ -167,7 +172,7 @@ int main(int argc, char ** argv){
     int total_libros = 40;
 
     // INICIALIZAMOS UN ARRAY DE MEMORIA DINÁMICA PARA LOS LIBROS DE LA BIBLIOTECA
-    Libros * datos_dinámicos = (Libros *) malloc (sizeof(Libros) * LIBROS_INICIO); // lo multiplico por 40 ya que son los libros iniciales
+    Libros * datos_dinámicos = (Libros *) malloc (sizeof(Libros) * LIBROS_INICIO); // lo multiplico por 40 ya que son los libros iniciales y reservo los 40 espacios en la memoria inicializados a 0, pero la función InicializarLibro se encargará de rellenarlos
 
     // POR SI ACASO NO HAY MEMORIA DISPONIBLE
     if(datos_dinámicos == NULL){
@@ -274,7 +279,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
                 int argumento_introducido_categoría;
 
                 // MOSTRAR MENÚ PARA VER QUÉ Nº CORRESPONDE A CADA CATEGORÍA
-                printf("OPCIONES:\n");
+                printf("OPCIONES DE CATEGORÍAS:\n");
                 printf("\tFICCION = 0\n");
                 printf("\tNO_FICCION = 1\n");
                 printf("\tPOESIA = 2\n");
@@ -311,48 +316,33 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
         if(strcmp(argv[1], "mostrar") == 0){ // strcmp compara las cadenas de caracteres 
             printf("Llamo a mi función mostrar todos los libros\n");
             imprimir_libros(datos_dinámicos, total_libros); // llamamos a la función
-        } else { 
-            Error("Argumento no válido");
-        }
+        } 
 
-    } else if (argc == 3){
-        // en este condicional, llamamos a las funciones que necesiten más de dos argumentos en la línea de comandos
-        if (strcmp(argv[1], "mostrarID") == 0){ // para mostrar los libros en función del id
-            printf("Llamo a mi función mostrar\n");
-            int ID = atoi(argv[2]); // aquí meto un atoi porque el ID es un entero, pero el argv es un char*, entonces o transformamos de cadena de caracteres a un entero
-            coincidencia(datos_dinámicos, total_libros, ID);
+        else if(strcmp(argv[1], "añadir") == 0){ // este para añadir nuevos libros, pero como en la comprobación de que no de NULL tengo que poner el return y demás, no puedo ponerlo en una función aparte ya que me da error y no debería hacer el realloc sin esa comprobación (es importante)
+            char título[MAX_TÍTULO]; 
+            char autor[MAX_AUTOR]; 
+            Categoria categoria; 
+            float precio; 
+            int cantidad_disponible;
 
-        } else if (strcmp(argv[1], "categoría") == 0){ // imprimir en función de la categoría
-            printf("Llamo a mi función de imprimir los libros de la misma categoría\n");
-            int argumento_introducido_categoría = atoi(argv[2]);
-            imprimir_categoría(datos_dinámicos, total_libros, argumento_introducido_categoría);
+            printf("Llamo a mi función añadir un nuevo libro\n");
+            printf("Título:\n");
+            scanf(" %s", título);
+            printf("Autor:\n");
+            scanf(" %s", autor);
+            printf("Precio:\n");
+            scanf(" %f", &precio);
+            printf("Categoria:\n");
+            printf("OPCIONES DE CATEGORÍAS:\n");
+                printf("\tFICCION = 0\n");
+                printf("\tNO_FICCION = 1\n");
+                printf("\tPOESIA = 2\n");
+                printf("\tTEATRO = 3\n");
+                printf("\tENSAYO = 4\n");
+            scanf(" %u", &categoria);
+            printf("Stock:\n");
+            scanf(" %d", &cantidad_disponible);
 
-        } else if (strcmp(argv[1], "mostrarA") == 0){ // para imprimir los libros en función del autor
-            printf("Llamo a mi función para buscar los libros de un autor determinado\n");
-            char * autor = argv[2];
-            imprimir_autor(datos_dinámicos, total_libros, autor);
-        } else { 
-            Error("Argumento no válido");
-        }
-
-    } else if (argc == 4){
-        if (strcmp(argv[1], "aumentar") == 0){ // para aumentar la cantidad disponible
-            printf("Aumentar el stock, en función del ID, poniendo la cantidad que quiero\n");
-            int selección = atoi(argv[2]);
-            int cantidad_añadir = atoi(argv[3]);
-            aumento(datos_dinámicos, total_libros, selección, cantidad_añadir);
-        } else { 
-            Error("Argumento no válido");
-        }
-
-    } else if (argc == 7){
-        if(strcmp(argv[1], "añadirN") == 0){ // este para añadir nuevos libros
-            printf("Llamo a mi función añadir\n");
-            char * título = argv[2];
-            char * autor = argv[3];
-            int categoria = atoi(argv[4]);
-            float precio = atof(argv[5]); // el atof es lo mismo que el atoi pero para float
-            int cantidad_disponible = atoi(argv[6]);
 
             // Aumento el espacio de mi memoria para poder añadir el nuevo libro
             Libros * nuevo_espacio = (Libros *) realloc (datos_dinámicos, sizeof(Libros) * (total_libros+1)); 
@@ -366,10 +356,40 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
             datos_dinámicos = nuevo_espacio; // el antiguo puntero lo igualo al nuevo espacio que he añadido del realloc
 
             // Inicializo / creo mi libro nuevo a través de la línea de comandos
-            InicializarLibro(&datos_dinámicos[total_libros], total_libros+1, título, autor, categoria, precio, cantidad_disponible);     
+            InicializarLibro(&datos_dinámicos[total_libros], total_libros+1, título, autor, precio, categoria, cantidad_disponible);     
             ++total_libros;
 
             imprimir_libros(datos_dinámicos, total_libros); // llamo a mi función imprimir_libros porque, como al final del programa libero el nuevo libro añadido, directamente lo imprimo y así me figuro que lo he añadido correctamente 
+        } else { 
+            Error("Argumento no válido");
+        }
+
+    } else if (argc == 3){
+        // en este condicional, llamamos a las funciones que necesiten más de dos argumentos en la línea de comandos
+        if (strcmp(argv[1], "mostrarID") == 0){ // para mostrar los libros en función del id
+            printf("Llamo a mi función mostrar\n");
+            int ID = atoi(argv[2]); // aquí meto un atoi porque el ID es un entero, pero el argv es un char*, entonces transformamos de cadena de caracteres (que es como lo lee la terminal en la línea de comandos) a un entero
+            coincidencia(datos_dinámicos, total_libros, ID);
+
+        } else if (strcmp(argv[1], "categoria") == 0){ // imprimir en función de la categoría
+            printf("Llamo a mi función de imprimir los libros de la misma categoría\n");
+            int argumento_introducido_categoría = atoi(argv[2]);
+            imprimir_categoría(datos_dinámicos, total_libros, argumento_introducido_categoría);
+
+        } else if (strcmp(argv[1], "autor") == 0){ // para imprimir los libros en función del autor
+            printf("Llamo a mi función para buscar los libros de un autor determinado\n");
+            char * autor = argv[2]; // aquí no hace falta poner un atoi ya que queremos imprimir una cadena de caracteres y no un entero
+            imprimir_autor(datos_dinámicos, total_libros, autor);
+        } else { 
+            Error("Argumento no válido");
+        }
+
+    } else if (argc == 4){
+        if (strcmp(argv[1], "stock") == 0){ // para aumentar la cantidad disponible
+            printf("Aumentar el stock, en función del ID, poniendo la cantidad que quiero\n");
+            int selección = atoi(argv[2]);
+            int cantidad_añadir = atoi(argv[3]);
+            aumento(datos_dinámicos, total_libros, selección, cantidad_añadir);
         } else { 
             Error("Argumento no válido");
         }
