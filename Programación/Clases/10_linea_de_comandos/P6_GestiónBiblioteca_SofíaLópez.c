@@ -97,8 +97,7 @@ void coincidencia(const Libros * Libro_id, int numero_libros, int ID){
     int localizar = 0;
     for(int i = 0; i < numero_libros; i++) {
         if(Libro_id[i].id == ID){ // en este caso no hago uso de -> porque no quiero que esté todo el rato apuntando al primer valor de mi array
-            imprimir_UnLibro(&Libro_id[i]); // Esto hace que se imprima mi primer void y así evito la repetición de código, 
-                                            // y dentro de los () pongo la nueva variable creada en la función
+            imprimir_UnLibro(&Libro_id[i]); // Esto hace que se imprima mi primer void y así evito la repetición de código, y dentro de los () pongo la nueva variable creada en la función
             localizar = 1; // esto hace que se me indique que tiene un valor "guardado" porque ha entrado dentro del bucle, por lo que localizar ya no es 0, es 1 
             break;
         } 
@@ -112,9 +111,9 @@ void coincidencia(const Libros * Libro_id, int numero_libros, int ID){
 void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añadir){ 
 // Como en esta función queremos que se modifique el array de Libros, no ponemos el const
     
-    if(selección <= 40 && selección >= 0){
-        for(int i = 0; i < numero_libros; i++){
-            if(selección == Stock[i].id){
+    if(selección <= 40 && selección >= 0){ // compruebo que el id que le he metido esté entre el 0 y el 40
+        for(int i = 0; i < numero_libros; i++){ // compruebo mis 40 libros
+            if(selección == Stock[i].id){ // compruebo de mis 40 libros cual es el que coincide con el id introducido
                 Stock[i].cantidad_disponible = Stock[i].cantidad_disponible + cantidad_añadir; //para poder sumar lo introducido con el stock del puntero
                 printf("El stock nuevo del libro con id %d es de %d\n", selección, Stock[i].cantidad_disponible);
                 break; 
@@ -130,8 +129,8 @@ void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, i
 
     if(argumento_introducido_categoría < 5 && argumento_introducido_categoría >= 0){
         for(int i = 0; i < numero_libros; i++){
-            if(argumento_introducido_categoría == mostrar_categoría[i].categoria){ // Para comprobar si lo introducido con la categoría es lo mismo
-                imprimir_UnLibro(&mostrar_categoría[i]); // Llamo a mi función para que se me impriman los libros enteros
+            if(argumento_introducido_categoría == mostrar_categoría[i].categoria){ // Para comprobar si el número introducido coincide con alguna de mis 5 categorías
+                imprimir_UnLibro(&mostrar_categoría[i]); // Llamo a mi función para que se me impriman los libros
             } 
         }
     } else {
@@ -145,7 +144,7 @@ void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argu
     for(int i = 0; i < numero_libros; i++){ // Miramos todos los libros de la biblioteca, en donde cada i, será cada libro
         for(int j = 0; j < MAX_AUTOR; j++){ // Miramos caracter por caracter el nombre del autor del libro
             if(strncmp(mostrar_autor[i].autor + j, argumento_introducido_autor, strlen(argumento_introducido_autor)) == 0){ 
-            // Comparamos la cadena de caracteres con lo introducido, entonces como j va "sumando" caracter por caracter, se irán "almacenando" el número de caracteres, si por ejemplo le escribo el segundo autor de un libro escrito por 3 se sumarán los cracteres hasta la primera letra del 2º autor. Este "recuento" de letras (que está almacenado en la j) se deberá sumar a mostrar_autor[i].autor (que su valor inicial es 0, por lo apunta al primer caracter de la cadena) 
+            // Comparamos la cadena de caracteres con lo introducido, entonces como j va "sumando" caracter por caracter, se irán "almacenando" el número de caracteres, si por ejemplo le escribo el segundo autor de un libro escrito por 3 se sumarán los caracteres hasta la primera letra del 2º autor. Este "recuento" de letras (que está almacenado en la j) se deberá sumar a mostrar_autor[i].autor (que su valor inicial es 0, por lo apunta al primer caracter de la cadena) 
             imprimir_UnLibro(&mostrar_autor[i]); // Llamo a mi función para que se me impriman los libros enteros
             encontrado = 1;
             } 
@@ -154,13 +153,8 @@ void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argu
     if (encontrado == 0) {
         printf("No hay libros de este autor\n"); }
 } 
-
-// APARTADO 6; Añadir un nuevo libro a la biblioteca (aunque este se borre al liberar memoria al final del programa)
-void añadir_libro(const Libros * nuevo_libro, int numero_libros){
-    
-}
 /*
-strncmp (compara las cadenas de caracteres que tu le indicas) es parecido a strcmp (compara las cadenas de caracteres tal cual, a pelo)
+strcmp (compara las cadenas de caracteres que tu le indicas) es parecido a strcmp (compara las cadenas de caracteres tal cual, a pelo)
 strncmp(str1, str2, nº de caracteres que quieres que lea)==0 --> usamos strlen que cuenta los caracteres de la cadena
 
 ------------------------------------- FUNCIÓN MAIN -----------------------------------
@@ -244,7 +238,8 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
         printf(" 3. Aumentar el stock de un libro introduciendo su ID.\n");
         printf(" 4. Mostrar todos los libros de la categoría que introduzcas.\n"); 
         printf(" 5. Mostrar los libros del autor dado.\n");
-        printf(" Salir del programa.\n");
+        printf(" 6. Salir del programa.\n");
+        printf(" Otra opción. Menú explicativo de cómo ejecutarlo a través de la línea de comandos.\n");
         
         scanf("%d", &opción);
 
@@ -269,7 +264,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
 
                 printf("¿De qué libro deseas aumentar el stock? Introduce el ID: ");
                 scanf(" %d", &selección);
-                printf("¿Cuánto quieres añadir?\n");
+                printf("¿Cuánto quieres añadir?: ");
                 scanf(" %d", &cantidad_añadir);
 
                 aumento(datos_dinámicos, total_libros, selección, cantidad_añadir);
@@ -308,7 +303,7 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
                 //SALIR DEL PROGRAMA
                 return EXIT_SUCCESS;
             default:
-                printf("Opción no válida");
+                Error("Argumento no válido");
             }
 
     } else if(argc == 2){
@@ -365,9 +360,10 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
             // POR SI ACASO NO HAY MEMORIA DISPONIBLE
             if(nuevo_espacio == NULL){
                 printf("Error, no hay memoria\n");
+                return EXIT_FAILURE;
             }
 
-            datos_dinámicos = nuevo_espacio;
+            datos_dinámicos = nuevo_espacio; // el antiguo puntero lo igualo al nuevo espacio que he añadido del realloc
 
             // Inicializo / creo mi libro nuevo a través de la línea de comandos
             InicializarLibro(&datos_dinámicos[total_libros], total_libros+1, título, autor, categoria, precio, cantidad_disponible);     
