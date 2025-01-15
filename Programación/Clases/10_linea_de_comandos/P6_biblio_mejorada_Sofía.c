@@ -90,74 +90,20 @@ Y argumento_introducido, cantidad_añadir...esos valores son aquellos que guarda
 */
 
 // APARTADO 1; Función para imprimir todos los libros
-void imprimir_libros(const Libros * Catálogo, int numero_libros){                                          
-    for (int i = 0; i < numero_libros; i++) { // controlo que imprima solo los 40 libros (o los que añada)
-	   imprimir_UnLibro(&Catálogo[i]); 
-       // Pongo el &Catálogo para indicar una dirección de memoria
-       // Pongo el [i] porque Catálogo solo apunta al primer elemento del array 
-	}
-}
+void imprimir_libros(const Libros * Catálogo, int numero_libros);
 
 //APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
-void coincidencia(const Libros * Libro_id, int numero_libros, int ID){
-    int localizar = 0;
-
-    for(int i = 0; i < numero_libros; i++) {
-        if(Libro_id[i].id == ID){ // Compararé el id de mi puntero Librero con ese número que he metido
-            imprimir_UnLibro(&Libro_id[i]); // Esto hace que se imprima mi primer void y así evito la repetición de código, y dentro de los () pongo la nueva variable creada en la función
-            localizar = 1; // esto hace que se me indique que tiene un valor "guardado" porque ha entrado dentro del bucle, por lo que localizar ya no es 0, es 1 
-            break;
-        } 
-    }
-    if(localizar == 0){ // localizar será un 0 si no ha conseguido entrar en el bucle, por lo que indicará que el libro no existe
-        printf("Libro no encontrado\n");
-    } 
-}
+void coincidencia(const Libros * Libro_id, int numero_libros, int ID);
 
 //APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
-void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añadir){ 
-// Como en esta función queremos que se modifique el array de Libros, no ponemos el const
-    if(selección <= 40 && selección >= 0){ // compruebo que el id que le he metido esté entre el 0 y el 40 incluidos
-        for(int i = 0; i < numero_libros; i++){ // compruebo mis 40 libros
-            if(selección == Stock[i].id){ // compruebo de mis 40 libros cual es el que coincide con el id introducido
-                Stock[i].cantidad_disponible = Stock[i].cantidad_disponible + cantidad_añadir; //para poder sumar lo introducido con el stock del puntero
-                printf("El stock nuevo del libro con id %d es de %d\n", selección, Stock[i].cantidad_disponible);
-                break; 
-            } 
-        }
-    } else {
-        printf("El ID introducido no existe\n");
-    }
-}
+void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añadir);
 
 //APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
-void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, int argumento_introducido_categoría){
-    if(argumento_introducido_categoría < 5 && argumento_introducido_categoría >= 0){
-        for(int i = 0; i < numero_libros; i++){
-            if(argumento_introducido_categoría == mostrar_categoría[i].categoria){ // Para comprobar si el número introducido coincide con alguna de mis 5 categorías
-                imprimir_UnLibro(&mostrar_categoría[i]); // Llamo a mi función para que se me impriman los libros
-            } 
-        }
-    } else {
-        printf("Esta categoría no existe\n");
-    }
-}
+void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, int argumento_introducido_categoría);
 
 //APARTADO 5; Mostrar todos los libros del autor dado como argumento.
-void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argumento_introducido_autor){
-    int encontrado = 0;
-    for(int i = 0; i < numero_libros; i++){ // Miramos todos los libros de la biblioteca, en donde cada i, será cada libro
-        for(int j = 0; j < MAX_AUTOR; j++){ // Miramos caracter por caracter el nombre del autor del libro
-            if(strncmp(mostrar_autor[i].autor + j, argumento_introducido_autor, strlen(argumento_introducido_autor)) == 0){ 
-            // Comparamos la cadena de caracteres con lo introducido, entonces como j va "sumando" caracter por caracter, se irán "almacenando" el número de caracteres, si por ejemplo le escribo el segundo autor de un libro escrito por 3 se sumarán los caracteres hasta la primera letra del 2º autor. Este "recuento" de letras (que está almacenado en la j) se deberá sumar a mostrar_autor[i].autor (que su valor inicial es 0, por lo apunta al primer caracter de la cadena) 
-            imprimir_UnLibro(&mostrar_autor[i]); // Llamo a mi función para que se me impriman los libros enteros
-            encontrado = 1;
-            } 
-        }    
-    }
-    if (encontrado == 0) {
-        printf("No hay libros de este autor\n"); }
-} 
+void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argumento_introducido_autor);
+
 /*
 strcmp (compara las cadenas de caracteres que tu le indicas) es parecido a strcmp (compara las cadenas de caracteres tal cual, a pelo)
 strncmp(str1, str2, nº de caracteres que quieres que lea)==0 --> usamos strlen que cuenta los caracteres de la cadena
@@ -409,3 +355,74 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
     free(datos_dinámicos);
     return EXIT_SUCCESS;
 }
+
+// APARTADO 1; Función para imprimir todos los libros
+void imprimir_libros(const Libros * Catálogo, int numero_libros){                                          
+    for (int i = 0; i < numero_libros; i++) { // controlo que imprima solo los 40 libros (o los que añada)
+       imprimir_UnLibro(&Catálogo[i]); 
+       // Pongo el &Catálogo para indicar una dirección de memoria
+       // Pongo el [i] porque Catálogo solo apunta al primer elemento del array 
+    }
+}
+
+//APARTADO 2; Mostrar el libro que coincida con el ID o un mensaje de error.
+void coincidencia(const Libros * Libro_id, int numero_libros, int ID){
+    int localizar = 0;
+
+    for(int i = 0; i < numero_libros; i++) {
+        if(Libro_id[i].id == ID){ // Compararé el id de mi puntero Librero con ese número que he metido
+            imprimir_UnLibro(&Libro_id[i]); // Esto hace que se imprima mi primer void y así evito la repetición de código, y dentro de los () pongo la nueva variable creada en la función
+            localizar = 1; // esto hace que se me indique que tiene un valor "guardado" porque ha entrado dentro del bucle, por lo que localizar ya no es 0, es 1 
+            break;
+        } 
+    }
+    if(localizar == 0){ // localizar será un 0 si no ha conseguido entrar en el bucle, por lo que indicará que el libro no existe
+        printf("Libro no encontrado\n");
+    } 
+}
+
+//APARTADO 3; Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente
+void aumento(Libros * Stock, int numero_libros, int selección, int cantidad_añadir){ 
+// Como en esta función queremos que se modifique el array de Libros, no ponemos el const
+    if(selección <= 40 && selección >= 0){ // compruebo que el id que le he metido esté entre el 0 y el 40 incluidos
+        for(int i = 0; i < numero_libros; i++){ // compruebo mis 40 libros
+            if(selección == Stock[i].id){ // compruebo de mis 40 libros cual es el que coincide con el id introducido
+                Stock[i].cantidad_disponible = Stock[i].cantidad_disponible + cantidad_añadir; //para poder sumar lo introducido con el stock del puntero
+                printf("El stock nuevo del libro con id %d es de %d\n", selección, Stock[i].cantidad_disponible);
+                break; 
+            } 
+        }
+    } else {
+        printf("El ID introducido no existe\n");
+    }
+}
+
+//APARTADO 4; Mostrar todos los libros de la categoría dada como argumento.
+void imprimir_categoría(const Libros * mostrar_categoría, int numero_libros, int argumento_introducido_categoría){
+    if(argumento_introducido_categoría < 5 && argumento_introducido_categoría >= 0){
+        for(int i = 0; i < numero_libros; i++){
+            if(argumento_introducido_categoría == mostrar_categoría[i].categoria){ // Para comprobar si el número introducido coincide con alguna de mis 5 categorías
+                imprimir_UnLibro(&mostrar_categoría[i]); // Llamo a mi función para que se me impriman los libros
+            } 
+        }
+    } else {
+        printf("Esta categoría no existe\n");
+    }
+}
+
+//APARTADO 5; Mostrar todos los libros del autor dado como argumento.
+void imprimir_autor(const Libros * mostrar_autor, int numero_libros, char * argumento_introducido_autor){
+    int encontrado = 0;
+    for(int i = 0; i < numero_libros; i++){ // Miramos todos los libros de la biblioteca, en donde cada i, será cada libro
+        for(int j = 0; j < MAX_AUTOR; j++){ // Miramos caracter por caracter el nombre del autor del libro
+            if(strstr(mostrar_autor[i].autor, argumento_introducido_autor) != NULL){
+            // El strstr es igual que las otras que comparan las cadenas de caracteres, pero debo de ponerlo distinto de NULL ya que, el strstr devuelve un puntero al primer carácter de la subcadena, en este caso, el argumento que le introduzco del autor. Entonces, si no encuentra la posición del autor que le he escrito me dará un NULL y así se me imprimirá solo el autor que le he pedido, pero si la encuentra entonces devolverá el primer valor de la cadena, en este caso, me imprimirá todos los libros. 
+            imprimir_UnLibro(&mostrar_autor[i]); // Llamo a mi función para que se me impriman los libros enteros
+            encontrado = 1;
+            break;
+            } 
+        }    
+    }
+    if (encontrado == 0) {
+        printf("No hay libros de este autor\n"); }
+} 
