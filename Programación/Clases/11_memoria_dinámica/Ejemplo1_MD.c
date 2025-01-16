@@ -57,6 +57,13 @@ int main(){
     free(catálogo);    
 
 el realloc, libera, reserva y copia
+
+PASO POR VALOR Y PASO POR REFERENCIA:
+VALOR: le digo que vale un 10, pero no siempre debe de ser un valor entero, ya que podría pasarle perfectamente por valor un puntero
+REFERENCIA: le digo que se mire la dirección de memoria y así ve el valor
+
+VALGRIND:
+Memoria reservada pero que no puedes acceder a ella, la has perdido para siempre: definitely lost
 }
 
 */
