@@ -319,9 +319,14 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
 
         } else if (strcmp(argv[1], "categoria") == 0){ // imprimir en función de la categoría
             printf("Llamo a mi función de imprimir los libros de la misma categoría\n");
-            int argumento_introducido_categoría = atoi(argv[2]);
-            imprimir_categoría(datos_dinámicos, total_libros, argumento_introducido_categoría);
-
+            if (strcmp(argv[2], "0")==0 || strcmp(argv[2], "1")==0 || strcmp(argv[2], "2")==0 || strcmp(argv[2], "3")==0 ||
+                strcmp(argv[2], "4")==0){
+                int argumento_introducido_categoría = atoi(argv[2]);
+                imprimir_categoría(datos_dinámicos, total_libros, argumento_introducido_categoría);
+            } else {
+                printf("Error, el argumento introducido debe tener un valor entre un 0 \n");
+            }
+        
         } else if (strcmp(argv[1], "autor") == 0){ // para imprimir los libros en función del autor
             printf("Llamo a mi función para buscar los libros de un autor determinado\n");
             char * autor = argv[2]; // aquí no hace falta poner un atoi ya que queremos imprimir una cadena de caracteres y no un entero
@@ -333,12 +338,16 @@ Por ejemplo; ./P6_GestiónBiblioteca_SofíaLópez.out mostrarID 4 (y entonces se
     } else if (argc == 4){
         if (strcmp(argv[1], "stock") == 0){ // para aumentar la cantidad disponible
             printf("Aumentar el stock, en función del ID, poniendo la cantidad que quiero\n");
-            int selección = atoi(argv[2]);
-            int cantidad_añadir = atoi(argv[3]);
-            aumento(datos_dinámicos, total_libros, selección, cantidad_añadir);
-        } else { 
-            Error("Argumento no válido");
-        }
+            if (strcmp(argv[3], "0")!=0){
+                int selección = atoi(argv[2]);
+                int cantidad_añadir = atoi(argv[3]);
+                aumento(datos_dinámicos, total_libros, selección, cantidad_añadir);
+            } else {
+                printf("Error, el argumento introducido debe tener un valor entre un 0 \n");
+            }
+    } else { 
+        Error("Argumento no válido");
+    }
     }
 
    // BUCLE FOR PARA LOS VALORES DEL MAIN
