@@ -2,6 +2,42 @@ Para poner en la cabecera:
 CSS: <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 JS: <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-PRIMER CONTENEDOR: <div class="container bg-primary">
-
-Cuando se pone column, siempre está predeterminado a 12
+1. CONTENEDORES:
+    - .container: Ancho fijo con márgenes automáticos. (<div class="container">Contenido centrado y fijo</div>)
+    - .container-fluid: Ancho 100% de la pantalla. (<div class="container-fluid">Contenido que ocupa todo el ancho</div>)
+2. SISTEMA GRID (tamaño máximo es de 12):
+    - Tamaño predeterminado: <div class="row">
+        <div class="col">Columna 1</div>
+    - Tamaño en específico: <div class="row"> 
+        <div class="col-6">Ocupa 6 columnas</div>
+3. TAMAÑOS POR COLUMNAS (DISPOSITIVOS):
+    - .col-sm- (móvil)
+    - .col-md- (tableta)
+    - .col-lg- (escritorio)
+    - .col-xl- (pantallas grandes)
+4. COLORES:
+    Fondo: bg-color
+    Colores de texto: text-color
+    Colores de borde: border border-color
+        .text-primary, azul
+        .text-secondary, gris 
+        .text-success, verde
+        .text-danger, rojo
+        .text-warning, amarillo
+        .text-info, azul clarito
+        .text-light, blanco
+        .text-dark, negro
+        .text-muted. negro puro
+5. TABLAS (como en HTML el esqueleto):
+    - .table-striped (filas alternas con fondo)
+    - .table-bordered (bordes)
+    - .table-hover (efecto al pasar el cursor)
+6. ESPACIO Y MARGENES (tamaño máximo es de 5):
+    - Margen: m (margen de tamaño 3 en todos lados --> m-3)
+    - Padding: p (padding de tamaño 3 en todos lados --> p-3) Lados:
+        a. pt (arriba)
+        b. px (derecha y izquierda)
+        c. py (arriba y abajo)
+        d. pb (abajo)
+        e. pe (derecha)
+        f. ps (izquierda)
