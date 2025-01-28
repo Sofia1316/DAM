@@ -14,10 +14,9 @@ int main(){
 		return EXIT_FAILURE;
 	}
 
-	float tamaño_float = positivo; // Para que la división no sea entre enteros
 	for(int i = 0; i < positivo; i++){
-		memoria[i] = i / tamaño_float;
-		printf("Posición %d/%d = %lf\n", i, i, memoria[i]);
+		memoria[i] = (float)i / positivo;
+		printf("Posición %d/%d = %lf\n", i, positivo, memoria[i]);
 	}
 
 	positivo = positivo / 2;
