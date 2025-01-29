@@ -1,0 +1,5 @@
+Paso por Valor
+En el paso por valor, se pasa una copia del valor de la variable a la función. Esto significa que cualquier cambio realizado en el parámetro dentro de la función no afectará la variable original fuera de la función.
+
+Paso por Referencia
+En el paso por referencia, se pasa la dirección de la variable a la función. Esto permite que la función modifique directamente el valor de la variable original.
