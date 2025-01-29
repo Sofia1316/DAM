@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+Implemente un programa en C que realice las siguientes tareas:
+
+1. Solicite al usuario un número entero positivo que determinará el tamaño de un array de números de enteros.
+2. Cree un array de enteros con el tamaño especificado y rellénalo con múltiplos de un número a tu elección.
+3. Repetir el proceso para un segundo array diferente.
+4. Preguntar al usuario si quiere concatenar o sumar coordenada a coordenada.
+    1. En caso de sumar coordenada a coordenada, el programa deberá crear un array nuevo del tamaño necesario en el que almacenar la suma posición a posición de los 2 arrays.
+    2. En caso de querer concatenar, el programa deberá crear un array nuevo del tamaño necesario para rellenarlo, primero con un array y después con el otro. 
+5. Imprima en pantalla el resultado.
+6. Terminar.
+*/
+
 int main(){
 	// ARRAY 1
 	int positivo;
@@ -101,13 +114,7 @@ int main(){
 	            printf("%d\n", memoriaSuma[i]);
 	            printf("\n");
 	        }
-/*
-	        // Imprimir el resultado de la suma
-	        printf("Array de la suma:\n");
-	        for(int i = 0; i < positivo; i++){
-	            printf("%d\n", memoriaSuma[i]);
-	        }*/
-
+	      
 	        free(memoriaSuma);
 	        break;
 
@@ -116,7 +123,6 @@ int main(){
 	    	break;
 
 			}
-
 
 free(memoria);
 free(memoria2);

@@ -39,14 +39,13 @@ char * invertir(char * palabra) {
 
 int main() {
     int tam;
-    char *palabra;
 
     // Solicitar el tamaño del array
     printf("Ingrese un número entero positivo para el tamaño de la palabra: ");
     scanf("%d", &tam);
 
     // Reservar memoria para la palabra
-    palabra = (char*)malloc((tam + 1) * sizeof(char));
+    char * palabra = (char*)malloc((tam + 1) * sizeof(char));
     if (palabra == NULL) {
         printf("Error al reservar memoria.\n");
         return 1;
