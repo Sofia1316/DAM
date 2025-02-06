@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+1. Pedid al usuario un número `m`.
+2. Encontrad todos los primos menores o iguales a `m`.
+3. Almacenadlos en un array sin desperdiciar memoria.
+4. Imprimid la lista de primos.
+*/
+
 // Función para mirar si el número introducido es primo o no
 int primo(int numero){
     if(numero < 2) return 0; // no es primo
