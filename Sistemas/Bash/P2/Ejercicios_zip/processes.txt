@@ -1,0 +1,36 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  1.2  0.3 165792 13352 ?        Ss   12:50   2:20 /sbin/init
+root           2  0.0  0.0   2776  1924 ?        Sl   12:50   0:00 /init
+root           6  0.0  0.0   2960   132 ?        Sl   12:50   0:07 plan9 --control-socket 7 --log-level 4 --server-fd 8 --pipe-fd 10 --log-truncate
+root          44  0.0  0.3  47692 14896 ?        S<s  12:50   0:01 /lib/systemd/systemd-journald
+root          65  0.0  0.1  22224  6092 ?        Ss   12:50   0:03 /lib/systemd/systemd-udevd
+root          87  0.0  0.0 153004   176 ?        Ssl  12:50   0:00 snapfuse /var/lib/snapd/snaps/snapd_23258.snap /snap/snapd/23258 -o ro,nodev,allow_other,suid
+root          88  0.0  0.0 153136   172 ?        Ssl  12:50   0:00 snapfuse /var/lib/snapd/snaps/gtk-common-themes_1535.snap /snap/gtk-common-themes/1535 -o ro,nodev,allow_other,suid
+root          89  0.0  0.0 153004   220 ?        Ssl  12:50   0:00 snapfuse /var/lib/snapd/snaps/bare_5.snap /snap/bare/5 -o ro,nodev,allow_other,suid
+root          97  0.0  0.0 153004  2216 ?        Ssl  12:50   0:00 snapfuse /var/lib/snapd/snaps/core22_1722.snap /snap/core22/1722 -o ro,nodev,allow_other,suid
+root          98  0.0  0.0 153004  2236 ?        Ssl  12:50   0:00 snapfuse /var/lib/snapd/snaps/ubuntu-desktop-installer_1276.snap /snap/ubuntu-desktop-installer/1276 -o ro,nodev,allow_other,suid
+root         101  0.0  0.4 526824 16784 ?        Ssl  12:50   0:02 snapfuse /var/lib/snapd/snaps/snapd_23545.snap /snap/snapd/23545 -o ro,nodev,allow_other,suid
+root         107  0.0  0.3 377296 13628 ?        Ssl  12:50   0:01 snapfuse /var/lib/snapd/snaps/core22_1748.snap /snap/core22/1748 -o ro,nodev,allow_other,suid
+root         111  0.0  0.3 302532 13680 ?        Ssl  12:50   0:01 snapfuse /var/lib/snapd/snaps/ubuntu-desktop-installer_1286.snap /snap/ubuntu-desktop-installer/1286 -o ro,nodev,allow_other,suid
+systemd+     137  0.0  0.3  25664 12728 ?        Ss   12:50   0:00 /lib/systemd/systemd-resolved
+root         200  0.0  0.0   4308  2772 ?        Ss   12:50   0:00 /usr/sbin/cron -f -P
+message+     202  0.0  0.1   8592  4500 ?        Ss   12:50   0:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root         205  0.0  0.4  30132 19408 ?        Ss   12:50   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+syslog       206  0.0  0.1 222404  7180 ?        Ssl  12:50   0:00 /usr/sbin/rsyslogd -n -iNONE
+root         208  0.0  1.1 1764856 44816 ?       Ssl  12:50   0:03 /usr/lib/snapd/snapd
+root         209  0.0  0.1  15332  7432 ?        Ss   12:50   0:01 /lib/systemd/systemd-logind
+root         239  0.0  0.0   4780  3312 ?        Ss   12:50   0:00 /bin/bash /snap/ubuntu-desktop-installer/1286/bin/subiquity-server
+root         241  0.0  0.5 107252 21288 ?        Ssl  12:50   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         249  0.0  0.0   3240  1120 hvc0     Ss+  12:50   0:00 /sbin/agetty -o -p -- \u --noclear --keep-baud console 115200,38400,9600 vt220
+root         254  0.0  0.0   3196  1100 tty1     Ss+  12:50   0:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+root         349  0.1  2.8 2311252 111620 ?      Sl   12:50   0:13 /snap/ubuntu-desktop-installer/1286/usr/bin/python3.10 -m subiquity.cmd.server --use-os-prober --storage-version=2 --postinst-hooks-dir=/snap/ubuntu-desktop-installer/1286/etc/subiquity/postinst.d
+root         383  0.0  0.1   7532  5060 pts/1    Ss   12:50   0:00 /bin/login -f
+sofia        441  0.0  0.2  16912  8988 ?        Ss   12:50   0:00 /lib/systemd/systemd --user
+sofia        442  0.0  0.1 168844  5420 ?        S    12:50   0:00 (sd-pam)
+sofia        447  0.0  0.1   6124  5152 pts/1    S+   12:50   0:00 -bash
+root         476  0.6  0.9  44188 37908 ?        S    12:50   1:06 python3 /snap/ubuntu-desktop-installer/1286/usr/bin/cloud-init status --wait
+root       49627  0.0  0.0   2780   212 ?        Ss   15:36   0:00 /init
+root       49628  0.0  0.0   2780   216 ?        S    15:36   0:00 /init
+sofia      49631  0.0  0.1   6348  5328 pts/0    Ss   15:36   0:00 -bash
+sofia      53361  0.0  0.0   4784  3280 pts/0    S+   15:50   0:00 bash ej10.sh
+sofia      53362  0.0  0.0   7484  3196 pts/0    R+   15:50   0:00 ps aux
