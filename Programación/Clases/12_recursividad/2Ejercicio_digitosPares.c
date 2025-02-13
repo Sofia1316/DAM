@@ -22,7 +22,7 @@ int main(){
 
 int contar_pares(int numero, int recuento){
     // Caso base: si el número es 0, se sale ya que la numero de números es 0
-    if (numero == 0) {
+    if (numero / 10 <= 0){
         return recuento;
     }
 
@@ -36,3 +36,14 @@ int contar_pares(int numero, int recuento){
     int ret = contar_pares(numero / 10, recuento); // en el return, el número lo dividimos entre 10 para quitar el último valor que ya hemos comprobado
     return ret;
 }
+
+/*
+SOLUCIÓN ITERATIVA:
+
+int num = 1981, resto, acum=0;
+while(num == 0){
+    acum += num % 10;
+    num = num / 10;    
+}
+
+*/
