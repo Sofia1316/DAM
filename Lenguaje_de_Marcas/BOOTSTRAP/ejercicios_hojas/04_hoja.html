@@ -28,13 +28,21 @@
     <!--PARTE NARANJA Y VERDE; SEGUNDA FILA-->
         <div class="row">
             <div class="col-12 col-lg-12 col-md-9">
-                <div class="p-5 border naranja"></div>
+                <div class="p-5 border naranja">
+                    <ol>
+                        <li style="list-style-type: lower-alpha;">Hola</li>
+                        <ol>
+                            <li style="list-style-type: lower-roman;">Hola</li>
+                            <li style="list-style-type: lower-roman;">Hola</li>
+                            <li style="list-style-type: lower-roman;">Hola</li>
+                        </ol> 
+                    </ol>
+                </div>
             </div>
             <div class="col-md-3 d-none d-md-block ms-auto"> 
                 <!--
                 d- significa display (mostrar o ocultar).
-                md es el punto de quiebre (breakpoint) en Bootstrap para tablets (≥768px).
-                block: se mostrará como un bloque (display: block;) en dispositivos de tamaño md (tablet) o superior
+                md-block: se mostrará la caja verde a partir de tamaños md o superior
                 ms-auto: empuja la caja hacia la derecha (me-auto para la izquierda)
                 -->
                 <div class="p-5 border verde"></div>
@@ -43,7 +51,31 @@
     
     <!--PARTE AMARILLA; TERCERA FILA-->
         <div class="row">
-            <div class="col-12 col-lg-4 col-md-12 amarillo m-1 p-5 text-center">1</div>
+            <div class="col-12 col-lg-4 col-md-12 amarillo m-1 p-5 text-center">
+                1
+                <form>
+                <table class="table table-bordered table-light">
+                    <tr>
+                        <td></td>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                    </tr>
+                    <tr>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                    </tr>
+                    <tr>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                    </tr>
+                </table>
+                </form>
+            </div>
             <div class="col-lg-4 d-none d-lg-block amarillo m-1 p-5 text-center">2</div>
             <div class="col-lg-4 d-none d-lg-block amarillo m-1 p-5 text-center">3</div>
             <div class="col-lg-4 d-none d-lg-block amarillo m-1 p-5 text-center">4</div>
@@ -51,7 +83,20 @@
 
     <!--PARTE ROSA Y AZUL; CUARTA FILA-->
         <div class="row">
-            <div class="col-lg-9 col-md-12 rosa p-5">Content</div>
+            <div class="col-lg-9 col-md-12 rosa p-5">
+                <form>
+                    <h3>Formulario</h3>
+                    <p>Dirección del correo electrónico</p>
+                    <input class="correo" type="email" placeholder="Introduce el email">
+                    <p>Selecciona el aula</p>
+                    <select>
+                        <option>Informática 1</option>
+                        <option>Informática 2</option>
+                    </select>
+                </form>
+                <textarea rows="5" cols="50" placeholder="Introduce la avería"></textarea>
+                <input type="submit">
+            </div>
             <div class="col-lg-3 col-md-12 azul p-5">Extra</div>
         </div>
    </div>
