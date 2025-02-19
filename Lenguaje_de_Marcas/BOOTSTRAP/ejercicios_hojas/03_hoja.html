@@ -10,12 +10,12 @@
         .color_caja1{
             background-color: greenyellow;
         }
-        @media(min-width:770px) and (max-width:995px){
+        @media(min-width:576px) and (max-width:767px){
             .color_caja1{
                 background-color:aqua;
             }
         }
-        @media(max-width:770px){
+        @media(max-width:576px){
             .color_caja1{
                 background-color:coral;
                 text-align: center;
@@ -24,13 +24,13 @@
         .color_caja2{
             background-color: red;
         }
-        @media(min-width: 770px) and (max-width:995px){
+        @media(min-width: 576px) and (max-width:767px){
             .color_caja021{
                 background-color:greenyellow;
                 text-align: center;
             }
         }
-        @media(max-width: 770px) and (max-width:995px){
+        @media(max-width:576px){
             .color_caja022{
                 background-color:aqua;
                 text-align: center;
@@ -38,24 +38,23 @@
         }
         .color_caja3{
             background-color:yellow;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                <div class="p-2 border color_caja1">Header</div>
-            </div>
+            <div class="col"><div class="p-2 border color_caja1">Header</div></div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-4 sm-text-start"><div class="p-5 border border-black color_caja2 display-1">1</div></div>
-            <div class="col-12 col-sm-6 col-md-4 sm-text-end"><div class="p-5 border border-black color_caja2 color_caja022 display-1">2</div></div>
-            <div class="col-12 col-sm-12 col-md-4"><div class="p-5 border border-black color_caja2 color_caja021 display-1">3</div></div>
+            <div class="col-12 col-sm-6 col-md-4"><div class="p-5 border border-black color_caja2 display-1 fw-bold">1</div></div>
+            <div class="col-12 col-sm-6 col-md-4"><div class="p-5 border border-black color_caja2 color_caja022 display-1 fw-bold">2</div></div>
+            <div class="col-12 col-sm-12 col-md-4"><div class="p-5 border border-black color_caja2 color_caja021 display-1 fw-bold">3</div></div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-6 d-sm-block"> <div class="p-2 border color_caja3 text-center">Footer</div></div>
-            <div class="col-12 col-md-6 d-sm-block"> <div class="p-2 border color_caja3 text-center">Footer</div></div>
+            <div class="col-12 col-md-6"> <div class="p-2 border color_caja3">Footer</div></div>
+            <div class="col-12 col-md-6"> <div class="p-2 border color_caja3">Footer</div></div>
         </div>
     </div>
 </body>
