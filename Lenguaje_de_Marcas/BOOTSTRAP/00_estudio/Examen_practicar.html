@@ -7,31 +7,127 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <style>
-        .rojo{ background-color: red; }
-        .naranja{ background-color: orange;}
-        .verde{ background-color: green;}
-        .amarillo{ background-color: yellow;}
-        .rosa{ background-color: pink;}
-        .azul{ background-color: blue;}
+        .rojo{ 
+            background-color: red;    
+        }
+        .naranja{ 
+            background-color: orange;
+        }
+        .verde{
+            background-color: greenyellow;
+        }
+        .amarillo{  
+            background-color: yellow;
+        }
+        .rosa{ 
+            background-color: pink;
+        }
+        .azul{ 
+            background-color: rgb(72, 123, 187);
+        }
+        .azul2{ 
+            background-color: rgb(72, 123, 187);
+        }
+        .morado{ background-color: blueviolet;}
+        .gris{ background-color: darkgrey;}
+        @media(min-width: 768px) and (max-width:991px){
+        .azul{ 
+            background-color: orangered;
+            text-align: center;
+        }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
+        <!--PRIMERA FILA MORADA-->
+        <div class="row d-none d-sm-flex d-md-none"> 
+            <div class="col-sm-6"><div class="p-3 morado text-center"></div></div>
+            <div class="col-sm-6"><div class="p-3 morado text-center"></div></div>
+        </div>
+
+        <!--SEGUNDA FILA ROSA-->
         <div class="row d-block d-sm-none">
             <div class="col-12">
-                <div class="p-3 rosa">Mobile</div>
+                <div class="p-3 rosa text-center">Mobile</div>
             </div>
         </div>
         <div class="row d-none d-md-block">
             <div class="col-12">
-                <div class="p-3 rosa">Ordenador</div>
+                <div class="p-3 rosa text-center">Ordenador</div>
             </div>
         </div>
         <div class="row d-none d-sm-block d-md-none">
             <div class="col-12">
-                <div class="p-3 rosa">Tablet</div>
+                <div class="p-3 rosa text-center">Tablet</div>
             </div>
         </div>
+
+        <!--TERCERA FILA MIX-->
+        <div class="row">
+            <div class="col-6 col-sm-4 col-md-3"><div class="p-4 border verde">
+                <ul>
+                    <ul>
+                        <li>Content</li>
+                        <ul>
+                            <li>Content</li>
+                            <ul>
+                                <li>Content</li>
+                                <li>Content</li>
+                                <li>Content</li>
+                            </ul>
+                        </ul>
+                    </ul>
+                </ul>
+            </div></div>
+            <div class="col-6 col-sm-4 col-md-4 ms-auto"><div class="p-4 border azul2">
+                <table class="table table-bordered border-dark table-light table-striped">
+                    <tr>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                    </tr>
+                    <tr>
+                        <td class="table-primary border-dark">Hola</td>
+                        <td class="table-primary border-dark">Hola</td>
+                    </tr>
+                    <tr>
+                        <td class="table-success border-dark">Hola</td>
+                        <td>Hola</td>
+                    </tr>
+                    <tr>
+                        <td>Hola</td>
+                        <td>Hola</td>
+                    </tr>
+                </table>
+            </div></div>
+
+            <!-- SALTO DE LÍNEA EN MD -->
+            <div class="w-100 d-sm-block"></div> 
+
+            <div class="col-6 col-sm-4 col-md-3"><div class="p-4 border amarillo"></div></div>
+            <div class="col-6 col-sm-8 col-md-8 ms-auto"><div class="p-4 border rojo">
+                <form>
+                    <p>Nombre: <input type="text" class="nombre"></p>
+                    <p>Adjuntar: <input type="file" class="nombre"></p>
+                    <select>
+                        <option>Suspenso</option>
+                        <option>Aprobado</option>
+                    </select>
+                </form>
+            </div></div>
+        </div>
+
+        <!--CUATRO AZULES-->
+        <div class="row d-block d-sm-flex"> 
+            <div class="col-sm-6"><div class="p-3 azul text-center m-1">1</div></div>
+            <div class="col-sm-6"><div class="p-3 azul text-center m-1">2</div></div>
+            <div class="col-sm-6 d-none d-sm-block"><div class="p-3 azul text-center m-1">3</div></div>
+            <div class="col-sm-6 d-none d-sm-block"><div class="p-3 azul text-center m-1">4</div></div>
+        </div>
+
+       <div class="row">
+            <div class="col gris d-none d-md-block text-center">Footer</div>
+       </div> 
     </div>
 </body>
 </html>
