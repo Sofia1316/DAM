@@ -16,6 +16,7 @@
         }
         .verde{
             background-color: greenyellow;
+            padding: 3%;
         }
         .amarillo{  
             background-color: yellow;
@@ -31,15 +32,71 @@
         }
         .morado{ background-color: blueviolet;}
         .gris{ background-color: darkgrey;}
+        .blanco{ background-color: white;}
     </style>
 </head>
 <body class="azul">
     <div class="container-fluid">
+        <!--PRIMERA FILA-->
         <div class="row">
             <div class="col amarillo">
                 <div class="col"><div class="h1 text-center">EXAMEN BOOTSTRAP</div></div>
-                <div class="col"><div class="h1 text-center verde">EXAMEN BOOTSTRAP</div></div>
+                <div class="col"><div class="verde m-3">Nombre del alumno: </div></div>
+            
+            <!--SEGUNDA FILA-->
+            <div class="row">
+                <div class="col-4"><div class="p-3">Partes de un teclado<img src="teclado.jpg" alt="teclado" width="300" height="200"></div></div>
+                <div class="col-4"><div class="p-3"><img src="raton-computadora.jpg" alt="Ratón ordenador" width="200" height="200"></div></div>
+                <div class="col-4"><div class="p-3">
+                    <table class="table table-light table-striped">
+                        <tr>
+                            <td></td>
+                            <td>Dato 1</td>
+                            <td>Dato 2</td>
+                        </tr>
+                        <tr class="table-dark">
+                            <td>Teclado</td>
+                            <td>Mecánico</td>
+                            <td>Membrana</td>
+                        </tr>
+                        <tr>
+                            <td>Ratón</td>
+                            <td>Adaptado</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div></div>
             </div>
+        </div>
+
+         <!--TERCERA FILA-->
+         <div class="row">
+            <div class="col-4"><div class="p-3 blanco">
+                <p>Nombre: <input type="text" class="nombre"></p>
+                <p>Nota:</p>
+                <input type="range" class="barra">
+                <input type="submit" class="enviar">
+            </div></div>
+            <div class="col-4"><div class="p-3">
+                <p>Asignatura de examen</p>
+                <select>
+                    <option>Lenguaje de marcas</option>
+                    <option>Lenguaje de marcas</option>
+                </select>
+                <p><input type="submit" class="enviar"></p>
+            </div></div>
+            <div class="col-4"><div class="p-3 blanco">
+                <p>Has hecho el examen?</p>
+                <p><input type="checkbox" class="opcion"> He finalizado</p>
+                <p><input type="checkbox" class="opcion"> He finalizado</p>
+                <input type="submit" class="enviar">
+            </div></div>
+        </div>
+        <div class="row">
+            <div class="col border border-dark">A</div>
+            <div class="col border border-dark">B</div>
+            <div class="col border border-dark">C</div>
+            <div class="col border border-dark">D</div>
         </div>
     </div>
 </body>
