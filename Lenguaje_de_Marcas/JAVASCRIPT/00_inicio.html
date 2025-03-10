@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIMER ARCHIVO DE JAVASCRIPT</title>
+    <script>
+        // Mensaje de aviso como de las cookies
+        // Alert devuelve el valor en variable mensaje
+        alert('hola'); // determinado
+        let mensaje= prompt("¿Qué edad tienes?", 10); // introducir datos
+        alert(mensaje);
+        // Confirm devuelve true o false
+        let pregunta=confirm("¿Eres mayor de edad?");
+        alert(pregunta);
+        console.log("La edad de la persona es " + mensaje);
+        document.write("<h2> hola </h2>");
+
+        let a =prompt("Dame un número ");
+        let b = 2;
+        let resultado = parseInt(a) + b;
+        console.log(resultado);
+
+        if(a == b){
+            console.log("Son iguales");
+        } else {
+            console.log("Son distintos");
+        }
+
+        while(a > 0){
+            console.log(a);
+            a--;
+        }
+
+        for(let i=0; i < 3; i++){
+            console.log("Hola");
+        }
+    </script>
+</head>
+<body>
+    <h1>Javascript 1</h1>
+</body>
+</html>

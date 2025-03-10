@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIMER ARCHIVO DE JAVASCRIPT</title>
+    <script>
+        // Escribe un programa de una sola línea que haga que aparezca en la pantalla un alert que diga “Hello World”.
+        alert('Hello world'); 
+
+        // Escribe un programa de una sola línea que escriba en la pantalla un texto que diga “Hello World” (document.write).
+        document.write("Hello World");
+
+        // Escribe un programa de una sola línea que escriba en la pantalla el resultado de sumar 3 + 5.
+        let a = 3;
+        let b = 5;
+        let resultado = a + b;
+        console.log(resultado);
+
+        // Escribe un programa de dos líneas que pida el nombre del usuario con un prompt y escriba un texto que diga “Hola nombreUsuario”
+        let nombre = prompt("Dame un nombre de usuario ");
+        alert("Hola " + nombre);
+
+        //  Escribe un programa de tres líneas que pida un número, pida otro número y escriba el resultado de sumar estos dos números.
+        let n1 = prompt("Dame un número ");
+        let n2 = prompt("Dame un número ");
+        let resultado2 = parseInt(n1) + parseInt(n2);
+        alert(resultado2);
+
+        // Escribe un programa que pida dos números y escriba en la pantalla cual es el mayor.
+        let n3 = prompt("Dame un número ");
+        let n4 = prompt("Dame un número ");
+
+        if(n3 > n4){
+            console.log(n3 + " es mayor");
+        } else {
+            console.log(n4 + " es mayor");
+        }
+
+        // Escribe un programa que pida 3 números y escriba en la pantalla es mayor de los tres.
+        let n5 = prompt("Dame un número ");
+        let n6 = prompt("Dame un número ");
+        let n7 = prompt("Dame un número ");
+
+        if(n5 > n6){
+            console.log(n5 + " es mayor");
+        } else if (n6 > n7) {
+            console.log(n6 + " es mayor");
+        } else {
+            console.log(n7 + " es mayor");
+        }
+
+        // Escribe un programa que pida un número y diga si es divisible por 2
+        let num = prompt("Dame un número ");
+        if(num % 2){
+            console.log("Es divisible por 2");
+        } else {
+            console.log("No es divisible por 2");
+        }
+
+        // Escribe un programa que pida una frase y escriba cuantas veces aparece la letra a
+
+        /*
+        let mensaje= prompt("¿Qué edad tienes?", 10); 
+        alert(mensaje);
+    
+        let pregunta=confirm("¿Eres mayor de edad?");
+        alert(pregunta);
+        console.log("La edad de la persona es " + mensaje);
+        document.write("<h2> hola </h2>");
+
+        let a =prompt("Dame un número ");
+        let b = 2;
+        let resultado = parseInt(a) + b;
+        console.log(resultado);
+
+        if(a == b){
+            console.log("Son iguales");
+        } else {
+            console.log("Son distintos");
+        }
+
+        while(a > 0){
+            console.log(a);
+            a--;
+        }
+
+        for(let i=0; i < 3; i++){
+            console.log("Hola");
+        }
+        */
+    </script>
+</head>
+<body>
+    <h1>Javascript 1</h1>
+</body>
+</html>
