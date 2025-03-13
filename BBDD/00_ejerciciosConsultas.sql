@@ -5,9 +5,13 @@ select distinct poblacion from Cliente;
 select * from Cliente 
 where Poblacion = 'Madrid';
 
--- 3. ¿Saca el nombre de los clientes que viven en Madrid y Barcelona?
-select Nombre from Cliente 
-where Poblacion = 'Madrid' or Poblacion = 'Barcelona';
+-- 3. Saca el nombre de los clientes que viven en Madrid y Barcelona
+-- Opción 1
+	select Nombre from Cliente 
+	where Poblacion = 'Madrid' or Poblacion = 'Barcelona';
+-- Opción 2
+	select nombre from cliente
+	where poblacion in ('Madrid','Barcelona'); 
 
 -- 4. ¿Cuál es nombre y teléfono de los clientes que viven en Madrid y vive en la calle amarillo?
 select Nombre, Telefono from Cliente 
@@ -34,14 +38,14 @@ where nombre like '__a%';
 
 -- 10. Saca el nombre de los productos que tengan como primer carácter un 4 y como el número de las décimas el 1.
 select nombre from producto
-where precio like '4%' and precio like '%1_%';
+where precio like '4%1_';
 
 -- 11. Número de productos de cada venta.
-select id_venta, COUNT(producto_cod_producto) as num_productos
+select id_venta, count(producto_cod_producto) as num_productos
 from venta group by id_venta;
 
 -- 12. Cantidad de dinero que tenemos invertido en productos de la tabla Producto.
-select SUM(precio) as dinero_invertido from Producto;
+select sum(precio) as dinero_invertido from Producto;
 
 -- 13. el número de cliente (n_cliente) que haya comprado entre 10 y 20 artículos.
 select cliente_n_cliente 
@@ -86,3 +90,6 @@ natural join cliente c;
 
 
 -- 22. une el nombre de los clientes con el nombre de los artículos.
+select nombre from cliente
+union
+select nombre from producto;
