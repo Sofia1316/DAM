@@ -18,20 +18,41 @@ select distinct Estado, count(CodigoPedido)
 from pedidos group by Estado;
 
 -- 6. Sacar el precio del producto más caro y del más barato.
-select min(PrecioVenta), max(PrecioVenta)
-from productos;
+select * from
+(select nombre as caro, precioVenta from productos inner join
+(select max(PrecioVenta) masCaro from productos)t1
+on precioVenta=masCaro)t3
+,
+(select nombre as barato, precioVenta from productos inner join
+(select min(PrecioVenta) masBarato from productos)t2
+on precioVenta=masBarato)t4;
 
 -- 7. Sacar la ciudad y el teléfono de las oficinas de Estados Unidos.
 select Ciudad, Telefono from oficinas
 where Pais='EEUU';
 
 -- 8. Sacar el nombre, los apellidos y el email de los empleados a cargo de Alberto Soria.
-select Nombre, Apellido1, Apellido2, Email from empleados
-where CodigoJefe='2';
+select Nombre, Apellido1, Apellido2,Email from empleados
+where CodigoJefe=
+(select CodigoEmpleado from empleados 
+where
+Nombre='Alberto' and Apellido1='Soria');
+
+-- 8.1 con un inner join
+select Nombre, Apellido1, Apellido2,Email from empleados
+inner join
+(select CodigoEmpleado from empleados 
+where
+Nombre='Alberto' and Apellido1='Soria')t1
+on empleados.CodigoJefe=t1.CodigoEmpleado;
 
 -- 9. Sacar el cargo, nombre, apellidos y email del jefe de la empresa.
 select Nombre, Apellido1, Apellido2, Email from empleados
 where puesto='Director General';
+
+-- 9.1 Otra opción
+select Nombre, Apellido1, Apellido2,Email from empleados
+where CodigoJefe is Null;
 
 -- 10. Sacar el nombre, apellidos y cargo de aquellos que no sean representantes de ventas.
 select Nombre, Apellido1, Apellido2, Puesto from empleados
