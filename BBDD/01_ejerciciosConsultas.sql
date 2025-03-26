@@ -70,61 +70,114 @@ select pais, count(*) as numero_de_clientes from clientes
 group by pais;
 
 -- 14. Sacar cuántos clientes tiene la ciudad de Madrid.
-select count(*) as numero_de_clientes from clientes
+select ciudad, count(*) as numero_de_clientes from clientes
 where ciudad = 'Madrid';
 
 -- 15. Sacar cuántos clientes tienen las ciudades que empiezan por M.
-select count(*) as numero_de_clientes from clientes
-where ciudad like 'M%';
+select count(*) from clientes
+where ciudad like'M%';
 
 -- 16. Sacar el código de empleado y el número de clientes al que atiende cada representante de ventas.
-select codigo_empleado, count(*) as numero_de_clientes from clientes
-group by codigo_empleado;
+select CodigoEmpleadoRepVentas, numClientes from
+(select CodigoEmpleado from Empleados 
+where Puesto='Representante Ventas')t1
+inner join
+(select CodigoEmpleadoRepVentas, count(NombreCliente) as numClientes
+from clientes
+group by CodigoEmpleadoRepVentas)t2
+on t1.CodigoEmpleado=t2.CodigoEmpleadoRepVentas;
 
 -- 17. Sacar el número de clientes que no tiene asignado representante de ventas.
-select count(*) as numero_de_clientes from clientes
-where codigo_empleado is null;
+select NombreCliente, NombreEmpresa from clientes
+left join
+(select CodigoCliente as a, NombreCliente as NombreEmpresa from clientes
+inner join
+(select CodigoEmpleado from empleados
+where Puesto='Representante Ventas')t1
+on clientes.CodigoEmpleadoRepVentas=t1.CodigoEmpleado)as ClienteRep
+on clientes.CodigoCliente=ClienteRep.a;
 
 -- 18. Sacar cuál fue el primer y último pago que hizo algún cliente.
-select min(fecha_pago) as primer_pago, max(fecha_pago) as ultimo_pago
+select min(FechaPago) as primer_pago, max(FechaPago) as ultimo_pago
 from pagos;
 
 -- 19. Sacar el código de cliente de aquellos clientes que hicieron pagos en 2008.
-select distinct codigo_cliente from pagos
-where year(fecha_pago) = 2008;
+select distinct CodigoCliente from pagos
+where year(FechaPago) = 2008;
 
 -- 20. Sacar los distintos estados por los que puede pasar un pedido.
 select distinct estado from pedidos;
 
 -- 21. Sacar el número de pedido, código de cliente, fecha requerida y fecha de entrega de los pedidos que no han sido entregados a tiempo.
-
+select CodigoPedido, codigo_cliente, fecha_esperada, fecha_entrega
+from pedidos
+where fecha_entrega > fecha_esperada;
 
 -- 22. Sacar cuántos productos existen en cada línea de pedido.
-
+select codigo_pedido, count(*) as cantidad_productos
+from detalle_pedidos
+group by codigo_pedido;
 
 -- 23. Sacar un listado de los 20 códigos de productos más pedidos ordenado por cantidad pedida.
-
+select codigo_producto, sum(cantidad) as cantidad_total
+from detalle_pedidos
+group by codigo_producto
+order by cantidad_total desc
+limit 20;
 
 -- 24. Sacar el número de pedido, código de cliente, fecha requerida y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha requerida.
-
+select codigo_pedido, codigo_cliente, fecha_esperada, fecha_entrega
+from pedidos
+where fecha_entrega <= date_sub(fecha_esperada, interval 2 day);
 
 -- 25. Sacar la facturación que ha tenido la empresa en toda la historia, indicando la base imponible, el IVA y el total facturado. NOTA: La base imponible se calcula sumando el coste del producto por el número de unidades vendidas. El IVA, es el 21% de la base imponible, y el total, la suma de los dos campos anteriores.
-
+select sum(detalle_pedidos.cantidad * productos.precio_proveedor) as base_imponible, 
+       sum(detalle_pedidos.cantidad * productos.precio_proveedor * 0.21) as iva,
+       sum(detalle_pedidos.cantidad * productos.precio_proveedor * 1.21) as total_facturado
+from detalle_pedidos
+join productos on detalle_pedidos.codigo_producto = productos.codigo_producto;
 
 -- 26. Sacar la misma información que en la pregunta anterior, pero agrupada por código de producto filtrada por los códigos que empiecen por FR.
-
+select productos.codigo_producto, 
+       sum(detalle_pedidos.cantidad * productos.precio_proveedor) as base_imponible, 
+       sum(detalle_pedidos.cantidad * productos.precio_proveedor * 0.21) as iva,
+       sum(detalle_pedidos.cantidad * productos.precio_proveedor * 1.21) as total_facturado
+from detalle_pedidos
+join productos on detalle_pedidos.codigo_producto = productos.codigo_producto
+where productos.codigo_producto like 'fr%'
+group by productos.codigo_producto;
 
 -- 27. Obtener el nombre del producto más caro.
-
+select nombre
+from productos
+order by precio_venta desc
+limit 1;
 
 -- 28. Obtener el nombre del producto del que más unidades se hayan vendido en un mismo pedido.
-
+select productos.nombre
+from productos
+join detalle_pedidos on productos.codigo_producto = detalle_pedidos.codigo_producto
+group by productos.nombre
+order by sum(detalle_pedidos.cantidad) desc
+limit 1;
 
 -- 29. Obtener los clientes cuya línea de crédito sea mayor que los pagos que haya realizado.
-
+select clientes.codigo_cliente, clientes.nombre_cliente
+from clientes
+join pagos on clientes.codigo_cliente = pagos.codigo_cliente
+group by clientes.codigo_cliente
+having sum(pagos.monto) < clientes.limite_credito;
 
 -- 30. Sacar el producto que más unidades tiene en stock y el que menos unidades tiene en stock.
-
+(select nombre, cantidad_en_stock
+from productos
+order by cantidad_en_stock desc
+limit 1)
+union
+(select nombre, cantidad_en_stock
+from productos
+order by cantidad_en_stock asc
+limit 1);
 
 -- 31. Sacar el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
 
