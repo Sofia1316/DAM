@@ -97,7 +97,15 @@ where Puesto='Representante Ventas')t1
 on clientes.CodigoEmpleadoRepVentas=t1.CodigoEmpleado)as ClienteRep
 on clientes.CodigoCliente=ClienteRep.a;
 
--- 18. Sacar cuál fue el primer y último pago que hizo algún cliente.
+-- 18.a Sacar cuál fue el primer y último pago que hizo algún cliente.
+select*from
+(select IDTransaccion ultimoPago from Pagos where fechaPagos=
+(select max(FechaPago) from Pagos)t1
+,
+(select IDTransaccion primerPago from Pagos where fechaPagos=
+(select min(FechaPago) from Pagos)t2;
+
+-- 18.b
 select min(FechaPago) as primer_pago, max(FechaPago) as ultimo_pago
 from pagos;
 
@@ -109,56 +117,53 @@ where year(FechaPago) = 2008;
 select distinct estado from pedidos;
 
 -- 21. Sacar el número de pedido, código de cliente, fecha requerida y fecha de entrega de los pedidos que no han sido entregados a tiempo.
-select CodigoPedido, codigo_cliente, fecha_esperada, fecha_entrega
-from pedidos
-where fecha_entrega > fecha_esperada;
 
 -- 22. Sacar cuántos productos existen en cada línea de pedido.
-select codigo_pedido, count(*) as cantidad_productos
-from detalle_pedidos
-group by codigo_pedido;
+select CodigoPedido, count(*) as cantidad_productos
+from detallepedidos
+group by CodigoPedido;
 
 -- 23. Sacar un listado de los 20 códigos de productos más pedidos ordenado por cantidad pedida.
-select codigo_producto, sum(cantidad) as cantidad_total
-from detalle_pedidos
-group by codigo_producto
+select CodigoProducto, sum(cantidad) as cantidad_total
+from detallepedidos
+group by CodigoProducto
 order by cantidad_total desc
 limit 20;
 
 -- 24. Sacar el número de pedido, código de cliente, fecha requerida y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha requerida.
-select codigo_pedido, codigo_cliente, fecha_esperada, fecha_entrega
-from pedidos
-where fecha_entrega <= date_sub(fecha_esperada, interval 2 day);
+select CodigoPedido, FechaEsperada, FechaEntrega
+from Pedidos
+where FechaEntrega = (FechaEsperada - 2);
 
 -- 25. Sacar la facturación que ha tenido la empresa en toda la historia, indicando la base imponible, el IVA y el total facturado. NOTA: La base imponible se calcula sumando el coste del producto por el número de unidades vendidas. El IVA, es el 21% de la base imponible, y el total, la suma de los dos campos anteriores.
-select sum(detalle_pedidos.cantidad * productos.precio_proveedor) as base_imponible, 
-       sum(detalle_pedidos.cantidad * productos.precio_proveedor * 0.21) as iva,
-       sum(detalle_pedidos.cantidad * productos.precio_proveedor * 1.21) as total_facturado
-from detalle_pedidos
-join productos on detalle_pedidos.codigo_producto = productos.codigo_producto;
+select sum(detallepedidos.cantidad * Productos.PrecioVenta) as base_imponible, 
+       sum(detallepedidos.cantidad * Productos.PrecioVenta * 0.21) as iva,
+       sum(detallepedidos.cantidad * Productos.PrecioVenta * 1.21) as total_facturado
+from detallepedidos
+join productos on detallepedidos.CodigoProducto = productos.CodigoProducto;
 
 -- 26. Sacar la misma información que en la pregunta anterior, pero agrupada por código de producto filtrada por los códigos que empiecen por FR.
-select productos.codigo_producto, 
-       sum(detalle_pedidos.cantidad * productos.precio_proveedor) as base_imponible, 
-       sum(detalle_pedidos.cantidad * productos.precio_proveedor * 0.21) as iva,
-       sum(detalle_pedidos.cantidad * productos.precio_proveedor * 1.21) as total_facturado
-from detalle_pedidos
-join productos on detalle_pedidos.codigo_producto = productos.codigo_producto
-where productos.codigo_producto like 'fr%'
-group by productos.codigo_producto;
+select Productos.CodigoProducto, 
+       sum(detallepedidos.cantidad * Productos.PrecioVenta) as base_imponible, 
+       sum(detallepedidos.cantidad * Productos.PrecioVenta * 0.21) as iva,
+       sum(detallepedidos.cantidad * Productos.PrecioVenta * 1.21) as total_facturado
+from detallepedidos
+join Productos on detallepedidos.CodigoProducto = Productos.CodigoProducto
+where Productos.CodigoProducto like 'fr%'
+group by Productos.CodigoProducto;
 
 -- 27. Obtener el nombre del producto más caro.
 select nombre
 from productos
-order by precio_venta desc
+order by PrecioVenta desc
 limit 1;
 
 -- 28. Obtener el nombre del producto del que más unidades se hayan vendido en un mismo pedido.
 select productos.nombre
 from productos
-join detalle_pedidos on productos.codigo_producto = detalle_pedidos.codigo_producto
+join detallepedidos on productos.CodigoProducto = detallepedidos.CodigoProducto
 group by productos.nombre
-order by sum(detalle_pedidos.cantidad) desc
+order by sum(detallepedidos.cantidad) desc
 limit 1;
 
 -- 29. Obtener los clientes cuya línea de crédito sea mayor que los pagos que haya realizado.
