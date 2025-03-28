@@ -117,9 +117,13 @@ where year(FechaPago) = 2008;
 select distinct estado from pedidos;
 
 -- 21. Sacar el número de pedido, código de cliente, fecha requerida y fecha de entrega de los pedidos que no han sido entregados a tiempo.
+select CodigoPedido, CodigoCliente, FechaEsperada, FechaEntrega
+from Pedidos
+where FechaEsperada < FechaEntrega
+or FechaEntrega is null;
 
 -- 22. Sacar cuántos productos existen en cada línea de pedido.
-select CodigoPedido, count(*) as cantidad_productos
+select CodigoPedido, sum(Cantidad) as cantidad_productos
 from detallepedidos
 group by CodigoPedido;
 
@@ -131,7 +135,7 @@ order by cantidad_total desc
 limit 20;
 
 -- 24. Sacar el número de pedido, código de cliente, fecha requerida y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha requerida.
-select CodigoPedido, FechaEsperada, FechaEntrega
+select CodigoPedido, CodigoCliente, FechaEsperada, FechaEntrega
 from Pedidos
 where FechaEntrega = (FechaEsperada - 2);
 
@@ -140,7 +144,7 @@ select sum(detallepedidos.cantidad * Productos.PrecioVenta) as base_imponible,
        sum(detallepedidos.cantidad * Productos.PrecioVenta * 0.21) as iva,
        sum(detallepedidos.cantidad * Productos.PrecioVenta * 1.21) as total_facturado
 from detallepedidos
-join productos on detallepedidos.CodigoProducto = productos.CodigoProducto;
+join Productos on detallepedidos.CodigoProducto = Productos.CodigoProducto;
 
 -- 26. Sacar la misma información que en la pregunta anterior, pero agrupada por código de producto filtrada por los códigos que empiecen por FR.
 select Productos.CodigoProducto, 
@@ -214,22 +218,58 @@ limit 1);
 -- 40. Sacar el nombre, apellidos, oficina y cargo de aquellos que no sean representantes de ventas.
 
 
--- Sacar cuántos empleados tiene cada oficina, mostrando el nombre de la ciudad donde está la oficina.
--- Sacar un listado con el nombre de los empleados, y el nombre de sus respectivos jefes.
--- Sacar el nombre, apellido, oficina (ciudad) y cargo del empleado que no represente a ningún cliente.
--- Sacar la media de unidades en stock de los productos agrupados por gama.
--- Sacar los clientes que residan en la misma ciudad donde hay una oficina, indicando dónde está la oficina.
--- Sacar los clientes que residan en ciudades donde no hay oficinas ordenado por la ciudad donde residen.
--- Sacar el número de clientes que tiene asignado cada representante de ventas.
--- Sacar cuál fue el cliente que hizo el pago con mayor cuantía y el que hizo el pago con menor cuantía.
--- Sacar un listado con el precio total de cada pedido.
--- Sacar los clientes que hayan hecho pedido en el 2008 por una cuantía superior a 2000 euros.
+-- 41. Sacar cuántos empleados tiene cada oficina, mostrando el nombre de la ciudad donde está la oficina.
+
+
+-- 42. Sacar un listado con el nombre de los empleados, y el nombre de sus respectivos jefes.
+
+
+-- 43. Sacar el nombre, apellido, oficina (ciudad) y cargo del empleado que no represente a ningún cliente.
+
+
+-- 44. Sacar la media de unidades en stock de los productos agrupados por gama.
+
+
+-- 45. Sacar los clientes que residan en la misma ciudad donde hay una oficina, indicando dónde está la oficina.
+
+
+-- 46. Sacar los clientes que residan en ciudades donde no hay oficinas ordenado por la ciudad donde residen.
+
+
+-- 47. Sacar el número de clientes que tiene asignado cada representante de ventas.
+
+
+-- 48. Sacar cuál fue el cliente que hizo el pago con mayor cuantía y el que hizo el pago con menor cuantía.
+
+
+-- 49. Sacar un listado con el precio total de cada pedido.
+
+
+-- 50. Sacar los clientes que hayan hecho pedido en el 2008 por una cuantía superior a 2000 euros.
+
+
 -- Sacar cuántos pedidos tiene cada cliente en cada estado.
+
+
 -- Sacar los clientes que han pedido más de 200 unidades de cualquier producto.
+
+
 -- Obtener el nombre del cliente con mayor limite de crédito.
+
+
 -- Obtener el nombre, apellido1 y cargo de los empleados que no representen a ningún cliente.
+
+
 -- Sacar un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
+
+
 -- Mostrar el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas.
+
+
 -- Listar las ventas totales de los productos que hayan facturado más de 3000 euros. Se mostrará el nombre, unidades vendidas, total facturado y total facturado con impuestos (21% IVA).
+
+
 -- Listar la dirección de las oficinas que tengan clientes en Fuenlabrada.
+
+
 -- Sacar el cliente que hizo el pedido de mayor cuantía-- .
