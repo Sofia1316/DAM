@@ -147,7 +147,7 @@ from detallepedidos
 join Productos on detallepedidos.CodigoProducto = Productos.CodigoProducto;
 
 -- 26. Sacar la misma información que en la pregunta anterior, pero agrupada por código de producto filtrada por los códigos que empiecen por FR.
-select Productos.CodigoProducto, 
+select CodigoProducto, 
        sum(detallepedidos.cantidad * Productos.PrecioVenta) as base_imponible, 
        sum(detallepedidos.cantidad * Productos.PrecioVenta * 0.21) as iva,
        sum(detallepedidos.cantidad * Productos.PrecioVenta * 1.21) as total_facturado
@@ -163,36 +163,89 @@ order by PrecioVenta desc
 limit 1;
 
 -- 28. Obtener el nombre del producto del que más unidades se hayan vendido en un mismo pedido.
-select productos.nombre
-from productos
-join detallepedidos on productos.CodigoProducto = detallepedidos.CodigoProducto
-group by productos.nombre
-order by sum(detallepedidos.cantidad) desc
-limit 1;
+-- OPCIÓN 1
+select nombre from Productos
+inner join
+(select CodigoProducto from detallepedidos
+inner join
+(select max(Cantidad) as cantidadMaxima from detallepedidos)t1
+on detallepedidos.Cantidad = t1.cantidadMaxima)t2
+on productos.CodigoProducto=t2.CodigoProducto;
+
+-- OPCIÓN 2
+select nombre from Productos
+inner join
+(select CodigoProducto from detallepedidos
+where cantidad = 
+(select max(Cantidad) as cantidadMaxima from detallepedidos))t1
+on productos.CodigoProducto=t1.CodigoProducto;
+
+-- OPCIÓN de una misma tabla, no solo de un pedido en concreto
+select CodigoProducto, sum(Cantidad) as cantidadTotal 
+from detallepedidos
+group by CodigoProducto
+having cantidadTotal=
+(select max(cantidadTotal) from 
+(select CodigoProducto, sum(Cantidad) as cantidadTotal 
+from detallepedidos
+group by CodigoProducto)t1);
 
 -- 29. Obtener los clientes cuya línea de crédito sea mayor que los pagos que haya realizado.
-select clientes.codigo_cliente, clientes.nombre_cliente
-from clientes
-join pagos on clientes.codigo_cliente = pagos.codigo_cliente
-group by clientes.codigo_cliente
-having sum(pagos.monto) < clientes.limite_credito;
+select NombreCliente,LimiteCredito,cantidadPagada from clientes
+inner join
+(select CodigoCliente, sum(Cantidad) as cantidadPagada
+from pagos group by CodigoCliente)t1
+on clientes.CodigoCliente=t1.CodigoCliente
+where LimiteCredito>cantidadPagada;
 
 -- 30. Sacar el producto que más unidades tiene en stock y el que menos unidades tiene en stock.
-(select nombre, cantidad_en_stock
+-- OPCIÓN 1
+(select nombre, CantidadEnStock
 from productos
-order by cantidad_en_stock desc
+order by CantidadEnStock desc
 limit 1)
 union
-(select nombre, cantidad_en_stock
+(select nombre, CantidadEnStock
 from productos
-order by cantidad_en_stock asc
+order by CantidadEnStock asc
 limit 1);
 
--- 31. Sacar el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+-- OPCIÓN 2 (union)
+select nombre as nomMayor, CantidadEnStock as cantMayor 
+from productos
+where CantidadEnStock =
+(select max(CantidadEnStock) as mayor from productos)
+union
+select nombre as nomMenor, CantidadEnStock as cantMenor 
+from productos
+where CantidadEnStock =
+(select min(CantidadEnStock) as menor from productos);
 
+-- OPCIÓN 3 (producto cartesiano)
+select * from
+(select nombre as nomMayor, CantidadEnStock as cantMayor 
+from productos
+where CantidadEnStock =
+(select max(CantidadEnStock) as mayor from productos))t1
+,
+(select nombre as nomMenor, CantidadEnStock as cantMenor 
+from productos
+where CantidadEnStock =
+(select min(CantidadEnStock) as menor from productos))t2;
+
+-- 31. Sacar el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+select NombreCliente, Nombre, Ciudad from oficinas
+inner join 
+(select NombreCliente, nombre, CodigoOficina from empleados
+inner join 
+(select NombreCliente, CodigoEmpleadoRepVentas from clientes)t1
+on empleados.CodigoEmpleado = t1.CodigoEmpleadoRepVentas)t2
+on oficinas.CodigoOficina=t2.CodigoOficina;
 
 -- 32. Sacar la misma información que en la pregunta anterior pero solo de los clientes que no hayan hecho pagos.
-
+select CodigoCliente, NombreCliente from clientes
+where CodigoCliente not in
+(select CodigoCliente as codCli from pagos);
 
 -- 33. Obtener un listado con el nombre de los empleados junto con el nombre de sus jefes.
 
