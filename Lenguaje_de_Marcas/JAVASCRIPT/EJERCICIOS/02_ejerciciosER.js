@@ -22,7 +22,7 @@ function ap1(){
             let fechaActual = new Date();
             let dias = fechaActual - fechaIntroducida;
             // Convertir a días
-            let dias2 = Math.floor(dias / (1000 * 60 * 60 * 24));
+            let dias2 = Math.round(dias / (1000 * 60 * 60 * 24)); // esta función redondea a la parte entera
             
             alert(`Han pasado ${dias2} días desde la fecha introducida.`);
         }
@@ -178,6 +178,11 @@ function ap5(){
     alert(`Frase con reemplazo: ${fraseReemplazada}`);
 }
 
+/*
+La empresa developer S.A. de C.V. requiere que se pueda validar si una contraseña 
+dada contiene un letra mayúscula, tiene un número y una letra minúscula. Crea un 
+script donde se utilice una expresión regular para solventar este requerimiento.
+*/
 function ap6(){
     let contraseña = prompt("Introduce tu contraseña:");
 
@@ -197,12 +202,57 @@ function ap6(){
     }
 }
 
+/*
+Leer una cadena de texto mediante el método prompt() y generar un array con las 
+palabras que contiene. Posteriormente, mostrar la siguiente información: 
+    a. Número de palabras 
+    b. Primera palabra y última palabra 
+    c. Las palabras colocadas en orden inverso 
+    d. Las palabras ordenadas de la a la z 
+    e. Las palabras ordenadas de la z a la a 
+    f. Un mensaje indicando si la frase es un palíndromo 
+*/
+function ap7(){
+    let palabras = prompt("Introduce una cadena de texto: ");
+    let array = palabras.split(" ");
+
+    // APARTADO 1
+    document.writeln("<h4>APARTADO 1 EJERCICIO 7</h4>");
+    let contador = array.length; // contamos su longuitud directamente porque las palabras ya se han separado con el split anterior
+    document.writeln("El número de palabras es de " + contador);
+    
+    // APARTADO 2
+    document.writeln("<h4>APARTADO 2 EJERCICIO 7</h4>");
+    let inicio = array[0]; 
+    let final = array[array.length - 1]; 
+    document.writeln("Primera palabra: " + inicio + "<br>");
+    document.writeln("Última palabra: " + final);
+
+    // APARTADO 3
+    document.writeln("<h4>APARTADO 3 EJERCICIO 7</h4>");
+    let resultado = "";
+
+    for(let i = array.length - 1; i >= 0; i++){
+        resultado += array[i] + " ";
+        document.writeln("Palabras invertidas: " + resultado);
+    }
+
+    // APARTADO 4
+
+    // APARTADO 5
+
+    // APARTADO 6
+
+    
+}
+
 function load(){
-    ap1();
+    /*ap1();
     ap2();
     ap3();
     ap4();
     ap5();
-    ap6();
+    ap6();*/
+    ap7();
 }
 window.addEventListener("DOMContentLoaded", load, false);
