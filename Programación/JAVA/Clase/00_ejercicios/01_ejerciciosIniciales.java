@@ -23,6 +23,7 @@ public class ejercicio2 {
 		}
 		
 		System.out.println("El número tiene " + contador + " dígitos");
+		entrada.close();
 	}
 
 }

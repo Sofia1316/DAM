@@ -28,6 +28,7 @@ public class ejercicio3 {
 			System.out.println("");
 		}
 		System.out.println("La suma de los números introducidos es de " + suma);
+		entrada.close();
 	}
 
 }

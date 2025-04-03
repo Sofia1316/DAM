@@ -49,5 +49,6 @@ public class ejercicio1 {
 		
 		System.out.println("El número máximo es " + max + "-->" + cantMax);
 		System.out.println("El número mínimo es " + min + "-->" + cantMin);
+		entrada.close();
 	}
 }

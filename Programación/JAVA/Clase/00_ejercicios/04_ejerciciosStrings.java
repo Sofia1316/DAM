@@ -19,6 +19,6 @@ public class ejercicio5{
 			int num = 0;
 			System.out.print(caracter + " ");
 		}
+		entrada.close();
 	}
-
 }

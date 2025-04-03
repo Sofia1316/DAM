@@ -32,5 +32,6 @@ public class ejerciciosString04 {
         } else {
             System.out.println("No palíndromo.");
         }
+        entrada.close();
 	}
 }

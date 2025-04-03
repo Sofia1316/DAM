@@ -34,5 +34,6 @@ public class ejerciciosStrings03 {
 
         // Mostrar el número de palabras
         System.out.println("La cadena tiene: " + contador + " palabras.");
+        entrada.close();
     }
 }
