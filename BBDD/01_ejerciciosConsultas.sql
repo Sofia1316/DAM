@@ -248,16 +248,42 @@ where CodigoCliente not in
 (select CodigoCliente as codCli from pagos);
 
 -- 33. Obtener un listado con el nombre de los empleados junto con el nombre de sus jefes.
-
+select empleados.CodigoEmpleado, Nombre, Apellido1, Apellido2, NombreJefe 
+from empleados
+inner join
+(select CodigoEmpleado, concat(nombre), )
 
 -- 34. Obtener el nombre de los clientes a los que no se les ha entregado a tiempo un pedido.
-
+select NombreCliente from clientes
+inner join
+(select CodigoCliente from pedidos
+where FechaEntrega > FechaEsperada
+or
+FechaEntrega is null)t1
+on Clientes.CodigoCliente = t1.CodigoCliente;
 
 -- 35. Sacar un listado de clientes indicando el nombre del cliente y cuántos pedidos ha realizado.
-
+select NombreCliente from clientes
+inner join
+(select CodigoCliente, count(CodigoPedido) as NumeroPedidos from pedidos
+group by CodigoCliente)t1
+on Clientes.CodigoCliente = t1.CodigoCliente;
 
 -- 36. Sacar un listado con los nombres de los clientes y el total pagado por cada uno de ellos.
+select * from
+(select CodigoCliente, sum(Cantidad) as TotalPagos from pagos
+group by CodigoCliente) as TotalPagos
 
+inner join
+
+(select CodigoCliente, sum(totalPedido) as totalCliente from pedidos
+inner join)
+(select CodigoPedido, sum(cantidad*PrecioUnidad) from detallepedidos
+group by CodigoPedido)t1
+on pedidos.CodigoPedido = t1.CodigoPedido
+group by CodigoCliente order by CodigoCliente) as totalPedido
+
+on TotalPagos
 
 -- 37. Sacar el nombre de los clientes que hayan hecho pedidos en 2008.
 
