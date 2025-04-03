@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 /*
-Dada una secuencia de números enteros acabada en 0, obtener la suma de aquellos números tales 
-que su número de cifras sea igual a la suma de las mismas. No se pueden utilizar Arrays.
+Crea un programa en JAVA que dibuje un triángulo equilátero formado por  asteriscos(*). Se debe 
+pedir la altura del triángulo por teclado. Además, añade  código adicional para que dibuje dicho 
+rectángulo sin relleno
 */
 
 public class ejercicioFiguras03 {
