@@ -98,14 +98,6 @@ on clientes.CodigoEmpleadoRepVentas=t1.CodigoEmpleado)as ClienteRep
 on clientes.CodigoCliente=ClienteRep.a;
 
 -- 18.a Sacar cuál fue el primer y último pago que hizo algún cliente.
-select*from
-(select IDTransaccion ultimoPago from Pagos where fechaPagos=
-(select max(FechaPago) from Pagos)t1
-,
-(select IDTransaccion primerPago from Pagos where fechaPagos=
-(select min(FechaPago) from Pagos)t2;
-
--- 18.b
 select min(FechaPago) as primer_pago, max(FechaPago) as ultimo_pago
 from pagos;
 

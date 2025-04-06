@@ -67,27 +67,62 @@ select count(*) from clientes
 where ciudad like 'M%';
 
 -- 16. Sacar el código de empleado y el número de clientes al que atiende cada representante de ventas.
-
+select CodigoEmpleado, NumCliente from
+(select CodigoEmpleado from empleados
+where Puesto = 'Representante Ventas')t1
+inner join
+(select CodigoEmpleadoRepVentas, count(NombreCliente) as NumCliente from clientes
+group by CodigoEmpleadoRepVentas)t2
+on t1.CodigoEmpleado=t2.CodigoEmpleadoRepVentas;
 
 -- 17. Sacar el número de clientes que no tiene asignado representante de ventas.
+select NombreCliente, NombreEmpresa from clientes
+
+left join
+	(select CodigoCliente as a, NombreCliente as NombreEmpresa from clientes
+inner join
+	(select CodigoEmpleado from empleados
+	where Puesto='Representante Ventas')t1
+    
+on clientes.CodigoEmpleadoRepVentas=t1.CodigoEmpleado)as ClienteRep
+on clientes.CodigoCliente=ClienteRep.a;
 
 -- 18.a Sacar cuál fue el primer y último pago que hizo algún cliente.
-
--- 18.b
+select min(FechaPago) as PP, max(FechaPago) as UP from pagos;
 
 -- 19. Sacar el código de cliente de aquellos clientes que hicieron pagos en 2008.
+select CodigoCliente, FechaPago from pagos
+where FechaPago like '2008%';
 
 -- 20. Sacar los distintos estados por los que puede pasar un pedido.
+select distinct Estado from pedidos;
 
 -- 21. Sacar el número de pedido, código de cliente, fecha requerida y fecha de entrega de los pedidos que no han sido entregados a tiempo.
+select CodigoPedido, CodigoCliente, FechaEntrega, FechaEsperada from pedidos
+where FechaEsperada < FechaEntrega
+or FechaEntrega is null;
 
 -- 22. Sacar cuántos productos existen en cada línea de pedido.
+select distinct CodigoPedido, sum(Cantidad) as CantidadProductos from detallepedidos
+group by CodigoPedido;
 
 -- 23. Sacar un listado de los 20 códigos de productos más pedidos ordenado por cantidad pedida.
+select CodigoProducto, sum(cantidad) as cantidad_total
+from detallepedidos
+group by CodigoProducto
+order by cantidad_total desc
+limit 20;
 
 -- 24. Sacar el número de pedido, código de cliente, fecha requerida y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha requerida.
+select CodigoPedido, CodigoCliente, FechaEntrega, FechaEsperada from pedidos
+where FechaEntrega = (FechaEsperada - 2);
 
--- 25. Sacar la facturación que ha tenido la empresa en toda la historia, indicando la base imponible, el IVA y el total facturado.
+-- 25. Sacar la facturación que ha tenido la empresa en toda la historia, indicando la base imponible, el IVA y el total facturado. NOTA: La base imponible se calcula sumando el coste del producto por el número de unidades vendidas. El IVA, es el 21% de la base imponible, y el total, la suma de los dos campos anteriores.
+select sum(detallepedidos.cantidad * Productos.PrecioVenta) as base_imponible, 
+       sum(detallepedidos.cantidad * Productos.PrecioVenta * 0.21) as iva,
+       sum(detallepedidos.cantidad * Productos.PrecioVenta * 1.21) as total_facturado
+from detallepedidos
+join Productos on detallepedidos.CodigoProducto = Productos.CodigoProducto;
 
 -- 26. Sacar la misma información que en la pregunta anterior, pero agrupada por código de producto filtrada por los códigos que empiecen por FR.
 
