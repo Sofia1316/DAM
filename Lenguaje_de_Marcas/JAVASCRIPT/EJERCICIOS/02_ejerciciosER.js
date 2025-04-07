@@ -141,7 +141,7 @@ buscar es “ejemplo“. Crea un script que permita resolver este desafío.
 */
 function ap4(){
     let frase = prompt("Introduce una frase:");
-    let palabraABuscar = "ejemplo"; // Palabra a buscar
+    let palabraABuscar = prompt("Introduce una palabra:");
 
     // Convertir la frase en un array de palabras
     let palabras = frase.toLowerCase().split(" ");
@@ -166,9 +166,9 @@ se debe de buscar es: “/ipsum/” y por la que se debe de reemplazar es: “do
 Crea un script que permita resolver este reto.
 */
 function ap5(){
-    let frase = "Lorem ipsum dolor sit amet, consectetur adipiscing elit";  // La frase inicial
-    let palabraABuscar = "ipsum";  // Palabra a buscar
-    let palabraDeReemplazo = "dolor";  // Palabra con la que reemplazaremos
+    let frase = prompt("Introduce una frase:");
+    let palabraABuscar = prompt("Introduce una palabra:");
+    let palabraDeReemplazo = "pokemon";  
 
     // Reemplazar la palabra usando replace con expresión regular global
     let fraseReemplazada = frase.replace(new RegExp(palabraABuscar, "g"), palabraDeReemplazo);
@@ -214,45 +214,86 @@ palabras que contiene. Posteriormente, mostrar la siguiente información:
 */
 function ap7(){
     let palabras = prompt("Introduce una cadena de texto: ");
-    let array = palabras.split(" ");
+    let array = palabras.split(" "); // separamos las palabras por espacios
+    document.writeln("La cadena introducida es: " + palabras);
 
-    // APARTADO 1
+    // APARTADO 1 Número de palabras 
     document.writeln("<h4>APARTADO 1 EJERCICIO 7</h4>");
     let contador = array.length; // contamos su longuitud directamente porque las palabras ya se han separado con el split anterior
     document.writeln("El número de palabras es de " + contador);
     
-    // APARTADO 2
+    // APARTADO 2 Primera palabra y última palabra 
     document.writeln("<h4>APARTADO 2 EJERCICIO 7</h4>");
     let inicio = array[0]; 
     let final = array[array.length - 1]; 
     document.writeln("Primera palabra: " + inicio + "<br>");
     document.writeln("Última palabra: " + final);
 
-    // APARTADO 3
+    // APARTADO 3 Las palabras colocadas en orden inverso 
     document.writeln("<h4>APARTADO 3 EJERCICIO 7</h4>");
-    let resultado = "";
+    let resultado = array.slice().reverse().join(" "); 
+    // Clonamos el array, invertimos y unimos las palabras con un espacio entre medias
+    document.writeln("Palabras invertidas: " + resultado.trim()); // trim elimina el espacio final
 
-    for(let i = array.length - 1; i >= 0; i++){
-        resultado += array[i] + " ";
-        document.writeln("Palabras invertidas: " + resultado);
-    }
+    // APARTADO 4 Las palabras ordenadas de la a la z 
+    document.writeln("<h4>APARTADO 4 EJERCICIO 7</h4>");
+    let palabrasOrdenadas = array.sort().map(String); // Ordena las palabras de la A a la Z y el map agrupa cada palabra como un "bloque" para que el programa pueda reconocer la palabra
+    document.writeln("Palabras ordenadas (A-Z): " + palabrasOrdenadas);
 
-    // APARTADO 4
+    // APARTADO 5 Las palabras ordenadas de la z a la a 
+    document.writeln("<h4>APARTADO 5 EJERCICIO 7</h4>");
+    let palabrasOrdenadasReverso = array.sort().map(String).reverse();
+    document.writeln("Palabras ordenadas (Z-A): " + palabrasOrdenadasReverso);
 
-    // APARTADO 5
-
-    // APARTADO 6
-
+    // APARTADO 6 Un mensaje indicando si la frase es un palíndromo 
+    document.writeln("<h4>APARTADO 6 EJERCICIO 7</h4>");
     
+    let cadenaLimpia = palabras.replace(/[^a-zA-Z0-9]/g, '').toLowerCase(); // Eliminar todo lo que no sea letras o números
+    let esPalindromo = true;
+
+    for(let i=0, j=cadenaLimpia.length - 1; i<j; i++, j--){
+        if(cadenaLimpia[i] !== cadenaLimpia[j]){
+            esPalindromo = false;
+            break;
+        }
+    }
+    /*
+    Por ejemplo, en este bucle for uso directamente los corchetes en vez de charAt() porque como estoy comprobando caracteres de los extremos de la cadena, si accedo con charAt() fuera de los límites de la cadena, me lo cogerá como un espacio en blanco. 
+    Mientras que con las [] si te sales de la cadena de caracteres, se te devuelve un undefined
+    */
+
+    // Imprimir el resultado
+    if (esPalindromo) {
+        document.writeln("La cadena " + palabras + " es un palíndromo.");
+    } else {
+        document.writeln("La cadena " + palabras + " no es un palíndromo.");
+    }
 }
 
+/*
+La letra del DNI se calcula dividiendo el número de documento entre 23. A partir del 
+resto, se obtiene la letra a partir de los caracteres del siguiente array.
+Codificar un script que permita comprobar si un DNI introducido es correcto. Se tendrá en 
+cuenta que: 
+    a. El último carácter sea una letra 
+    b. El resto del dato deberá ser un número entre 1 y 99.999.999. 
+    c. La letra utilizada es correcta. 
+    d. La función del script deberá devolver un valor lógico indicando si se trata de un DNI 
+    e. correcto o no. 
+    f. Codificar una página web que lea un DNI mediante prompt y escriba true o false según se trate de un DNI válido o no. 
+*/
+function ap8(){
+
+}
+
+// PARA QUE SE PUEDAN LLAMAR A LAS FUNCIONES EN EL HTML
 function load(){
     /*ap1();
     ap2();
     ap3();
     ap4();
     ap5();
-    ap6();*/
-    ap7();
+    ap6();
+    ap7();*/
 }
-window.addEventListener("DOMContentLoaded", load, false);
+//window.addEventListener("DOMContentLoaded", load, false);
