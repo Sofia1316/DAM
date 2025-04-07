@@ -127,8 +127,12 @@ join Productos on detallepedidos.CodigoProducto = Productos.CodigoProducto;
 -- 26. Sacar la misma información que en la pregunta anterior, pero agrupada por código de producto filtrada por los códigos que empiecen por FR.
 
 -- 27. Obtener el nombre del producto más caro.
+select Nombre from productos
+order by PrecioVenta desc 
+limit 1;
 
 -- 28. Obtener el nombre del producto del que más unidades se hayan vendido en un mismo pedido.
+
 
 -- 29. Obtener los clientes cuya línea de crédito sea mayor que los pagos que haya realizado.
 
