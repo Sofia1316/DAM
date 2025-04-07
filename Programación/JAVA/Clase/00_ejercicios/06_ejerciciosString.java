@@ -17,16 +17,16 @@ public class ejerciciosStrings03 {
         System.out.println("Introduce una frase: ");
         cadena = entrada.nextLine();
         
-        cadena = cadena.trim(); // Eliminamos los espacios al principio y al final de la cadena
+        cadena = cadena.trim(); // Eliminamos los espacios
         
         // Recorrer la cadena
         for (int i = 0; i < cadena.length(); i++) {
             char caracter = cadena.charAt(i);
             
-            // Si encontramos un carácter no espacio y no estamos en una palabra
+            // Si no encontramos un espacio y no estamos en una palabra
             if (caracter != ' ' && !palabra) {
-                contador++; // Contamos una nueva palabra
-                palabra = true; // Estamos dentro de una palabra
+                contador++; 
+                palabra = true; 
             } else if (caracter == ' ') {
                 palabra = false; // Si encontramos un espacio, ya no estamos en una palabra
             }
