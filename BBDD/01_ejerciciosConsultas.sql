@@ -314,54 +314,102 @@ group by CodigoOficina)t1
 on oficinas.CodigoOficina = t1.CodigoOficinaEmpleados;
 
 -- 42. Sacar un listado con el nombre de los empleados, y el nombre de sus respectivos jefes.
-
+select CodigoEmpleado, codjefe, Nombre, nomjef, Apellido1, apjef, 
+Apellido2, ap2jef from empleados
+inner join
+(select CodigoEmpleado codjefe, Nombre nomjef, Apellido1 apjef, 
+Apellido2 ap2jef from empleados) as jefes
+on empleados.CodigoJefe = jefes.codjefe;
 
 -- 43. Sacar el nombre, apellido, oficina (ciudad) y cargo del empleado que no represente a ningún cliente.
-
+select Nombre, Apellido1, Apellido2, Puesto, Ciudad from oficinas
+inner join
+(select Nombre, Apellido1, Apellido2, Puesto, CodigoOficina, rep from empleados
+left join 
+(select CodigoEmpleadoRepVentas rep from clientes)t1
+on empleados.CodigoEmpleado=t1.rep
+where rep is null)t2
+on oficinas.CodigoOficina=t2.CodigoOficina;
 
 -- 44. Sacar la media de unidades en stock de los productos agrupados por gama.
-
+select gama, avg(CantidadEnStock) from productos
+group by gama;
 
 -- 45. Sacar los clientes que residan en la misma ciudad donde hay una oficina, indicando dónde está la oficina.
-
+select * from clientes
+left join
+(select ciudad c from oficinas)t1
+on clientes.Ciudad=t1.c;
 
 -- 46. Sacar los clientes que residan en ciudades donde no hay oficinas ordenado por la ciudad donde residen.
-
+select * from clientes
+left join
+(select ciudad c from oficinas)t1
+on clientes.Ciudad=t1.c
+where c is null
+order by ciudad;
 
 -- 47. Sacar el número de clientes que tiene asignado cada representante de ventas.
-
+select CodigoEmpleadoRepVentas, count(CodigoCliente) from clientes
+inner join
+(select CodigoEmpleado from empleados
+where puesto='Representante Ventas')t1
+on clientes.CodigoEmpleadoRepVentas=t1.CodigoEmpleado
+group by CodigoEmpleadoRepVentas;
 
 -- 48. Sacar cuál fue el cliente que hizo el pago con mayor cuantía y el que hizo el pago con menor cuantía.
-
+select * from
+(select nombrecliente from clientes 
+ where codigocliente = (select codigocliente from pagos order by cantidad desc limit 1)) as clientemayorpago,
+(select max(cantidad) from pagos) as mayorpago,
+(select nombrecliente from clientes 
+ where codigocliente = (select codigocliente from pagos order by cantidad asc limit 1)) as clientemenorpago,
+(select min(cantidad) from pagos) as menorpago;
 
 -- 49. Sacar un listado con el precio total de cada pedido.
-
+select CodigoPedido, sum(Cantidad*PrecioUnidad)totalpedido
+from detallepedidos group by CodigoPedido;
 
 -- 50. Sacar los clientes que hayan hecho pedido en el 2008 por una cuantía superior a 2000 euros.
+select CodigoPedido, CodigoCliente from detallepedidos
+inner join 
+(select CodigoPedido c, CodigoCliente from pedidos
+where FechaPedido like '2008%')t1
+on detallepedidos.CodigoPedido=t1.c
+group by CodigoPedido
+having sum(cantidad*PrecioUnidad) > 2000;
+
+-- 51. Sacar cuántos pedidos tiene cada cliente en cada estado.
+select CodigoCliente, Estado, count(Estado) Cantidad from pedidos
+group by CodigoCliente,Estado;
+
+-- 52. Sacar los clientes que han pedido más de 200 unidades de cualquier producto.
+select NombreCliente from clientes
+inner join
+(select CodigoCliente, sum(Cantidad) from pedidos
+inner join
+(Select CodigoPedido, cantidad from detallepedidos)t1
+on pedidos.CodigoPedido=t1.CodigoPedido
+group by CodigoCliente
+having sum(cantidad)>200)t2
+on clientes.CodigoCliente=t2.CodigoCliente;
+
+-- 53. Obtener el nombre del cliente con mayor limite de crédito.
 
 
--- Sacar cuántos pedidos tiene cada cliente en cada estado.
+-- 54. Obtener el nombre, apellido1 y cargo de los empleados que no representen a ningún cliente.
 
 
--- Sacar los clientes que han pedido más de 200 unidades de cualquier producto.
+-- 55. Sacar un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
 
 
--- Obtener el nombre del cliente con mayor limite de crédito.
+-- 56. Mostrar el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas.
 
 
--- Obtener el nombre, apellido1 y cargo de los empleados que no representen a ningún cliente.
+-- 57. Listar las ventas totales de los productos que hayan facturado más de 3000 euros. Se mostrará el nombre, unidades vendidas, total facturado y total facturado con impuestos (21% IVA).
 
 
--- Sacar un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
+-- 58. Listar la dirección de las oficinas que tengan clientes en Fuenlabrada.
 
 
--- Mostrar el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas.
-
-
--- Listar las ventas totales de los productos que hayan facturado más de 3000 euros. Se mostrará el nombre, unidades vendidas, total facturado y total facturado con impuestos (21% IVA).
-
-
--- Listar la dirección de las oficinas que tengan clientes en Fuenlabrada.
-
-
--- Sacar el cliente que hizo el pedido de mayor cuantía-- .
+-- 59. Sacar el cliente que hizo el pedido de mayor cuantía
