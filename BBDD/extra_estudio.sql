@@ -132,13 +132,33 @@ order by PrecioVenta desc
 limit 1;
 
 -- 28. Obtener el nombre del producto del que más unidades se hayan vendido en un mismo pedido.
-
+select nombre, Cantidad from productos
+inner join
+(select CodigoProducto, Cantidad from detallepedidos
+inner join
+(select max(Cantidad) as cantidadMaxima from detallepedidos)t1
+on detallepedidos.Cantidad = t1.cantidadMaxima)t2
+on productos.CodigoProducto=t2.CodigoProducto;
 
 -- 29. Obtener los clientes cuya línea de crédito sea mayor que los pagos que haya realizado.
+select LimiteCredito, CodigoCliente from clientes
+inner join
+(select CodigoCliente as cc, sum(Cantidad) as cantidadPagada
+from pagos group by CodigoCliente)t1
+on clientes.CodigoCliente=t1.cc
+where LimiteCredito>cantidadPagada;
 
 -- 30. Sacar el producto que más unidades tiene en stock y el que menos unidades tiene en stock.
+(select nombre, cantidadenstock from productos
+order by cantidadenstock asc
+limit 1)
+union
+(select nombre, cantidadenstock from productos
+order by cantidadenstock desc
+limit 1)
 
 -- 31. Sacar el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+
 
 -- 32. Sacar la misma información que en la pregunta anterior pero solo de los clientes que no hayan hecho pagos.
 

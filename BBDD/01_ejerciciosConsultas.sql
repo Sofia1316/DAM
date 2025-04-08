@@ -395,13 +395,20 @@ having sum(cantidad)>200)t2
 on clientes.CodigoCliente=t2.CodigoCliente;
 
 -- 53. Obtener el nombre del cliente con mayor limite de crédito.
-
+select LimiteCredito, NombreCliente from clientes
+order by Limitecredito asc
+limit 1;
 
 -- 54. Obtener el nombre, apellido1 y cargo de los empleados que no representen a ningún cliente.
-
+select nombre, apellido1, puesto from empleados
+where codigoJefe is null;
 
 -- 55. Sacar un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
-
+select NombreCliente, 
+       Nombre NombreRepresentante, 
+       Apellido1 ApellidoRepresentante 
+from clientes, empleados
+where CodigoEmpleadoRepVentas = CodigoEmpleado;
 
 -- 56. Mostrar el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas.
 
