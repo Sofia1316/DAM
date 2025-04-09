@@ -158,29 +158,86 @@ order by cantidadenstock desc
 limit 1)
 
 -- 31. Sacar el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
-
+select NombreCliente, Nombrerep, ciudad from oficinas
+inner join
+(select NombreCliente, nombre as NombreRep, CodigoOficina from empleados
+inner join
+(select CodigoEmpleadoRepVentas, NombreCliente from clientes)t1
+on empleados.CodigoEmpleado=t1.CodigoEmpleadoRepVentas)t2
+on oficinas.CodigoOficina=t2.CodigoOficina;
 
 -- 32. Sacar la misma información que en la pregunta anterior pero solo de los clientes que no hayan hecho pagos.
+select CodigoCliente, NombreCliente from clientes
+where CodigoCliente not in
+(select CodigoCliente as codCli from pagos);
 
 -- 33. Obtener un listado con el nombre de los empleados junto con el nombre de sus jefes.
+select distinct CodigoEmpleadoRepVentas, Nombre from clientes
+inner join
+(select Nombre, CodigoEmpleado from empleados)t1
+on clientes.CodigoEmpleadoRepVentas=t1.CodigoEmpleado;
 
 -- 34. Obtener el nombre de los clientes a los que no se les ha entregado a tiempo un pedido.
+select distinct CodigoCliente, NombreCliente from clientes
+inner join
+(select CodigoCliente cc from pedidos
+where FechaEntrega>FechaEsperada or FechaEntrega is null)t1
+on clientes.CodigoCliente=t1.cc;
 
 -- 35. Sacar un listado de clientes indicando el nombre del cliente y cuántos pedidos ha realizado.
+select distinct CodigoCliente cc, NombreCliente from clientes
+inner join
+(select CodigoPedido, CodigoCliente cc from pedidos
+group by CodigoPedido)t1
+on clientes.CodigoCliente=t1.cc;
 
 -- 36. Sacar un listado con los nombres de los clientes y el total pagado por cada uno de ellos.
+select CodigoCliente, NombreCliente, pagoTotal from clientes
+inner join
+(select CodigoCliente c, sum(cantidad) pagoTotal from pagos
+group by CodigoCliente)t1
+on clientes.CodigoCliente=t1.c;
 
 -- 37. Sacar el nombre de los clientes que hayan hecho pedidos en 2008.
+select NombreCliente, FechaPedido from clientes
+inner join
+(select CodigoCliente, FechaPedido from pedidos
+where year(FechaPedido)='2008')t1
+on clientes.CodigoCliente=t1.CodigoCliente
 
 -- 38. Listar el nombre del cliente y el nombre y apellido de sus representantes de aquellos clientes que no hayan realizado pagos.
+select NombreCliente, Nombre, Apellido1, Apellido2 from empleados
+inner join
+(select NombreCliente, CodigoEmpleadoRepVentas, c from clientes
+left join
+(select CodigoCliente as c from pagos)t1
+on clientes.CodigoCliente=t1.c
+where c is null)t2
+on Empleados.CodigoEmpleado=t2.CodigoEmpleadoRepVentas;
 
 -- 39. Sacar un listado de clientes donde aparezca el nombre de su comercial y la ciudad donde está su oficina.
 
 -- 40. Sacar el nombre, apellidos, oficina y cargo de aquellos que no sean representantes de ventas.
+select CodigoOficina, Nombre, Apellido1, Apellido2, Puesto from oficinas
+inner join
+(select CodigoOficina co, Nombre, Apellido1, Apellido2, Puesto from empleados
+where Puesto != 'Representante Ventas')t1
+on oficinas.CodigoOficina=t1.co;
 
 -- 41. Sacar cuántos empleados tiene cada oficina, mostrando el nombre de la ciudad donde está la oficina.
+select CodigoOficina, ciudad, recuento from oficinas
+inner join
+(select count(CodigoEmpleado)recuento, CodigoOficina as co from empleados
+group by CodigoOficina)t1
+on oficinas.CodigoOficina=t1.co;
 
 -- 42. Sacar un listado con el nombre de los empleados, y el nombre de sus respectivos jefes.
+select CodigoEmpleado, codjefe, Nombre, nomjef, Apellido1, apjef, 
+Apellido2, ap2jef from empleados
+inner join
+(select CodigoEmpleado codjefe, Nombre nomjef, Apellido1 apjef, 
+Apellido2 ap2jef from empleados) as jefes
+on empleados.CodigoJefe = jefes.codjefe;
 
 -- 43. Sacar el nombre, apellido, oficina (ciudad) y cargo del empleado que no represente a ningún cliente.
 
