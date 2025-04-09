@@ -14,7 +14,7 @@ public class ejerciciosString04 {
 		System.out.println("Introduce una palabra: ");
 		palabra = entrada.nextLine();
 		
-        boolean esPalindromo = true;
+        boolean Palindromo = true;
 
         // int i = 0 (es el inicio de la cadena)
         // int j = palabra.length() - 1 (es el final de la cadena de caracteres)
@@ -22,12 +22,12 @@ public class ejerciciosString04 {
         for (int i = 0, j = palabra.length() - 1; i < j; i++, j--) {
             // Si los caracteres no son iguales, no es palíndromo
             if (palabra.charAt(i) != palabra.charAt(j)) {
-                esPalindromo = false; // indica que los caracteres no coinciden y no es palíndroma
+                Palindromo = false; // indica que los caracteres no coinciden y no es palíndroma
                 break;
             }
         }
 
-        if (esPalindromo) {
+        if (Palindromo) {
             System.out.println("Palíndromo");
         } else {
             System.out.println("No palíndromo.");
