@@ -396,12 +396,25 @@ on clientes.CodigoCliente=t2.CodigoCliente;
 
 -- 53. Obtener el nombre del cliente con mayor limite de crédito.
 select LimiteCredito, NombreCliente from clientes
-order by Limitecredito asc
+order by Limitecredito desc
 limit 1;
 
+--53.2
+select LimiteCredito, NombreCliente from clientes
+where Limitecredito =
+(select max(LimiteCredito) from clientes);
+
 -- 54. Obtener el nombre, apellido1 y cargo de los empleados que no representen a ningún cliente.
+select nombre, apellido1, puesto, c from empleados
+left join
+(select CodigoEmpleadoRepVentas c from clientes)t1
+on empleados.CodigoEmpleado=t1.c
+where c is null;
+
+-- 54.2
 select nombre, apellido1, puesto from empleados
-where codigoJefe is null;
+where CodigoEmpleado not in
+(select CodigoEmpleadoRepVentas from clientes);
 
 -- 55. Sacar un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
 select NombreCliente, 
@@ -410,13 +423,55 @@ select NombreCliente,
 from clientes, empleados
 where CodigoEmpleadoRepVentas = CodigoEmpleado;
 
--- 56. Mostrar el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas.
+-- 55.2
+select NombreCliente, 
+       Nombre NombreRepresentante, 
+       Apellido1 ApellidoRepresentante 
+from clientes
+inner join
+(select CodigoEmpleado, Nombre, Apellido1 from empleados)t1
+on clientes.CodigoEmpleadorepVentas=t1.CodigoEmpleado;
 
+-- 56. Mostrar el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas.
+select NombreCliente, Nombre, Apellido1 from empleados
+inner join
+(select CodigoCliente, NombreCliente, CodigoEmpleadoRepVentas from clientes
+left join
+(select CodigoCliente codPag from pagos)t1
+on clientes.CodigoCliente=t1.codPag
+where codPag is null)t2
+on empleados.CodigoEmpleado=t2.CodigoEmpleadoRepVentas;
 
 -- 57. Listar las ventas totales de los productos que hayan facturado más de 3000 euros. Se mostrará el nombre, unidades vendidas, total facturado y total facturado con impuestos (21% IVA).
-
+select 
+       Nombre,
+       cantidad as UnidadesVendidas,
+       totalFact,
+       (totalfact*0.21)IVA from productos
+inner join
+(select CodigoProducto CodProd, sum(cantidad*PrecioUnidad) totalFact, cantidad from detallepedidos
+where (cantidad*PrecioUnidad) > '3000'
+group by CodigoProducto, cantidad)t1
+on productos.CodigoProducto=t1.CodProd;
 
 -- 58. Listar la dirección de las oficinas que tengan clientes en Fuenlabrada.
-
+select LineaDireccion1, LineaDireccion2 from oficinas
+inner join
+(select CodigoOficina from empleados
+inner join
+(select CodigoEmpleadoRepVentas from clientes
+where ciudad='Fuenlabrada')t1
+on empleados.CodigoEmpleado=t1.CodigoEmpleadoRepVentas)t2
+on oficinas.CodigoOficina=t2.CodigoOficina;
 
 -- 59. Sacar el cliente que hizo el pedido de mayor cuantía
+select c, cp, facturado, nombreCliente from clientes
+inner join
+(select CodigoCliente c, facturado, cp from pedidos
+inner join
+(select CodigoPedido cp, sum(cantidad*PrecioUnidad) facturado from detallepedidos
+group by CodigoPedido
+order by facturado desc
+limit 1)t1
+on pedidos.CodigoPedido=t1.cp)t2
+on clientes.CodigoCliente=t2.c;
