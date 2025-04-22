@@ -17,14 +17,12 @@ static Scanner entrada = new Scanner(System.in);
         
         // TRIÁNGULO EQUILATERO RELLENO
         System.out.print("\nIntroduce la altura del triángulo equilátero: ");
-        for (int i = 1; i <= alturaEquilatero; i++) {
-            // Imprimir espacios antes de los asteriscos
-            for (int j = 1; j <= alturaEquilatero - i; j++) {
+        for (int i = 0; i < alturaEquilatero; i++) {
+            for (int j = 0; j < alturaEquilatero - i; j++) { // Espacios
                 System.out.print(" ");
             }
-            // Imprimir los asteriscos
-            for (int k = 1; k <= (2 * i - 1); k++) {
-                System.out.print("*");
+            for (int k = 0; k < i; k++) { // Asteriscos
+                System.out.print("* ");
             }
             System.out.println();
         }
