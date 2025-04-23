@@ -10,6 +10,11 @@ function cambiarTexto(){
     document.body.innerHTML="HOLA";
 }
 
+function mostrarDatos(){
+    let nombre=document.getElementById("nombre").value;
+    document.getElementById("resultado").innerHTML='valor: ${nombre}';
+}
+
 function load(){
     let boton = document.querySelector("button");
     boton.addEventListener("click", cambiarFondo, false);
@@ -18,6 +23,8 @@ function load(){
     boton2.addEventListener("click", cambiarTexto, false);
 
     let CuadroTexto=document.getElementById("CuadroTexto");
-    CuadroTexto.addEventListener("keydown", (event)=>);
+    CuadroTexto.addEventListener("keydown", (event)=>(document.getElementById("textoSalida").textContent += `${event.key}`));
+
+    zona.addEventListener("mousemove", (event)=>(document.getElementById("coordenadas").textContent = `Coordenadas: x=${event.clientX} y Y=${event.clientY}`));
 }
 window.addEventListener("DOMContentLoaded", load, false);
