@@ -1,0 +1,82 @@
+APUNTES DE JAVASCRIPT:
+
+1. VARIABLES
+    - Let variable = valor; --> Variables normales
+    - Const variable = nº; --> Variables constantes
+    - Number (equivalente a float)
+    - Infinity (es mayor que cualquier número)
+    - NaN (error)
+    - BigInt (representa los valores que no puede number)
+    - String
+        - Se puede hacer uso de comillas simples o dobles
+        - ``: comillas de funcionalidad extendida, por ejemplo
+            let name = "sofia";
+            alert(`Hola, ${name}`); // Hola, sofia
+    - Boolean
+    - Null / indefined
+    - Object (almacenar colección de datos)
+
+2. ITERACCIÓN USUARIO
+    - alert --> mensaje con botón de aceptar
+    - prompt --> mensaje con botón de aceptar y rechazar
+        prompt(title, [default]); 
+            • Title: texto para mostrar 
+            • Default: dato por defecto 
+    - confirm --> pregunta con opciones de OK y cancelar
+    - document.writeln(); --> es el printf
+
+3. DECLARACIÓN FUNCIÓN NORMAL
+    Function nombre(parametro1,parametro2…){ 
+        Contenido 
+    } 
+
+    - Para devolver un valor se utiliza return 
+        return; --> es lo mismo que undefined 
+    
+    - Nomenclatura de funciones: 
+        "get…" – devuelven un valor, 
+        "calc…" – calculan algo, 
+        "create…" – crean algo, 
+        "check…" – revisan algo y devuelven un boolean, etc. 
+
+4. DECLARACIÓN FUNCIÓN FLECHA
+    - let func = (arg1, arg2, ..., argN) => expression; 
+        let func = function(arg1, arg2, ..., argN) { return expression; };a la expresión corta de poner: 
+            Ejemplo: 
+            let sum = (a, b) => a + b; 
+            let sum = function(a, b) { return a + b; }; 
+
+    - Funciones flecha multilinea 
+        let sum = (a, b) => { // la llave abre una función multilínea  
+        let result = a + b;  
+        return result; // si usamos llaves, entonces necesitamos un "return" explícito };
+
+5. FUNCIONES BÁSICAS
+    - length, calcula número de caracteres(variable.length) 
+    - +, concatenar cadenas 
+    - toUpperCase(), caracteres en mayúsculas (Variable.toUpperCase();)
+    - toLowerCase(), caracteres en minúsculas. 
+    - indexOf(caracter), calcula la posición en la que se encuentra el carácter indicado dentro de la cadena de texto. Si el 
+        carácter se incluye varias veces dentro de la cadena de texto, se devuelve su primera posición empezando a buscar 
+        desde la izquierda. Si la cadena no contiene el carácter, la función devuelve el valor -1. 
+    - lastIndexOf(caracter), calcula la última posición en la que se encuentra el carácter indicado dentro de la cadena de 
+        texto. Si la cadena no contiene el carácter, la función devuelve el valor -1. 
+    - substring(inicio, final), extrae una porción de una cadena de texto. El segundo parámetro es opcional. Si sólo se 
+        indica el parámetro inicio, la función devuelve la parte de la cadena original correspondiente desde esa posición hasta el final. 
+        Si se indica un inicio negativo, se devuelve la misma cadena original 
+    - split(separador), convierte una cadena de texto en un array de cadenas de texto. La función parte la cadena de texto 
+        determinando sus trozos a partir del carácter separador 
+
+6. ARRAYS (let array = [“Dato1", “Dato2"] )
+    - Array[i] --> acceder a un elemento
+    - length, calcula el número de elementos de un array 
+    - concat(), concatena los elementos de varios arrays 
+    - join(separador),  es la función contraria a split(). Une todos los elementos de un array para 
+                        formar una cadena de texto. Para unir los elementos se utiliza el carácter separador indicador 
+    - pop(), elimina el último elemento del array y lo devuelve. El array original se modifica y su longitud disminuye en 1 elemento 
+    - push(), añade un elemento al final del array. El array original se modifica (También es posible añadir más de un elemento a la vez) 
+    - shift(), elimina el primer elemento del array y lo devuelve.
+    - unshift(), añade un elemento al principio del array. El array original se modifica (También es posible añadir más de un elemento a la vez) 
+    - reverse(), modifica un array colocando sus elementos en el orden inverso a su posición original
+
+7. DOM
