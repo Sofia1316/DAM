@@ -5,6 +5,10 @@ if (condición) {
 } else {
     instrucciones a ejecutar si la condición es falsa
 }
+
+condición:
+    - variable.equals("lo que introduzcas de tipo string")
+    - como en C los números ( >, <, ==...)
 */
 
 public class SentenciaIf01 {
