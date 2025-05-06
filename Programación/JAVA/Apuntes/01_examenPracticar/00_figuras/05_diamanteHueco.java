@@ -14,7 +14,6 @@ public class figura00 {
         System.out.print("Introduce el tamaño del diamante (impar): ");
         altura = entrada.nextInt();
 
-
         // Parte de arriba
         relleno = 1;
         vacio = altura / 2;

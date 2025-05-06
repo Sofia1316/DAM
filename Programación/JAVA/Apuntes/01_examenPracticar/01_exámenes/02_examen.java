@@ -1,7 +1,6 @@
 /*
 3. Mostrar la serie de Fibonacci en un rango (2 puntos)
 Crea una aplicación que muestre los números de la serie de Fibonacci que no superen un número límite indicado por el usuario.
-
 La serie de Fibonacci comienza con 0 y 1, y cada número siguiente es la suma de los dos anteriores.
 
 Ejemplo de salida si el usuario introduce 20:
@@ -10,9 +9,7 @@ Ejemplo de salida si el usuario introduce 20:
 Requisitos:
 
 Pedir al usuario el número límite superior.
-
 Mostrar la serie hasta que el siguiente número supere el límite.
-
 Se recomienda usar un método para generar la serie.
 */
 package examenes;
@@ -43,7 +40,6 @@ public class examen6 {
             b = siguiente;
             siguiente = a + b;
         }
-        System.out.println(); 
 	}
 }
 
