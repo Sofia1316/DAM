@@ -1,0 +1,26 @@
+table { 
+    border-collapse: collapse; 
+    margin: 8px; 
+    align-items: center;
+}
+input { 
+    width: 28px; 
+    text-align: center; 
+}
+button { 
+    width: 30px; 
+    height: 30px; 
+}
+.tableros { 
+    display: flex; 
+    gap: 40px; 
+    width: 60%;
+}
+h1{
+    background-color: aquamarine;
+    padding: 10px;
+}
+h3{
+    background-color: blueviolet;
+    padding: 10px;
+}
