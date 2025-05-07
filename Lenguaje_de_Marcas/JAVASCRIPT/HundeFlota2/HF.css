@@ -1,0 +1,10 @@
+table, td, tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+    background-color: rgb(194, 236, 222);
+}
+.titulo{
+    background-color:darkcyan;
+    display: inline;
+}
