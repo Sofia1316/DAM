@@ -79,4 +79,35 @@ APUNTES DE JAVASCRIPT:
     - unshift(), añade un elemento al principio del array. El array original se modifica (También es posible añadir más de un elemento a la vez) 
     - reverse(), modifica un array colocando sus elementos en el orden inverso a su posición original
 
-7. DOM
+7. EVENTOS
+    <button id="miBoton">Haz clic</button>
+
+    <script>
+    document.getElementById("miBoton").addEventListener("click", function() {
+        alert("¡Hiciste clic en el botón!");
+    });
+    </script>
+
+    TIPOS:
+    - click
+    - keydown (presiona teclas)
+    - submit (enviar formulario)
+
+8. MANIPULAR DOM
+    - getElementById() --> Sirve para acceder a un elemento HTML por su atributo id.
+
+    <p id="miParrafo">Hola mundo</p>
+    <script>
+    let parrafo = document.getElementById("miParrafo");
+    parrafo.textContent = "Texto cambiado desde JavaScript";
+    </script>
+
+    - addEventListener() --> Permite asociar un evento a un elemento
+    function saludar() {
+        alert("¡Hola!");
+    }
+    boton.addEventListener("click", saludar);
+
+    - querySelectorAll() --> Devuelve todos los elementos que coincidan con el selector.
+    let primerDiv = document.querySelector("div");
+    let todosLosParrafos = document.querySelectorAll("p");
