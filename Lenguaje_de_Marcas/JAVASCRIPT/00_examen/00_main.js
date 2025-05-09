@@ -81,10 +81,95 @@ function apartado7() {
     document.getElementById("numeroAleatorio").textContent = numero; // Mostrar el número generado
 }
 
-function reiniciarNumero() {
+function apartado7b() {
     document.getElementById("numeroAleatorio").textContent = "-"; // Reiniciar el valor mostrado a "-"
 }
 
+/* Crea un reloj que haga una cuenta  atrás del número que le hayas insertado a 
+través de un campo de formulario. */
+function apartado8() {
+    let segundos = parseInt(document.getElementById("tiempo").value);
+    let mostrar = document.getElementById("mostrar");
+
+    let intervalo = setInterval(function () {
+        mostrar.textContent = "Tiempo: " + segundos;
+        segundos--;
+
+        if (segundos < 0) {
+            clearInterval(intervalo);
+            mostrar.textContent = "¡Tiempo terminado!";
+        }
+    }, 1000);
+}
+
+// Crea una tabla en HTML e intenta que dando un botón se relenen todas las celdas con números secuenciales.
+function apartado9() {
+    let celdas = document.querySelectorAll("#miTabla td");
+    for (let i = 0; i < celdas.length; i++) {
+        celdas[i].textContent = i + 1;
+    }
+}
+
+// Crea una caja de texto que cambia de color dependiendo de qué tecla pulses. Así se ve rápidamente cómo funciona el evento keydown.
+function apartado10(e) {
+    let ap10 = document.getElementById("ap10");
+    let tecla = e.key.toLowerCase();
+
+    if (tecla === "r"){
+        ap10.style.backgroundColor = "red";
+    } else if (tecla === "g") {
+        ap10.style.backgroundColor = "green";
+    } else if (tecla === "b") {
+        ap10.style.backgroundColor = "blue";
+    } else if (tecla === "y"){
+        ap10.style.backgroundColor = "yellow";
+    } 
+}
+
+// 
+// PARTE 1; generar número aleatorio a buscar
+let numeroAdivinar = 0;
+let intentos = 3;
+
+function random(numero){
+    let numAleatorio = Math.floor(Math.random() * (numero + 1));
+    return numAleatorio;
+}
+
+function generarNumero(){
+    numeroAdivinar = random(9);
+    document.getElementById("numeroAdivinar").textContent = numeroAdivinar;
+}
+
+// PARTE 2; rellenar la matriz con números aleatorios
+let matriz = [[0,0,0], [0,0,0], [0,0,0]];
+
+function rellenarMatriz(){
+    for(let i = 0; i < 3; i++){
+        for(let j = 0; j < 3; j++){
+            matriz[i][j] = random(9);
+        } 
+    }
+}
+
+function comprobarNumero(event){
+    let i = parseInt(event.target.value[0]);
+    let j = parseInt(event.target.value[1]);
+
+    if(matriz[i][j] === numeroAdivinar){
+        document.getElementById(event.target.value).textContent = matriz[i][j];
+    } else {
+        alert("No es el mismo número");
+        console.log(matriz[i][j]);
+        event.target.disabled = true;
+    }
+
+    document.getElementById("intentos").textContent = --intentos;
+
+    if (intentos === 0) {
+        alert("¡Has perdido!");
+    }
+}
 
 // MAIN
 function load() {
@@ -105,9 +190,24 @@ function load() {
 
     apartado6();
 
+    // APARTADO 7
     document.getElementById("ap7").addEventListener("click", apartado7); // Generar número aleatorio
-    document.getElementById("reiniciarBtn").addEventListener("click", reiniciarNumero); // Reiniciar número
+    document.getElementById("ap7b").addEventListener("click", apartado7b); // Reiniciar número
 
+    let boton8 = document.getElementById("ap8");
+    boton8.addEventListener("click", apartado8);
+
+    let boton9 = document.getElementById("ap9");
+    boton9.addEventListener("click", apartado9);
+
+    // APARTADO 10
+    document.addEventListener("keydown", apartado10);
+
+    // APARTADO 11
+    generarNumero();
+    rellenarMatriz();
+    let botones = document.querySelectorAll("button");
+    botones.forEach(boton => boton.addEventListener("click", comprobarNumero));
 }
 
 window.addEventListener("DOMContentLoaded", load);
