@@ -171,6 +171,22 @@ function comprobarNumero(event){
     }
 }
 
+/* Crea una tabla 3x3 dónde se relene de letras aleatorias del abecedario, se generará 
+un número y una letra y hay que darle a  las letras que son tantas veces como 
+indique el número. Hay que asegurarse que el número de letra está en la matriz */
+// PARTE 1; generar letra del abecedario aleatoria
+let letraAdivinar = 0;
+
+function random2(numero){
+    let 
+}
+
+// PARTE 2; rellenar la matriz
+function comprobarLetra(){
+
+}
+
+
 // MAIN
 function load() {
     let boton1 = document.getElementById("ap1");
@@ -208,6 +224,10 @@ function load() {
     rellenarMatriz();
     let botones = document.querySelectorAll("button");
     botones.forEach(boton => boton.addEventListener("click", comprobarNumero));
+
+    // APARTADO 12
+    let boton12 = document.getElementById("button");
+    boton12.forEach("click", comprobarLetra);
 }
 
 window.addEventListener("DOMContentLoaded", load);

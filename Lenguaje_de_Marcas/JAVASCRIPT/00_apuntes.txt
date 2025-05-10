@@ -81,12 +81,11 @@ APUNTES DE JAVASCRIPT:
 
 7. EVENTOS
     <button id="miBoton">Haz clic</button>
-
-    <script>
-    document.getElementById("miBoton").addEventListener("click", function() {
-        alert("¡Hiciste clic en el botón!");
-    });
-    </script>
+                <script>
+                document.getElementById("miBoton").addEventListener("click", function() {
+                    alert("¡Hiciste clic en el botón!");
+                });
+                </script>
 
     TIPOS:
     - click
@@ -95,19 +94,27 @@ APUNTES DE JAVASCRIPT:
 
 8. MANIPULAR DOM
     - getElementById() --> Sirve para acceder a un elemento HTML por su atributo id.
-
-    <p id="miParrafo">Hola mundo</p>
-    <script>
-    let parrafo = document.getElementById("miParrafo");
-    parrafo.textContent = "Texto cambiado desde JavaScript";
-    </script>
+                <p id="miParrafo">Hola mundo</p>
+                <script>
+                let parrafo = document.getElementById("miParrafo");
+                parrafo.textContent = "Texto cambiado desde JavaScript";
+                </script>
 
     - addEventListener() --> Permite asociar un evento a un elemento
-    function saludar() {
-        alert("¡Hola!");
-    }
-    boton.addEventListener("click", saludar);
+                function saludar() {
+                    alert("¡Hola!");
+                }
+                boton.addEventListener("click", saludar);
 
     - querySelectorAll() --> Devuelve todos los elementos que coincidan con el selector.
-    let primerDiv = document.querySelector("div");
-    let todosLosParrafos = document.querySelectorAll("p");
+                let primerDiv = document.querySelector("div");
+                let todosLosParrafos = document.querySelectorAll("p");
+
+    - forEach() --> para recorrer arrays y ejecutar una función para cada elemento del array.
+                const letras = Array.from(document.querySelectorAll("td")).map(td => td.textContent);
+                let contador = 0;
+                letras.forEach(letra => {
+                    if (letra === letraObjetivo) {
+                        contador++;
+                    }
+                });
