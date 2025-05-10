@@ -33,16 +33,11 @@ function comprobar(event){
     }
 }
 
-function cambiarColor(){
-    document.getElementById('')
-}
-
 function principal(){
     generarMatriz();
 
     let botones = document.querySelectorAll(".boton");
     botones.forEach(boton => boton.addEventListener("click", comprobar));
 
-    document.getElementById('a').addEventListener("mouseover", cambiarColor);
 }
 window.addEventListener("DOMContentLoaded", principal);
