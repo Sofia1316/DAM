@@ -8,7 +8,7 @@ function random(numero){
 }
 
 function generarMatriz(){
-     // Reiniciar matriz a ceros
+    // Reiniciar matriz a ceros
     matriz = [
         [0, 0],
         [0, 0]

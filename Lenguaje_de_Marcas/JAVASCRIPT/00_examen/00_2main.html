@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practicar part2</title>
+    <script src="00_2main.js"></script>
+</head>
+<body>
+    <h3>APARTADO 12; letras aleatorias</h3>
+    <p>
+        Letra generada: <span id="letra"></span>
+        <br>
+        Número de veces: <span id="num"></span>
+    </p>
+    <table>
+        <tr>
+            <td id="00"><button class="boton" value="00">X</button></td>
+            <td id="01"><button class="boton" value="01">X</button></td>
+            <td id="02"><button class="boton" value="02">X</button></td>
+        </tr>
+        <tr>
+            <td id="10"><button class="boton" value="10">X</button></td>
+            <td id="11"><button class="boton" value="11">X</button></td>
+            <td id="12"><button class="boton" value="12">X</button></td>
+        </tr>
+        <tr>
+            <td id="20"><button class="boton" value="20">X</button></td>
+            <td id="21"><button class="boton" value="21">X</button></td>
+            <td id="22"><button class="boton" value="22">X</button></td>
+        </tr>
+    </table>
+
+    <h3>APARTADO 13; contador de colores</h3>
+    <button id="inicio">Iniciar contador</button>
+    <button id="detener">Detener contador</button>
+    <div id="contador">0</div>
+
+    <h3>APARTADO 14; fibonacci</h3>
+    <p>
+        Introduce hasta qué número quieres ver la serie fibonacci: 
+        <input type="number" id="fibo">
+        <button id="ap14">Pulsa para ver</button>
+    </p>
+    <p id="respuesta"></p> 
+
+    <h3>APARTADO 15; formulario limites</h3>
+    <form>
+        Introduce el nombre: <input type="text" id="nom">
+        Introduce la edad: <input type="number" id="ed">
+        <p>Caritas:<input type="radio" name="estado" value="triste"> Triste
+        <input type="radio" name="estado" value="bien"> Bien
+        <input type="radio" name="estado" value="contento"> Contento
+        <input type="radio" name="estado" value="feliz"> Feliz</p>
+        <input type="number" id="numeroBase" placeholder="Introduce un número"><br>
+        
+        <button id="enviar">Enviar formulario</button>
+    </form>
+</body>
+</html>

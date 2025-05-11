@@ -41,12 +41,29 @@ function codificarTexto(event) {
 usuario debe escribir en la casi la indicada, la letra indicada. Si no, dará un mensaje 
 de error que se ha equivocado. Las letras y el número se van generando 
 aleatoriamente cada 2 segundos.*/
-let letraAdivinar;
-let coordenadaI;
-let coordenadaJ;
+function random(numero){
+    return Math.floor(Math.random()*(numero+1))
+}
+function generarDatos(){
+    letraAdivinar=abecedario[random(27)];
+    coordenadaI=random(1);
+    coordenadaJ=random(1);
+    document.getElementById("letra").textContent=letraAdivinar;
+    document.getElementById("i").textContent=coordenadaI;
+    document.getElementById("j").textContent=coordenadaJ;
+}
+function colocarCasillas(event){
+    let i=event.target.name[0];
+    let j=event.target.name[1];
+    let letra= event.target.value;
 
-
-
+    console.log(i+","+j+"->"+letra+" letra para adivinar: "+letraAdivinar);
+    if(i==coordenadaI && j==coordenadaJ && letraAdivinar==letra){
+        document.getElementById(event.target.name).textContent=letra;
+    }else{
+        alert("has fallado");
+    }
+}
 // -------------------------------- MAIN -----------------------------
 function load() {
     // EJERCICIO 1
@@ -54,10 +71,10 @@ function load() {
     entrada.addEventListener("keydown", codificarTexto);
 
     // EJERCICIO 2
-    let letras = document.querySelectorAll(".letra");
-    letras.forEach(i=>i.addEventListener("keydown"));
-
-    
+    generarDatos();
+    intervalo=setInterval(generarDatos,5000);
+    let letras=document.querySelectorAll(".letra");
+    letras.forEach(i=>i.addEventListener("input",colocarCasillas));
 }
 
 window.addEventListener("DOMContentLoaded", load);
