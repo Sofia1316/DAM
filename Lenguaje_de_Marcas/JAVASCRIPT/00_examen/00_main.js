@@ -1,6 +1,7 @@
 // EJERCICIO 1; Crea un programa que insertando un número en un cuadro de formulario indique si es par o impar.
 function apartado1() {
     let numero = document.getElementById("numero").value;
+    let resultado = document.getElementById("resultado");
 
     if (isNaN(numero)) {
         resultado.textContent = "Por favor, introduce un número válido.";
@@ -16,7 +17,7 @@ function apartado2(){
     document.body.style.background = "lightblue";
 }
 
-// EJERCCIIO 3; añadir nombre al documento html
+// EJERCICIO 3; añadir nombre al documento html
 function apartado3(){
     document.getElementById("resultado2").innerHTML = "Sofía López";
 }
@@ -41,18 +42,19 @@ El resultado se muestra al dar al botón.*/
 function apartado5() {
     let porcentaje = parseFloat(document.getElementById("descuento").value); 
     let precio = parseFloat(document.getElementById("precio").value);
+    let resultado5 = document.getElementById("resultado5");
 
     // Verificar que el descuento esté en el rango correcto
     if (porcentaje > 100 || porcentaje < 0) {
         alert("El descuento debe ser entre 0 y 100");
-    } else {
-        // Calcular el precio con el descuento aplicado
-        let calculo1 = (porcentaje / 100) * precio;
-        let calculo2 = precio - calculo1;
+        return;
+    } 
+    // Calcular el precio con el descuento aplicado
+    let calculo1 = (porcentaje / 100) * precio;
+    let calculo2 = precio - calculo1;
 
-        // Mostrar el resultado en el campo de "resultado"
-        document.getElementById("resultado").value = "El precio con descuento es: " + calculo2;
-    }
+    // Mostrar el resultado en el campo de "resultado"
+    resultado5.value = calculo2;
 }
 
 /* Crea un botón que inicie un contador empezando por el 1 y cada vez que se le da a ese botón se incrementa el tiempo, 
@@ -78,7 +80,8 @@ function apartado6() {
 un botón que diga número aleatorio */
 function apartado7() {
     let numero = Math.floor(Math.random() * 100) + 1; // Número entre 1 y 100
-    document.getElementById("numeroAleatorio").textContent = numero; // Mostrar el número generado
+    let aleat = document.getElementById("numeroAleatorio");
+    aleat.textContent = numero; // Mostrar el número generado
 }
 
 function apartado7b() {
@@ -174,7 +177,10 @@ function comprobarNumero(event){
 // MAIN
 function load() {
     let boton1 = document.getElementById("ap1");
-    boton1.addEventListener("submit", apartado1);
+    boton1.addEventListener("submit", function(event){
+        event.preventDefault();
+        apartado1();
+    });
 
     let boton2 = document.getElementById("ap2");
     boton2.addEventListener("click", apartado2);
