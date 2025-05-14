@@ -30,10 +30,40 @@ end$$
 delimiter ;
 
 -- 3. Un procedimiento que saca el nombre de empleados y su jefe según la ciudad de la oficina
+delimiter //
+create procedure ejercicio3(in ciudadEmpleado varchar(30))
+begin
+select Nombre, Apellido1, Apellido2, NombreJefe, ApellidoJefe, ApellidoJefe2, ciudad
+from oficinas
+inner join
+		(select Nombre, Apellido1, Apellido2, NombreJefe, ApellidoJefe, ApellidoJefe2, CodigoOficina 
+		from empleados
+	inner join
+		(select CodigoEmpleado, Nombre NombreJefe, Apellido1 
+		ApellidoJefe, Apellido2 ApellidoJefe2 from empleados)jefe 
+	on empleados.CodigoJefe = jefe.CodigoEmpleado)t1
+on oficinas.codigoOficina=t1.codigoOficina
+where ciudad = ciudadEmpleado;
+end //
+delimiter ;
 
--- 4. Un procedimiento que dado un cliente saque el estado de los pedidos que no estén cancelados
+-- 4. Un procedimiento que dado un cliente saque el estado de los pedidos que no estén rechazado
+delimiter //
+create procedure ejercicio4(in clientePedidoNoRechazado int)
+begin
+select CodigoPedido, Estado, CodigoCliente from pedidos
+where CodigoCliente = clientePedidoNoRechazado and estado!='rechazado';
+end //
+delimiter ;
 
 -- 5. Un procedimiento que dado un nombre de producto saque el producto con su precio.
+delimiter //
+create procedure precioProducto(in nombreProductoPrecio varchar(30))
+begin
+select distinct CodigoProducto, Nombre, PrecioVenta from productos
+where Nombre = nombreProductoPrecio;
+end //
+delimiter ;
 
 -- 6. Un procedimiento que inserte un nuevo pedido de un cliente, los productos, y la cantidad.
 

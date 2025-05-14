@@ -1,0 +1,31 @@
+1. CONSULTA BASE:
+select * columna1, columna2.... from tabla where
+    - campo = valor
+    - campo like parámetro (%)
+
+2. FUNCIONES AGREGADAS:
+    - order by (asc / desc)
+    - select count(*) / sum(*) from tabla
+    - select count(columna) from tabla group by campo
+
+3. OPERACIONES
+- PRODUCTO CARTESIANO --> junta dos tablas en una sola sin tener nada en común
+    - select * from tabla1, tabla2;
+
+- JOIN --> solo junta las tablas con columnas comunes(y el mismo tipo de dato, normalmente una PK y una FK)
+    1. INNER JOIN:
+        - Los que han comprado productos mayor a 500€
+        select nombre, precio_total, cantidad from clientes
+        inner join
+        (select id_cliente, precio_total, cantidad from ventas
+        where precio_total > 500)t1
+        on clientes.id_cliente = t1.id_cliente;
+    2. LEFT JOIN: el conjunto izquiero es más grande que el derecho
+        select nombre, cantidad from clientes
+        left join 
+        ventas
+        on clientes.id_cliente = ventas.id_cliente
+        where cantidad is NULL; 
+    3. RIGHT JOIN:
+
+- UNION --> mismo número de columas con el mismo tipo de datos
