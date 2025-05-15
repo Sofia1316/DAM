@@ -66,7 +66,58 @@ end //
 delimiter ;
 
 -- 6. Un procedimiento que inserte un nuevo pedido de un cliente, los productos, y la cantidad.
+delimiter //
+create procedure nuevoPedido(
+	in codPedido int, in codCliente int, in fec date, in est varchar(15), in codProducto varchar(15), in cant int)
+begin
+INSERT INTO pedidos (
+        CodigoPedido,
+        FechaPedido,
+        FechaEsperada,
+        Estado,
+        CodigoCliente
+    ) VALUES (
+        codPedido,
+        fec,
+		DATE_ADD(fec, INTERVAL 7 DAY),
+    	est,
+        codCliente
+    );
+
+INSERT INTO detallepedidos (
+        CodigoPedido,
+        CodigoProducto,
+        Cantidad,
+        PrecioUnidad,
+        NumeroLinea
+    )
+    SELECT 
+        codPedido,
+        codProducto,
+        cant,
+        precio_venta,
+        1
+    FROM productos
+    WHERE CodigoProducto = codProducto;
+end //
+delimiter ;
 
 -- 7. Un procedimiento que modifique el nombre de un producto
+delimiter //
+create procedure modificarNomProd(in codProd varchar(10), in nombreProd varchar(40))
+begin
+	update productos
+    set Nombre = nombreProd
+    where CodigoProducto = codProd;
+end //
+delimiter ;
 
 -- 8. Un procedimiento que modifique el estado de un pedido.
+delimiter //
+create procedure modificarEstadoPedido(in codPedido int, in estadoPedido varchar(25))
+begin
+	update pedidos
+    set estado = estadoPedido
+    where CodigoPedido = codPedido;
+end //
+delimiter ;
