@@ -1,53 +1,25 @@
 package POO2;
 
+import java.util.Arrays;
+
 enum Sexo{
 	hombre,
 	mujer
 }
 
-public class alumno{
-	String dni;
-	String nombre;
-	String apellido;
+public class alumno extends persona{
 	String fechaNacimiento;
 	Sexo genero;
 	boolean repetidor;
 	modulo[] matriculadoModulo;
 	
-	public alumno(String dni, String nombre, String apellido, String fechaNacimiento, Sexo genero, boolean repetidor,
-			modulo []matriculadoModulo) {
-		super();
-		this.dni = dni;
-		this.nombre = nombre;
-		this.apellido = apellido;
+	public alumno(String dni, String nombre, String apellido, double salario, String fechaNacimiento, Sexo genero,
+			boolean repetidor, modulo[] matriculadoModulo) {
+		super(dni, nombre, apellido, salario);
 		this.fechaNacimiento = fechaNacimiento;
 		this.genero = genero;
 		this.repetidor = repetidor;
 		this.matriculadoModulo = matriculadoModulo;
-	}
-
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
 	}
 
 	public String getFechaNacimiento() {
@@ -84,9 +56,9 @@ public class alumno{
 
 	@Override
 	public String toString() {
-		return "alumno [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento="
-				+ fechaNacimiento + ", genero=" + genero + ", repetidor=" + repetidor + ", matriculadoModulo="
-				+ matriculadoModulo + "]";
+		return "alumno [fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", repetidor=" + repetidor
+				+ ", matriculadoModulo=" + Arrays.toString(matriculadoModulo) + ", dni=" + dni + ", nombre=" + nombre
+				+ ", Apellido=" + Apellido + ", salario=" + salario + "]";
 	}
-	
+
 }
