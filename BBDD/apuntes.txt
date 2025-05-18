@@ -29,3 +29,38 @@ select * columna1, columna2.... from tabla where
     3. RIGHT JOIN:
 
 - UNION --> mismo número de columas con el mismo tipo de datos
+
+4. Declare variable --> Declaración de variables locales 
+
+5. Set variable --> Asignación de valores a las variables locales: 
+        ejemplo:
+                set nombre_cliente = 'Luis García';
+                set total_pedido = 150.50;
+
+                -- También puedes asignar el resultado de una consulta:
+                select sum(precio_unidad * cantidad) into total_pedido
+                from detalle_pedidos
+                where codigo_pedido = 101;
+
+6. Condicional if-else:
+        Sintaxis:
+                if condicion then
+                    -- instrucciones si se cumple
+                else
+                    -- instrucciones si NO se cumple
+                end if;
+
+        Ejemplo:
+                if total_pedido > 500 then
+                    set mensaje = 'Pedido grande';
+                else
+                    set mensaje = 'Pedido normal';
+                end if;
+
+7. Concatenar cadenas_
+        Ejemplo:
+                declare nombre_completo varchar(100);
+                set nombre_completo = concat('Luis', ' ', 'García');  -- Resultado: 'Luis García'
+
+        También puedes incluir valores dinámicos:
+                set mensaje = concat('El total del pedido es: ', total_pedido);

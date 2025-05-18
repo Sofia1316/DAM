@@ -121,3 +121,145 @@ begin
     where CodigoPedido = codPedido;
 end //
 delimiter ;
+
+-- 9. Crea un procedimiento que dado la ubicación de la oficina devuelva el país y el número de empleados de ese país.
+delimiter //
+create procedure ubiOficina(in ciudadOficina varchar(50))
+begin
+    select Pais, count(*) as numEmp from oficinas
+    inner join empleados on empleados.codigoOficina = oficinas.codigoOficina
+    where oficinas.ciudad = ciudadOficina
+    group by oficinas.pais;
+end //
+delimiter ;
+
+-- 10. Crea un procedimiento para que se pueda realizar un pedido y darse de alta como cliente a la vez.
+delimiter //
+create procedure PedidoYAlta(
+in codCliente int,
+in nombre varchar(25),
+in telf int,
+in fax int,
+in direc varchar(25),
+in limCred int,
+
+in codPedido int,
+in fecha date,
+in estd varchar(15)
+) 
+begin
+	insert into cliente(
+    CodigoCliente,
+    NombreCliente,
+    Telefono,
+    Fax,
+    LineaDireccion1,
+    LimiteCredito
+    ) values (
+    codCliente,
+	nombre,
+	telf,
+	fax,
+	direc,
+	limCred);
+    
+    insert into pedido(
+    CodigoPedido,
+    FechaPedido,
+    Estado
+    ) values (
+    CodPedido,
+    fecha,
+    estd
+    );
+end //
+delimiter ;
+
+-- 11. Crea un procedimiento que inserte automáticamente una vez que se realice el pedido, los datos en pagos.
+delimiter //
+create procedure pedidoPagosDatos(
+    in codPedido int,
+    in codCliente int,
+    in fecha date,
+    in fechaEsperada date,
+    in estado varchar(15))
+begin
+    insert into pedidos(
+        CodigoPedido,
+        FechaPedido,
+        FechaEsperada,
+        Estado,
+        CodigoCliente
+    ) values (
+        codPedido,
+        fecha,
+        fechaEsperada,
+        estado,
+        codCliente
+    );
+    
+    insert into pagos(
+        CodigoCliente,
+        FormaPago,
+        IDTransaccion,
+        FechaPago,
+        Cantidad
+    ) values (
+        codCliente,
+        'Transferencia',
+        concat('TX-', codPedido),
+        fecha,
+        100
+    );
+end //
+delimiter ;
+
+-- 12. Crear un procedimiento que suba el sueldo a todos los empleados. (si llegase a tener salario)
+delimiter //
+create procedure subirSueldo(subida decimal(100.0))
+begin
+	update empleados
+    set salario = salario + subida;
+end //
+delimiter ;
+
+-- 13. Crea un procedimiento que saque todos los pedidos que estén en un estado que se le pasa como parámetro.
+delimiter //
+create procedure verPedidosEstado(in est varchar(15))
+begin
+	select CodigoPedido, estado from pedidos 
+    where estado = est;
+end //
+delimiter ;
+
+-- 14. Realiza un procedimiento que saque el total de coste de un pedido.
+delimiter //
+create procedure totalCoste(in cp int)
+begin
+	select sum(Cantidad * PrecioUnidad) as total from detallepedidos
+    where CodigoPedido = cp;
+end //
+delimiter ;
+
+-- 15. Pasándole un código de pedido que permita insertar la fecha de Entrega si está a NULL.
+delimiter //
+create procedure fechaEsNULL(in codPedido varchar(25), in FE date)
+begin
+	update pedidos
+    set FechaEntrega = FE
+    where CodigoPedido = codPedido and FechaEntrega is null;
+end //
+delimiter ;
+
+-- 16. Incrementar a todos los pedidos que no tengan fecha de Entrega 2 días más en su fecha esperada.
+delimiter //
+create procedure añadirDiasPedidos(in extra decimal(2))
+begin
+	update pedidos
+    inner join 
+    (select codigo_pedido from pedidos
+	where fecha_entrega is null)t1
+    on pedidos.CodigoPedido = t1.CodigoPedido
+    set pedidos.FechaEsperada = pedidos.FechaEsperada + interval extra day;
+end //
+delimiter ;
