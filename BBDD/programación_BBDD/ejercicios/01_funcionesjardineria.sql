@@ -69,8 +69,7 @@ end //
 delimiter ;
 
 -- 4. Realiza una función que dado un código de usuario y un gasto verifique el crédito. 
--- Si tiene suficiente crédito que modifique el crédito que tiene restando lo que le pasa sino que 
--- devuelva que no se puede efectuar la operación.
+-- Si tiene suficiente crédito que modifique el crédito que tiene restando lo que le pasa sino que devuelva que no se puede efectuar la operación.
 delimiter //
 create function verificarCredito(codUser int, gasto int)
 returns varchar(50)

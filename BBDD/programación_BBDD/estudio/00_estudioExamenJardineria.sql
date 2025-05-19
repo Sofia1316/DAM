@@ -64,16 +64,44 @@ end //
 delimiter ;
 
 -- 06. Crear un procedimiento que liste los pedidos de un cliente por su nombre mostrando fecha, estado y total si es posible.
-
+delimiter //
+create procedure verPedidoCliente(in NC varchar(25))
+begin
+	select NombreCliente, FechaPedido, estado from clientes
+	inner join
+	(select CodigoCliente as codCliente, CodigoPedido, FechaPedido, estado from pedidos)t1
+	on clientes.CodigoCliente = t1.codCliente
+    where NombreCliente = NC;
+end //
+delimiter ;
 
 -- 07. Crear un procedimiento que saque todos los pedidos pendientes junto al nombre del cliente y el representante de ventas.
-
+delimiter //
+create procedure pedidoPendiente()
+begin
+	select distinct NombreCliente, CodigoEmpleadoRepVentas, estado from pedidos
+	inner join
+	(select NombreCliente, CodigoEmpleadorepVentas, CodigoCliente as CC from clientes)t1
+	on pedidos.CodigoCliente = t1.CC
+	where estado = 'Pendiente';
+end //
+delimiter ;
 
 -- 08. Crear un procedimiento que liste los productos más caros por gama.
+delimiter //
+create procedure masCaro()
+begin
+	select Gama, PrecioVenta from productos
+    group by Gama;
+end //
+delimiter ;
 
-
--- 09. Crear un procedimiento que muestre la cantidad total de pedidos por oficina.
-
-
--- 10. Crear un procedimiento que liste los productos con bajo stock (por ejemplo, < 20 unidades).
-
+-- 09. Crear un procedimiento que liste los productos con bajo stock (por ejemplo 20 unidades).
+delimiter //
+create procedure masBarato()
+begin
+	select distinct CantidadEnStock, Nombre from productos
+    order by CantidadEnStock asc
+    limit 20;
+end //
+delimiter ;

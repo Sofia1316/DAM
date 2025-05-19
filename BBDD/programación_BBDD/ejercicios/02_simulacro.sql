@@ -72,7 +72,48 @@ end //
 delimiter ;
 
 -- 4. Realiza un procedimiento que dado el código de jugador permita corregir la procedencia de ese jugador y que devuelva el nombre del jugador que se ha cambiado la procedencia.
+delimiter //
+create procedure cambiarProcedencia(in codJug int, in proc varchar(30))
+begin
+	update jugadores
+    set Procedencia = proc
+    where codigo = codJug;
+    
+    select Nombre from jugadores
+    where codigo = codJug;
+end //
+delimiter ;
 
--- 5. Realiza un procedimiento que le sume la variable que se le pasa comoparámetro al peso de cada jugador.
+-- 5. Realiza un procedimiento que le sume la variable que se le pasa como parámetro al peso de cada jugador.
+delimiter //
+create procedure aumentarPeso(in extra int, in CJ int)
+begin
+	update jugadores
+    set Peso = Peso + extra
+    where codigo = CJ;
+end //
+delimiter ;
 
--- 6. Crea unprocedimiento que sirva para insertar los datos de un partido.
+-- 6. Crea un procedimiento que sirva para insertar los datos de un partido.
+delimiter //
+create procedure aumentarPeso(
+in cod int,
+in EL varchar(20), 
+in EV varchar(20), 
+in PL int, 
+in PV int, 
+in temp int
+)
+begin
+	insert into partidos(
+		codigo,
+		equipo_local,
+		equipo_visitante,
+		puntos_local,
+		puntos_visitante,
+		temporada
+	) values (
+		cod, EL, EV, PL, PV, temp
+	);
+end //
+delimiter ;
