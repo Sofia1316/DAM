@@ -105,3 +105,76 @@ begin
     limit 20;
 end //
 delimiter ;
+
+-- 10. Un procedimiento que elimine un producto dado su código.
+delimiter //
+create procedure eliminarProducto(in codProd varchar(15))
+begin
+	delete from productos
+	where CodigoProducto = codProd;
+end //
+delimiter ;
+
+-- 11.  Una función que devuelva el número de empleados que tiene una oficina según su código
+delimiter //
+create function empleadosOficina(CO int)
+returns int
+deterministic
+begin
+	declare total int;
+    
+    select count(*) into total from empleados
+    where CodigoOficina = CO;
+    
+    return total;
+end //
+delimiter ;
+
+-- 12. Una función que indique si un pedido ya fue entregado (retorna 1 o 0)
+delimiter //
+create function comprobarEntrega(codPedido int)
+returns int
+deterministic
+begin
+	declare resultado varchar(25);
+    
+    select estado into resultado from pedidos
+    where CodigoPedido = codPedido;
+    
+    if resultado = 'Entregado' then
+		return 1;
+	else
+		return 0;
+	end if;
+end //
+delimiter ;
+
+-- 13. Un procedimiento que elimine todos los pedidos de un cliente dado su código.
+
+-- 14. Un procedimiento que actualice el estado de todos los pedidos de una ciudad específica.
+
+-- 15. Un procedimiento que registre una nueva oficina con todos sus datos.
+
+-- 16. Un procedimiento que cambie el producto en una línea de detalle de pedido.
+
+-- 17. Un procedimiento que devuelva los productos más vendidos ordenados por cantidad total.
+
+-- 18. Un procedimiento que devuelva todos los pedidos realizados en una fecha específica.
+
+-- 19. Un procedimiento que elimine todos los productos que no se han vendido nunca.
+
+-- 20. Un procedimiento que liste todos los clientes que no han realizado ningún pedido.
+
+-- 21. Un procedimiento que reemplace todos los productos de un pedido por uno nuevo.
+
+-- 22. Una función que devuelva la cantidad total de productos en un pedido.
+
+-- 23. Una función que indique cuántos pedidos tiene un cliente.
+
+-- 24. Una función que devuelva el nombre del cliente con más pedidos.
+
+-- 25. Una función que calcule cuántos productos únicos hay registrados.
+
+-- 26. Una función que indique si un producto está en stock (retorna 1 si sí, 0 si no).
+
+-- 27. Una función que devuelva el código de la oficina con más empleados.
