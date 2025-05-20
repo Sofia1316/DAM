@@ -1,3 +1,4 @@
+package ejercicioMenu;
 
 public class Persona {
 	String dni;

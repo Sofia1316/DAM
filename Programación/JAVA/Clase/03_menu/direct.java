@@ -1,3 +1,4 @@
+package ejercicioMenu;
 
 enum Turno{
 	maniana,
@@ -29,7 +30,13 @@ public class Directivo extends Persona {
 
 	@Override
 	public String toString() {
-		return "directivo [salesiano=" + salesiano + ", horaTurno=" + horaTurno + ", dni=" + dni + ", nombre=" + nombre
-				+ ", Apellido=" + Apellido + ", salario=" + salario + "]";
+	    return "Detalles del directivo:\n" +
+	    		"- Salesiano: " + salesiano + "\n" +
+	    		"- Hora de turno: " + horaTurno + "\n" +
+	    		"- DNI: " + dni + "\n" +
+	    		"- Nombre: " + nombre + "\n" +
+	    		"- Apellido: " + Apellido + "\n" +
+	    		"- Salario: " + salario;
 	}
+
 }

@@ -1,3 +1,4 @@
+package ejercicioMenu;
 
 public class Profesor extends Persona {
 	int numAsignatura;
@@ -27,8 +28,13 @@ public class Profesor extends Persona {
 
 	@Override
 	public String toString() {
-		return "profesor [numAsignatura=" + numAsignatura + ", esProfe=" + esProfe + ", dni=" + dni + ", nombre="
-				+ nombre + ", Apellido=" + Apellido + ", salario=" + salario + "]";
+	    return "Detalles del profesor:\n" +
+	           "- Número de asignaturas: " + numAsignatura + "\n" +
+	           "- Es profesor: " + esProfe + "\n" +
+	           "- DNI: " + dni + "\n" +
+	           "- Nombre: " + nombre + "\n" +
+	           "- Apellido: " + Apellido + "\n" +
+	           "- Salario: " + salario;
 	}
 	
 }

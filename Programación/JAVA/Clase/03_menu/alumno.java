@@ -1,3 +1,5 @@
+package ejercicioMenu;
+
 import java.util.Arrays;
 
 enum Sexo{
@@ -54,14 +56,14 @@ public class Alumno extends Persona {
 
 	@Override
 	public String toString() {
-		return "Datos alumno \n" +
-		           "- Fecha de Nacimiento: " + fechaNacimiento + "\n" +
-		           "- Género: " + genero + "\n" +
-		           "- Repetidor: " + repetidor + "\n" +
-		           "- Módulos: " + Arrays.toString(matriculadoModulo) + "\n" +
-		           "- DNI: " + dni + "\n" +
-		           "- Nombre: " + nombre + "\n" +
-		           "- Apellido: " + Apellido + "\n" +
-		           "- Salario: " + salario + "\n";
+		return "Detalles del alumno \n" +
+					"- Fecha de Nacimiento: " + fechaNacimiento + "\n" +
+					"- Género: " + genero + "\n" +
+					"- Repetidor: " + repetidor + "\n" +
+					"- Módulos: " + Arrays.toString(matriculadoModulo) + "\n" +
+					"- DNI: " + dni + "\n" +
+					"- Nombre: " + nombre + "\n" +
+					"- Apellido: " + Apellido + "\n" +
+					"- Salario: " + salario + "\n";
 	}
 }

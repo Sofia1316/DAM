@@ -1,3 +1,4 @@
+package ejercicioMenu;
 
 public class Modulo {
 	String nombre;
@@ -40,7 +41,11 @@ public class Modulo {
 
 	@Override
 	public String toString() {
-		return "modulo [nombre=" + nombre + ", numHoras=" + numHoras + ", tieneProfesor=" + tieneProfesor
-				+ ", convalidar=" + convalidar + "]";
+	    return "Detalles del módulo:\n" +
+	    		"- Nombre: " + nombre + "\n" +
+	    		"- Número de horas: " + numHoras + "\n" +
+	    		"- Tiene profesor: " + tieneProfesor + "\n" +
+	    		"- Convalidado: " + convalidar;
 	}
+
 }

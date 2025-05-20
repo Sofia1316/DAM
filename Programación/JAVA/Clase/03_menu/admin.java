@@ -1,3 +1,4 @@
+package ejercicioMenu;
 
 public class Administracion extends Persona{
 	String estudios;
@@ -27,13 +28,13 @@ public class Administracion extends Persona{
 
 	@Override
 	public String toString() {
-		return "Detalles del empleado:\n" +
-		           "- Estudios: " + estudios + "\n" +
-		           "- Antigüedad: " + antiguedad + " años\n" +
-		           "- DNI: " + dni + "\n" +
-		           "- Nombre: " + nombre + "\n" +
-		           "- Apellido: " + Apellido + "\n" +
-		           "- Salario: " + salario;
+		return "Detalles del administrador:\n" +
+					"- DNI: " + dni + "\n" +
+					"- Nombre: " + nombre + "\n" +
+					"- Apellido: " + Apellido + "\n" +
+					"- Salario: " + salario + "\n" +   
+					"- Estudios: " + estudios + "\n" +
+					"- Antigüedad: " + antiguedad + " años\n";
 	}
 	
 }

@@ -1,3 +1,5 @@
+package ejercicioMenu;
+
 import java.util.Scanner;
 
 public class Colegio {
@@ -18,18 +20,16 @@ public class Colegio {
 		boolean salida = true;
 		
 		do {
-			System.out.println("MENU DEL COLEGIO:");
-			System.out.println("1. profesor");
-			System.out.println("2. administrador");
-			System.out.println("3. directivo");
-			System.out.println("4. módulo");
-			System.out.println("5. alumno");
-			System.out.println("6. salir");
+			System.out.println("\nMENU DEL COLEGIO:");
+			System.out.println("\t 1. profesor");
+			System.out.println("\t 2. administrador");
+			System.out.println("\t 3. directivo");
+			System.out.println("\t 4. módulo");
+			System.out.println("\t 5. alumno");
+			System.out.println("\t 6. salir");
 			System.out.print("Opción: ");
-			
-			boolean error = entrada.hasNextInt();
 
-			if (error == true) {
+			if (entrada.hasNextInt()) {
 				int respuesta = entrada.nextInt();
 				
 				if (respuesta == 1) {
@@ -52,12 +52,16 @@ public class Colegio {
 					alumno();
 					mostrarAlumno();
 
-				} else {
-					System.out.println("Has salido del programa");
-					salida = false;
-				}
+				} else if (respuesta == 6) {
+	                System.out.println("Has salido del programa");
+	                salida = false;
+	                
+	            } else {
+	                System.out.println("Respuesta no válida, mete un num entre 1 y 6");
+	            }
 			} else {
 				System.out.println("El valor introducido no es un número");
+				entrada.nextLine();
 			}
 			
 		} while (salida == true);
@@ -94,7 +98,6 @@ public class Colegio {
 	
 	public static void mostrarProfesor() {
         if (profesor1 != null) {
-            System.out.println("\nDatos del profesor:");
             System.out.println(profesor1);
         } else {
             System.out.println("No hay profe");
@@ -112,21 +115,23 @@ public class Colegio {
 
         System.out.print("Apellidos: ");
         String apellidos = entrada.nextLine();
+        
+        System.out.print("Estudios: ");
+        String estudios = entrada.nextLine();
 
         System.out.print("Sueldo: ");
         double sueldo = entrada.nextDouble();
 
-        System.out.print("Número de cursos: ");
-        int cursos = entrada.nextInt();
+        System.out.print("Años de antigüedad: ");
+        int antig = entrada.nextInt();
 
-        administrador1 = new Administracion(dni, nombre, apellidos, sueldo, apellidos, cursos);
+        administrador1 = new Administracion(dni, nombre, apellidos, sueldo, estudios, antig);
         System.out.println("Administrador");
         
 	}
 	
 	public static void mostrarAdministrador() {
         if (administrador1 != null) {
-            System.out.println("\nDatos del administrador:");
             System.out.println(administrador1);
         } else {
             System.out.println("No hay administrador");
@@ -156,9 +161,9 @@ public class Colegio {
         String auxturno = entrada.nextLine();
 
         Turno turno = null;
-        if (turno.equals("maniana")) {
+        if (auxturno.equals("maniana")) {
             turno = Turno.maniana;
-        } else if (turno.equals("tarde")) {
+        } else if (auxturno.equals("tarde")) {
             turno = Turno.tarde;
         } else {
             System.out.println("Turno no válido, te pongo tarde por no saberlo");
@@ -171,9 +176,8 @@ public class Colegio {
 	}
 	
 	public static void mostrarDirectivo() {
-        if (administrador1 != null) {
-            System.out.println("\nDatos del directivo:");
-            System.out.println(administrador1);
+        if (directivo1 != null) {
+            System.out.println(directivo1);
         } else {
             System.out.println("No hay directivo");
         }
@@ -182,26 +186,31 @@ public class Colegio {
 	static public void modulo() {
 		entrada.nextLine();
 		
+		if (profesor1 == null) {
+			System.out.println("Como no hay profesor, no se puede crear un módulo");
+			return;
+		}
+		
 		System.out.print("Nombre: ");
         String nombre = entrada.nextLine();
         
 		System.out.print("Número de horas: ");
         String horas = entrada.nextLine();
 
-        System.out.print("Su profesor: ");
-        String profesor = entrada.nextLine();
+        System.out.print("Su profesor es " + "\n" + profesor1);
+        
+        System.out.println();
 
-        System.out.print("Puede convalidar la asignatura: ");
+        System.out.println("Puede convalidar la asignatura (true/false): ");
         boolean convalidar = entrada.nextBoolean();
 
-        modulo1 = new Modulo(nombre, 0, profesor1, false);
+        modulo1 = new Modulo(nombre, 0, profesor1, convalidar);
         System.out.println("Módulo creado");
         
 	}
 	
 	public static void mostrarModulo() {
-        if (administrador1 != null) {
-            System.out.println("\nDatos del módulo:");
+        if (modulo1 != null) {
             System.out.println(modulo1);
         } else {
             System.out.println("No hay módulo");
@@ -210,6 +219,11 @@ public class Colegio {
 	
 	static public void alumno() {
 		entrada.nextLine();
+		
+		if (modulo1 == null) {
+	        System.out.println("Como no hay ningún módulo creado, no se puede hacer alumno");
+	        return;
+	    }
 		
 		System.out.print("DNI: ");
 	    String dni = entrada.nextLine();
@@ -241,6 +255,8 @@ public class Colegio {
 	    System.out.print("¿Es repetidor? true/false: ");
 	    boolean repetidor = entrada.nextBoolean();
 	    entrada.nextLine();
+	    
+	    System.out.println();
 
 	    // AÑADIMOS EL MÓDULO
 	    Modulo[] modulosMatriculados;
@@ -252,7 +268,6 @@ public class Colegio {
 	
 	public static void mostrarAlumno() {
 	    if (alumno1 != null) {
-	        System.out.println("\nDatos del alumno:");
 	        System.out.println(alumno1);
 	    } else {
 	        System.out.println("No hay alumno");
