@@ -58,12 +58,14 @@ returns varchar(50)
 deterministic
 begin
 	declare nombre varchar(50);
+
 	select NombreCliente into nombre
     from clientes
     inner join pagos
     on clientes.CodigoCliente = pagos.CodigoCliente
     order by LimiteCredito desc
     limit 1;
+
     return nombre;
 end //
 delimiter ;
@@ -99,6 +101,7 @@ returns varchar(50)
 deterministic
 begin
 	declare reg varchar(50);
+
 	select reg into reg from clientes
     where CodigoCliente = codUser;
     
@@ -118,8 +121,10 @@ returns decimal(12,2)
 deterministic
 begin
     declare total decimal(12,2);
+
     select sum(precioVenta * 0.9) into total
     from productos;
+    
     return total;
 end //
 delimiter ;
