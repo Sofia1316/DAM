@@ -41,10 +41,16 @@ public class Modulo {
 
 	@Override
 	public String toString() {
+		String tieneProfesorAux = null;
+		if(tieneProfesor){
+			tieneProfesorAux = "Si que tiene profesor";
+		} else {
+			tieneProfesorAux = "No tiene profesor";
+		}
 	    return "Detalles del módulo:\n" +
 	    		"- Nombre: " + nombre + "\n" +
 	    		"- Número de horas: " + numHoras + "\n" +
-	    		"- Tiene profesor: " + tieneProfesor + "\n" +
+	    		"- Tiene profesor: " + tieneProfesorAux + "\n" +
 	    		"- Convalidado: " + convalidar;
 	}
 
