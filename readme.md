@@ -26,7 +26,6 @@ Incluye páginas web, ejercicios y formularios.
 
 - Scripts en Bash
 - Gestión de usuarios y permisos en sistemas Linux
-- Comandos y administración básica de sistemas operativos
 
 ---
 
