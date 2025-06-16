@@ -5,9 +5,8 @@ Este repositorio contiene todos los proyectos, ejercicios y prácticas realizada
 
 ### 1. BBDD (Bases de Datos)
 
-- Consultas SQL (DML y DDL)
-- Procedimientos almacenados
-- Vistas, funciones y triggers
+- Consultas SQL
+- Procedimientos
 
 ### 2. Lenguaje de Marcas
 
